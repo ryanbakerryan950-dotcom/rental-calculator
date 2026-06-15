@@ -155,10 +155,20 @@
             </div>
             <div class="calc-field calc-field--full">
               <label for="monto-actual">Valor actual del alquiler</label>
-              <div class="input-currency">
-                <span class="prefix">$</span>
-                <input type="number" id="monto-actual" placeholder="Ej: 150000" min="0" step="1" required>
+              <div class="input-currency-wrapper input-wrapper">
+                <span class="currency-prefix">$</span>
+                <input
+                  type="text"
+                  id="monto-actual"
+                  inputmode="numeric"
+                  placeholder="Ej: 1.200.000"
+                  autocomplete="off"
+                  aria-label="Valor actual del alquiler en pesos"
+                  class="input-currency"
+                  required
+                >
               </div>
+              <input type="hidden" id="monto-raw" name="monto_raw">
             </div>
           </div>
 
@@ -417,6 +427,7 @@
     </div>
   </footer>
 
+  <script src="js/currency.js" defer></script>
   <script src="js/indices.js" defer></script>
   <script src="js/calculator.js" defer></script>
   <script src="js/main.js" defer></script>

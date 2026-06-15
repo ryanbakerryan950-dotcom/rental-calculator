@@ -87,9 +87,9 @@
               <div class="calc-fields">
                 <div class="calc-field calc-field--full">
                   <label for="deposit-rent">Valor del primer alquiler</label>
-                  <div class="input-currency">
-                    <span class="prefix">$</span>
-                    <input type="number" id="deposit-rent" placeholder="Ej: 150000" min="0" required>
+                  <div class="input-currency-wrapper">
+                    <span class="currency-prefix">$</span>
+                    <input type="text" id="deposit-rent" inputmode="numeric" placeholder="Ej: 150.000" autocomplete="off" class="input-currency" required>
                   </div>
                 </div>
                 <div class="calc-field calc-field--full">
@@ -139,9 +139,9 @@
               <div class="calc-fields">
                 <div class="calc-field">
                   <label for="future-rent">Alquiler actual</label>
-                  <div class="input-currency">
-                    <span class="prefix">$</span>
-                    <input type="number" id="future-rent" placeholder="Ej: 150000" min="0" required>
+                  <div class="input-currency-wrapper">
+                    <span class="currency-prefix">$</span>
+                    <input type="text" id="future-rent" inputmode="numeric" placeholder="Ej: 150.000" autocomplete="off" class="input-currency" required>
                   </div>
                 </div>
                 <div class="calc-field">
@@ -205,6 +205,7 @@
     </div>
   </footer>
 
+  <script src="js/currency.js" defer></script>
   <script src="js/indices.js" defer></script>
   <script src="js/calculator.js" defer></script>
   <script src="js/main.js" defer></script>

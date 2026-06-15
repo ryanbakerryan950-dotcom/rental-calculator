@@ -6,10 +6,22 @@
 const RentalCalculator = (function () {
   'use strict';
 
+  const calculationState = {
+    m1: null,
+    i1: null,
+    i2: null,
+    date1: null,
+    date2: null,
+    monthKey1: null,
+    monthKey2: null,
+    indice: null,
+    result: null
+  };
+
   function parseAmount(value) {
-    if (typeof value === 'number') return value;
-    const cleaned = String(value).replace(/[^\d.,]/g, '').replace(',', '.');
-    return parseFloat(cleaned) || 0;
+    if (typeof value === 'number') return isNaN(value) ? 0 : value;
+    const parsed = CurrencyARS.parseARS(value);
+    return isNaN(parsed) ? 0 : parsed;
   }
 
   function calculate(params) {
@@ -23,8 +35,8 @@ const RentalCalculator = (function () {
       adjustmentFrequency = 12
     } = params;
 
-    const rent = parseAmount(currentRent);
-    if (rent <= 0) {
+    const rent = typeof currentRent === 'number' ? currentRent : parseAmount(currentRent);
+    if (isNaN(rent) || rent <= 0) {
       return { error: 'Ingrese un monto de alquiler válido.' };
     }
 
@@ -37,25 +49,30 @@ const RentalCalculator = (function () {
       return { error: 'No se encontraron datos de índice para las fechas seleccionadas.' };
     }
 
-    const increaseAmount = rent * (variation.variation / 100);
-    const newRent = rent + increaseAmount;
+    const { m2, variationPct } = CurrencyARS.applyRentFormula(
+      rent,
+      variation.startValue,
+      variation.endValue
+    );
+    const newRent = Math.round(m2);
+    const increaseAmount = Math.round(newRent - rent);
 
     const result = {
       indexType,
       indexInfo: IndicesData.INDEX_INFO[indexType],
       currentRent: rent,
-      newRent: Math.round(newRent),
-      increaseAmount: Math.round(increaseAmount),
-      variationPercent: variation.variation,
+      newRent,
+      increaseAmount,
+      variationPercent: variationPct,
       startValue: variation.startValue,
       endValue: variation.endValue,
       startDate: variation.startDate,
       endDate: variation.endDate,
       formatted: {
-        currentRent: IndicesData.formatCurrency(rent),
-        newRent: IndicesData.formatCurrency(Math.round(newRent)),
-        increaseAmount: IndicesData.formatCurrency(Math.round(increaseAmount)),
-        variationPercent: IndicesData.formatPercent(variation.variation),
+        currentRent: CurrencyARS.formatARS(rent),
+        newRent: CurrencyARS.formatARS(newRent),
+        increaseAmount: CurrencyARS.formatARS(increaseAmount),
+        variationPercent: CurrencyARS.formatPercentAR(variationPct),
         startDate: IndicesData.formatDate(variation.startDate),
         endDate: IndicesData.formatDate(variation.endDate)
       }
@@ -72,6 +89,138 @@ const RentalCalculator = (function () {
     }
 
     return result;
+  }
+
+  async function calculateAsync(params) {
+    const {
+      indexType = 'ICL',
+      currentRent,
+      startIso,
+      endIso,
+      contractStartDate,
+      contractDuration = 36,
+      adjustmentFrequency = 12
+    } = params;
+
+    const rent = typeof currentRent === 'number' ? currentRent : parseAmount(currentRent);
+    if (isNaN(rent) || rent <= 0) {
+      return { error: 'Ingrese un monto de alquiler válido.' };
+    }
+
+    if (!startIso || !endIso) {
+      return { error: 'Seleccione las fechas de inicio y fin del período.' };
+    }
+
+    const fecha1Str = IndicesData.toISO(startIso);
+    const fecha2Str = IndicesData.toISO(endIso);
+    if (!fecha1Str || !fecha2Str) {
+      return { error: 'Fecha inválida. Use el formato DD/MM/AAAA o el selector de fecha.' };
+    }
+
+    if (new Date(fecha2Str + 'T12:00:00') <= new Date(fecha1Str + 'T12:00:00')) {
+      return { error: 'La fecha de actualización debe ser posterior a la de inicio.' };
+    }
+
+    const variation = IndicesData.calculateVariationForDates(indexType, fecha1Str, fecha2Str);
+    if (!variation) {
+      return { error: 'No se encontraron datos de índice para las fechas seleccionadas.' };
+    }
+
+    const i1 = variation.startValue;
+    const i2 = variation.endValue;
+    const { m2, variationPct } = CurrencyARS.applyRentFormula(rent, i1, i2);
+    const newRent = Math.round(m2);
+    const increaseAmount = Math.round(newRent - rent);
+
+    Object.assign(calculationState, {
+      m1: rent,
+      i1,
+      i2,
+      date1: fecha1Str,
+      date2: fecha2Str,
+      monthKey1: variation.monthKey1,
+      monthKey2: variation.monthKey2,
+      indice: indexType,
+      result: { m2: newRent, factor: i2 / i1, variationPct }
+    });
+
+    const result = {
+      indexType,
+      indexInfo: IndicesData.INDEX_INFO[indexType],
+      currentRent: rent,
+      newRent,
+      increaseAmount,
+      variationPercent: variationPct,
+      startValue: i1,
+      endValue: i2,
+      startDate: variation.startDate,
+      endDate: variation.endDate,
+      formatted: {
+        currentRent: CurrencyARS.formatARS(rent),
+        newRent: CurrencyARS.formatARS(newRent),
+        increaseAmount: CurrencyARS.formatARS(increaseAmount),
+        variationPercent: CurrencyARS.formatPercentAR(variationPct),
+        startDate: IndicesData.formatDate(variation.startDate),
+        endDate: IndicesData.formatDate(variation.endDate)
+      }
+    };
+
+    if (contractStartDate && contractDuration) {
+      result.contract = calculateContractProjection({
+        newRent: result.newRent,
+        contractStartDate,
+        contractDuration,
+        adjustmentFrequency,
+        indexType
+      });
+    }
+
+    return result;
+  }
+
+  function validateCalculationResult(m1, m2, variationPct, periodDays) {
+    const warnings = [];
+    const errors = [];
+    const months = periodDays / 30.44;
+    const maxRealisticPct = months * 15;
+
+    if (variationPct > maxRealisticPct) {
+      errors.push(
+        `Variación de +${variationPct.toFixed(1)}% en ${Math.round(months)} meses ` +
+        'supera el máximo histórico del ICL. Posible error en los datos del índice o en las fechas. ' +
+        'Verificá las fechas ingresadas y consultá con un profesional.'
+      );
+    }
+
+    if (variationPct > 100 && months < 12) {
+      errors.push(
+        `+${variationPct.toFixed(1)}% en menos de 12 meses es inusual para el ICL. ` +
+        'Verificá que las fechas sean correctas.'
+      );
+    }
+
+    if (m2 < m1) {
+      warnings.push(
+        `El nuevo valor (${CurrencyARS.formatARS(m2)}) es menor al actual (${CurrencyARS.formatARS(m1)}). ` +
+        'El ICL no puede bajar. Verificá las fechas (F1 debe ser anterior a F2).'
+      );
+    }
+
+    return { warnings, errors, blocked: errors.length > 0 };
+  }
+
+  function showResultWarning(container, message, isError) {
+    if (!container) return;
+    const el = document.createElement('div');
+    el.className = isError ? 'result-panel__alert result-panel__alert--error' : 'result-panel__alert';
+    el.setAttribute('role', 'alert');
+    el.textContent = message;
+    const details = container.querySelector('.result-panel__details');
+    if (details) {
+      details.parentNode.insertBefore(el, details);
+    } else {
+      container.prepend(el);
+    }
   }
 
   function calculateContractProjection(params) {
@@ -108,7 +257,7 @@ const RentalCalculator = (function () {
           date: toDate,
           formattedDate: IndicesData.formatDate(toDate),
           rent: rent,
-          formattedRent: IndicesData.formatCurrency(rent),
+          formattedRent: CurrencyARS.formatARS(rent),
           variation: varData.variation,
           formattedVariation: IndicesData.formatPercent(varData.variation)
         });
@@ -118,7 +267,7 @@ const RentalCalculator = (function () {
     return {
       adjustments,
       finalRent: rent,
-      formattedFinalRent: IndicesData.formatCurrency(rent),
+      formattedFinalRent: CurrencyARS.formatARS(rent),
       totalAdjustments: adjustments.length
     };
   }
@@ -139,7 +288,7 @@ const RentalCalculator = (function () {
           variation: variation.variation,
           newRent,
           formattedVariation: IndicesData.formatPercent(variation.variation),
-          formattedNewRent: IndicesData.formatCurrency(newRent)
+          formattedNewRent: CurrencyARS.formatARS(newRent)
         });
       }
     }
@@ -203,6 +352,9 @@ const RentalCalculator = (function () {
   }
 
   function initHomeCalculator(form) {
+    const montoInput = document.getElementById('monto-actual');
+    if (montoInput) CurrencyARS.initRentInput(montoInput);
+
     const indexCards = document.querySelectorAll('.index-card');
     const indexInput = document.getElementById('index-type');
     const resultsEl = document.getElementById('calculator-results');
@@ -243,23 +395,34 @@ const RentalCalculator = (function () {
       });
     });
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
+
+      const montoActual = CurrencyARS.getRentRawValue(montoInput);
+      const validation = CurrencyARS.validateRentAmount(montoActual);
+
+      if (!validation.valid) {
+        CurrencyARS.showFieldError(montoInput, validation.error);
+        return;
+      }
+
+      CurrencyARS.clearFieldMessages(montoInput);
+      if (validation.warning) {
+        CurrencyARS.showFieldWarning(montoInput, validation.warning);
+      }
+
+      const montoRaw = document.getElementById('monto-raw');
+      if (montoRaw) montoRaw.value = montoActual;
 
       if (btnCalcular) btnCalcular.classList.add('loading');
 
-      setTimeout(() => {
-        const startResolved = IndicesData.resolveIndexDate(fechaInicio.value);
-        const endResolved = IndicesData.resolveIndexDate(fechaFin.value);
-
-        const result = calculate({
+      try {
+        const result = await calculateAsync({
           indexType: indexInput.value,
-          currentRent: document.getElementById('monto-actual').value,
-          startDate: startResolved.monthKey,
-          endDate: endResolved.monthKey
+          currentRent: montoActual,
+          startIso: fechaInicio.value,
+          endIso: fechaFin.value
         });
-
-        if (btnCalcular) btnCalcular.classList.remove('loading');
 
         if (result.error) {
           alert(result.error);
@@ -268,16 +431,27 @@ const RentalCalculator = (function () {
 
         result.inputDates = {
           start: fechaInicio.value,
-          end: fechaFin.value,
-          startAdjusted: startResolved.wasAdjusted,
-          endAdjusted: endResolved.wasAdjusted,
-          startBusiness: startResolved.iso,
-          endBusiness: endResolved.iso
+          end: fechaFin.value
         };
 
+        const periodDays =
+          (new Date(calculationState.date2 + 'T12:00:00') - new Date(calculationState.date1 + 'T12:00:00')) /
+          (1000 * 60 * 60 * 24);
+        const guard = validateCalculationResult(
+          calculationState.m1,
+          calculationState.result.m2,
+          calculationState.result.variationPct,
+          periodDays
+        );
+
         lastResult = result;
-        displayHomeResults(result, resultsEl);
-      }, 400);
+        displayHomeResults(result, resultsEl, guard);
+      } catch (err) {
+        console.error(err);
+        alert(`Error obteniendo índices: ${err.message}`);
+      } finally {
+        if (btnCalcular) btnCalcular.classList.remove('loading');
+      }
     });
 
     if (resultsEl) {
@@ -324,7 +498,7 @@ const RentalCalculator = (function () {
       `Aumento: ${result.formatted.variationPercent}`,
       `Índice: ${result.indexInfo.name}`,
       `Período: ${IndicesData.formatDateShort(result.inputDates.start)} → ${IndicesData.formatDateShort(result.inputDates.end)}`,
-      `Índice F1: ${result.startValue.toFixed(4)} | Índice F2: ${result.endValue.toFixed(4)}`,
+      `Índice F1: ${(calculationState.i1 ?? result.startValue).toFixed(2)} | Índice F2: ${(calculationState.i2 ?? result.endValue).toFixed(2)}`,
       `Fórmula: M2 = M1 × (I2 ÷ I1)`
     ].join('\n');
 
@@ -362,12 +536,12 @@ const RentalCalculator = (function () {
       <div class="row"><span>Índice utilizado</span><span>${result.indexInfo.fullName}</span></div>
       <div class="row"><span>Período</span><span>${periodStart} → ${periodEnd}</span></div>
       <div class="row"><span>Alquiler anterior</span><span>${result.formatted.currentRent}</span></div>
-      <div class="row"><span>Índice F1</span><span>${result.startValue.toFixed(4)}</span></div>
-      <div class="row"><span>Índice F2</span><span>${result.endValue.toFixed(4)}</span></div>
+      <div class="row"><span>Índice F1</span><span>${(calculationState.i1 ?? result.startValue).toFixed(2)}</span></div>
+      <div class="row"><span>Índice F2</span><span>${(calculationState.i2 ?? result.endValue).toFixed(2)}</span></div>
       <div class="row"><span>Incremento en pesos</span><span>${result.formatted.increaseAmount}</span></div>
       <div class="formula">
         Fórmula: M2 = M1 × (I2 ÷ I1)<br>
-        ${result.formatted.newRent} = ${result.formatted.currentRent} × (${result.endValue.toFixed(4)} ÷ ${result.startValue.toFixed(4)})
+        ${result.formatted.newRent} = ${result.formatted.currentRent} × (${(calculationState.i2 ?? result.endValue).toFixed(2)} ÷ ${(calculationState.i1 ?? result.startValue).toFixed(2)})
       </div>
       <p class="footer">Documento orientativo. Consulte siempre con un profesional matriculado. Generado el ${new Date().toLocaleDateString('es-AR')}.</p>
       </body></html>`;
@@ -379,31 +553,31 @@ const RentalCalculator = (function () {
     setTimeout(() => win.print(), 300);
   }
 
-  function displayHomeResults(result, container) {
+  function displayHomeResults(result, container, guard) {
     if (!container) return;
 
-    const periodStart = IndicesData.formatDateShort(result.inputDates.start);
-    const periodEnd = IndicesData.formatDateShort(result.inputDates.end);
-    const newRentFormatted = IndicesData.formatCurrencyFull(result.newRent);
-    const currentRentFormatted = IndicesData.formatCurrencyFull(result.currentRent);
-    const increaseFormatted = IndicesData.formatCurrencyFull(result.increaseAmount);
-    const businessNote = (result.inputDates.startAdjusted || result.inputDates.endAdjusted)
-      ? '<p style="font-size:12px;color:#A0AEC0;margin-bottom:16px">* Fecha ajustada al día hábil anterior (fin de semana detectado).</p>'
-      : '';
+    const { m1, i1, i2, date1, date2, monthKey1, monthKey2, indice, result: calcResult } = calculationState;
+    const periodStart = IndicesData.formatDisplayDate(date1);
+    const periodEnd = IndicesData.formatDisplayDate(date2);
+    const dispMonth1 = IndicesData.formatMonthKeyDisplay(monthKey1);
+    const dispMonth2 = IndicesData.formatMonthKeyDisplay(monthKey2);
+    const newRentFormatted = CurrencyARS.formatARS(calcResult.m2);
+    const currentRentFormatted = CurrencyARS.formatARS(m1);
+    const increaseFormatted = CurrencyARS.formatARS(calcResult.m2 - m1);
+    const variationFormatted = CurrencyARS.formatPercentAR(calcResult.variationPct);
 
     container.innerHTML = `
       <div class="result-panel__title">Resultado de actualización</div>
       <div class="result-panel__amount-label">Nuevo valor del alquiler:</div>
       <div class="result-panel__amount result-amount">${newRentFormatted}</div>
       <div class="result-panel__badges">
-        <span class="result-badge result-badge--green">Aumento aplicado: ${result.formatted.variationPercent}</span>
+        <span class="result-badge result-badge--green">Aumento aplicado: ${variationFormatted}</span>
         <span class="result-badge result-badge--blue">Índice utilizado: ${result.indexInfo.name}</span>
       </div>
-      ${businessNote}
       <div class="result-panel__details">
         <div><strong>Período:</strong> ${periodStart} → ${periodEnd}</div>
-        <div><strong>Índice F1:</strong> ${result.startValue.toFixed(4)} &nbsp;|&nbsp; <strong>Índice F2:</strong> ${result.endValue.toFixed(4)}</div>
-        <div><strong>Variación:</strong> ${result.variationPercent.toFixed(2)}%</div>
+        <div><strong>Índice F1:</strong> ${i1.toFixed(2)} (${indice} ${dispMonth1}) &nbsp;|&nbsp; <strong>Índice F2:</strong> ${i2.toFixed(2)} (${indice} ${dispMonth2})</div>
+        <div><strong>Variación:</strong> ${variationFormatted}</div>
         <div><strong>Alquiler anterior:</strong> ${currentRentFormatted} &nbsp;→&nbsp; <strong>Incremento:</strong> ${increaseFormatted}</div>
       </div>
       <div class="result-panel__actions">
@@ -419,11 +593,16 @@ const RentalCalculator = (function () {
         <div class="formula-explainer__body">
           <div class="formula-explainer__content">
             Fórmula aplicada: M2 = M1 × (I2 ÷ I1)<br>
-            ${newRentFormatted} = ${currentRentFormatted} × (${result.endValue.toFixed(4)} ÷ ${result.startValue.toFixed(4)})
+            ${newRentFormatted} = ${currentRentFormatted} × (${i2.toFixed(2)} ÷ ${i1.toFixed(2)})
           </div>
         </div>
       </div>
     `;
+
+    if (guard) {
+      guard.errors.forEach((msg) => showResultWarning(container, msg, true));
+      guard.warnings.forEach((msg) => showResultWarning(container, msg, false));
+    }
 
     container.classList.add('visible');
     container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -680,6 +859,10 @@ const RentalCalculator = (function () {
 
   function initMiniCalculators() {
     initMiniCalcTabs();
+    const depositInput = document.getElementById('deposit-rent');
+    const futureInput = document.getElementById('future-rent');
+    if (depositInput) CurrencyARS.initRentInput(depositInput);
+    if (futureInput) CurrencyARS.initRentInput(futureInput);
     initDepositCalculator();
     initExpiryCalculator();
     initFutureRentSimulator();
@@ -722,7 +905,7 @@ const RentalCalculator = (function () {
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const rent = parseAmount(document.getElementById('deposit-rent').value);
+      const rent = CurrencyARS.getRentRawValue(document.getElementById('deposit-rent'));
       const months = parseInt(monthsInput?.value || selectedMonths, 10);
       if (rent <= 0) { alert('Ingrese un valor de alquiler válido.'); return; }
 
@@ -739,12 +922,12 @@ const RentalCalculator = (function () {
         <div class="mini-result__grid">
           <div class="mini-result__item">
             <span class="mini-result__label">Monto del depósito</span>
-            <span class="mini-result__value">${IndicesData.formatCurrencyFull(deposit)}</span>
+            <span class="mini-result__value">${CurrencyARS.formatARS(deposit)}</span>
             <span class="mini-result__hint">${months} mes${months > 1 ? 'es' : ''} de alquiler</span>
           </div>
           <div class="mini-result__item mini-result__item--highlight">
             <span class="mini-result__label">Depósito actualizado al vencimiento</span>
-            <span class="mini-result__value">${IndicesData.formatCurrencyFull(updatedDeposit)}</span>
+            <span class="mini-result__value">${CurrencyARS.formatARS(updatedDeposit)}</span>
             <span class="mini-result__hint">Estimado según variación IPC anual</span>
           </div>
         </div>`;
@@ -823,7 +1006,7 @@ const RentalCalculator = (function () {
 
     form.addEventListener('submit', (e) => {
       e.preventDefault();
-      const rent = parseAmount(document.getElementById('future-rent').value);
+      const rent = CurrencyARS.getRentRawValue(document.getElementById('future-rent'));
       const annualRate = parseFloat(slider.value) / 100;
       const freq = document.getElementById('future-frequency').value;
       const freqMonths = { mensual: 1, trimestral: 3, semestral: 6, anual: 12 }[freq] || 3;
@@ -841,7 +1024,7 @@ const RentalCalculator = (function () {
         }
         rows.push({
           month: IndicesData.formatDate(`${monthDate.getFullYear()}-${String(monthDate.getMonth() + 1).padStart(2, '0')}`),
-          rent: IndicesData.formatCurrencyFull(current)
+          rent: CurrencyARS.formatARS(current)
         });
       }
 
@@ -855,8 +1038,80 @@ const RentalCalculator = (function () {
     });
   }
 
+  function selfTest() {
+    console.group('AlquilerCalc — Self Test (vs competitor screenshot)');
+
+    const r1 = IndicesData.getICLMonthly('2025-01-01');
+    const pass1 = Math.abs(r1.value - 21.54) < 0.01;
+    console.log(
+      `${pass1 ? '✅' : '❌'} ICL for Jan 2025 adjustment → Dec 2024: ` +
+      `${r1.value} (expected 21.54)`
+    );
+
+    const r2 = IndicesData.getICLMonthly('2026-01-01');
+    const pass2 = Math.abs(r2.value - 29.39) < 0.01;
+    console.log(
+      `${pass2 ? '✅' : '❌'} ICL for Jan 2026 adjustment → Dec 2025: ` +
+      `${r2.value} (expected 29.39)`
+    );
+
+    const m1 = 12000;
+    const i1 = r1.value;
+    const i2 = r2.value;
+    const m2 = Math.round(m1 * (i2 / i1) * 100) / 100;
+    const pct = ((i2 / i1) - 1) * 100;
+    const pass3 = Math.abs(m2 - 16373.26) < 1.00;
+    const pass4 = Math.abs(pct - 36.44) < 0.01;
+
+    console.log(
+      `${pass3 ? '✅' : '❌'} M2 = $12,000 × (${i2}/${i1}) = ` +
+      `$${m2.toFixed(2)} (expected $16,373.26)`
+    );
+    console.log(
+      `${pass4 ? '✅' : '❌'} Variation = +${pct.toFixed(2)}% (expected +36.44%)`
+    );
+
+    const p1 = IndicesData.getPreviousMonthKey('2025-01-01');
+    const p2 = IndicesData.getPreviousMonthKey('2026-01-01');
+    const p3 = IndicesData.getPreviousMonthKey('2024-03-15');
+    const pass5 = p1 === '2024-12' && p2 === '2025-12' && p3 === '2024-02';
+    console.log(
+      `${pass5 ? '✅' : '❌'} getPreviousMonthKey: ` +
+      `Jan-2025→${p1} | Jan-2026→${p2} | Mar-2024→${p3}`
+    );
+
+    const iso1 = IndicesData.toISO('01/06/2024');
+    const iso2 = IndicesData.toISO('2024-06-01');
+    const pass6 = iso1 === '2024-06-01' && iso2 === '2024-06-01';
+    console.log(
+      `${pass6 ? '✅' : '❌'} toISO: "01/06/2024"→${iso1} | "2024-06-01"→${iso2}`
+    );
+
+    const c1 = CurrencyARS.parseARS('13.000');
+    const c2 = CurrencyARS.parseARS('$ 13.000,00');
+    const c3 = CurrencyARS.parseARS('13000');
+    const pass7 = c1 === 13000 && c2 === 13000 && c3 === 13000;
+    console.log(
+      `${pass7 ? '✅' : '❌'} parseARS: "13.000"→${c1} | "$ 13.000,00"→${c2} | "13000"→${c3}`
+    );
+
+    const allPass = pass1 && pass2 && pass3 && pass4 && pass5 && pass6 && pass7;
+    console.log('');
+    console.log(allPass
+      ? '✅ ALL TESTS PASSED — calculator matches competitor results'
+      : '❌ TESTS FAILED — do not deploy until all pass'
+    );
+    console.groupEnd();
+
+    return allPass;
+  }
+
   return {
     calculate,
+    calculateAsync,
+    calculationState,
+    validateCalculationResult,
+    selfTest,
     calcularActualizacion: (indice, fi, ff, m) => IndicesData.calcularActualizacion(indice, fi, ff, parseAmount(m)),
     compareIndices,
     initMainCalculator,

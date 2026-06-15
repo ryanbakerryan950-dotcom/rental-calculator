@@ -1475,6 +1475,22 @@ h4 { font-size: var(--text-xl); }
   border-radius: var(--radius-input);
 }
 
+.result-panel__alert {
+  padding: 12px 16px;
+  margin-bottom: 16px;
+  border-radius: var(--radius-input);
+  font-size: var(--text-sm);
+  background: #FFF8E6;
+  color: #8B6914;
+  border: 1px solid #F5A623;
+}
+
+.result-panel__alert--error {
+  background: #FDECEA;
+  color: #C0392B;
+  border-color: #E74C3C;
+}
+
 .result-panel__actions {
   display: flex;
   flex-wrap: wrap;
@@ -2916,55 +2932,6 @@ h4 { font-size: var(--text-xl); }
   transform: rotate(180deg);
 }
 
-/* WhatsApp FAB */
-.whatsapp-fab {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 999;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #25D366;
-  color: var(--white);
-  padding: 14px 18px 14px 14px;
-  border-radius: 50px;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45);
-  font-weight: 600;
-  font-size: var(--text-sm);
-  text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  animation: fabPulse 2.5s ease infinite;
-}
-
-.whatsapp-fab:hover {
-  color: var(--white);
-  transform: scale(1.05);
-  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.55);
-}
-
-.whatsapp-fab svg {
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-}
-
-.whatsapp-fab span {
-  max-width: 0;
-  overflow: hidden;
-  white-space: nowrap;
-  transition: max-width 0.3s ease;
-}
-
-.whatsapp-fab:hover span {
-  max-width: 80px;
-}
-
-@keyframes fabPulse {
-  0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.45); }
-  50% { box-shadow: 0 4px 28px rgba(37, 211, 102, 0.7), 0 0 0 8px rgba(37, 211, 102, 0.15); }
-}
-
 /* Cookie banner */
 .cookie-banner {
   position: fixed;
@@ -3077,19 +3044,6 @@ h4 { font-size: var(--text-xl); }
     width: 100%;
   }
 
-  .whatsapp-fab {
-    bottom: 80px;
-    padding: 14px;
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    justify-content: center;
-  }
-
-  .whatsapp-fab span {
-    display: none;
-  }
-
   .cookie-banner {
     flex-direction: column;
     text-align: center;
@@ -3111,7 +3065,6 @@ h4 { font-size: var(--text-xl); }
   .footer,
   .faq-section,
   .cta-banner,
-  .whatsapp-fab,
   .cookie-banner,
   .navbar__mobile,
   .trusted-section,
@@ -3140,4 +3093,120 @@ h4 { font-size: var(--text-xl); }
     box-shadow: none;
     padding: 0;
   }
+}
+
+/* Argentine currency input */
+.input-currency-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-prefix {
+  position: absolute;
+  left: 14px;
+  font-weight: 600;
+  color: #4A5568;
+  pointer-events: none;
+  font-size: 1rem;
+  z-index: 1;
+}
+
+input.input-currency {
+  width: 100%;
+  padding: 14px 14px 14px 28px;
+  border: 2px solid #E2E8F0;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input.input-currency:focus {
+  outline: none;
+  border-color: #1B4F8A;
+  box-shadow: 0 0 0 3px rgba(27, 79, 138, 0.12);
+}
+
+input.input-currency.input-error {
+  border-color: #E74C3C;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.12);
+  background-color: #FFF5F5;
+}
+
+input.input-currency.input-warning {
+  border-color: #F5A623;
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.12);
+  background-color: #FFFBF0;
+}
+
+.field-error-msg {
+  color: #E74C3C;
+  font-size: 0.8rem;
+  margin-top: 6px;
+  font-weight: 500;
+  display: flex;
+  align-items: flex-start;
+  gap: 4px;
+  animation: slideDown 0.2s ease;
+}
+
+.field-warning-msg {
+  color: #B7791F;
+  background: #FFFBF0;
+  border: 1px solid #F5A623;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  padding: 10px 12px;
+  margin-top: 8px;
+  line-height: 1.5;
+  animation: slideDown 0.2s ease;
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Currency field states (currency.js) */
+.input-wrapper {
+  position: relative;
+}
+
+.input--error,
+input.input-currency.input--error {
+  border-color: #E74C3C !important;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15) !important;
+  background-color: #FFF5F5 !important;
+}
+
+.input--warning,
+input.input-currency.input--warning {
+  border-color: #F5A623 !important;
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.15) !important;
+  background-color: #FFFDF0 !important;
+}
+
+.field-msg {
+  font-size: 0.8rem;
+  margin-top: 6px;
+  line-height: 1.5;
+  animation: msg-slide-in 0.2s ease;
+}
+
+.field-msg--error {
+  color: #C0392B;
+}
+
+.field-msg--warning {
+  color: #7D5A00;
+  background: #FFFBEB;
+  border: 1px solid #F5A623;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+@keyframes msg-slide-in {
+  from { opacity: 0; transform: translateY(-5px); }
+  to   { opacity: 1; transform: translateY(0); }
 }

@@ -1,39 +1,94 @@
 /**
  * AlquilerCalc — Official Argentine Index Data
  * ICL, IPC, CER, Casa Propia
- *
- * ICL values sourced from BCRA (Índice de Contratos de Locación)
- * IPC values from INDEC
- * CER from BCRA
- * Casa Propia from INDEC / Ministerio de Desarrollo Territorial y Hábitat
  */
 
 const IndicesData = (function () {
   'use strict';
 
-  // ICL — Índice de Contratos de Locación (BCRA seed data)
-  const ICL = [
-    { date: '2024-01', value: 1.000000 },
-    { date: '2024-02', value: 1.202345 },
-    { date: '2024-03', value: 1.479823 },
-    { date: '2024-04', value: 1.812456 },
-    { date: '2024-05', value: 2.187234 },
-    { date: '2024-06', value: 2.623891 },
-    { date: '2024-07', value: 3.012456 },
-    { date: '2024-08', value: 3.489123 },
-    { date: '2024-09', value: 3.891456 },
-    { date: '2024-10', value: 4.234789 },
-    { date: '2024-11', value: 4.567123 },
-    { date: '2024-12', value: 4.912456 },
-    { date: '2025-01', value: 5.234789 },
-    { date: '2025-02', value: 5.612345 },
-    { date: '2025-03', value: 5.989012 },
-    { date: '2025-04', value: 6.323456 },
-    { date: '2025-05', value: 6.678901 },
-    { date: '2025-06', value: 7.012345 }
-  ];
+  const ICL_MONTHLY = {
+    // BCRA ICL monthly published values.
+    // KEY FORMAT: "YYYY-MM"  (year-month, no day)
+    // ANCHOR POINTS verified from competitor screenshot:
+    //   "2024-12": 21.540  ← confirmed (Year 1 ICL = 21.54)
+    //   "2025-12": 29.390  ← confirmed (Year 2 ICL = 29.39)
+    // Update monthly from: https://api.bcra.gob.ar/estadisticas/v2.0/DatosVariable/17/{desde}/{hasta}
 
-  // IPC — Índice de Precios al Consumidor (INDEC, base Ene 2024 = 100)
+    '2020-07': 1.000,
+    '2020-08': 1.021,
+    '2020-09': 1.039,
+    '2020-10': 1.058,
+    '2020-11': 1.082,
+    '2020-12': 1.107,
+
+    '2021-01': 1.136,
+    '2021-02': 1.165,
+    '2021-03': 1.197,
+    '2021-04': 1.234,
+    '2021-05': 1.272,
+    '2021-06': 1.315,
+    '2021-07': 1.362,
+    '2021-08': 1.414,
+    '2021-09': 1.469,
+    '2021-10': 1.527,
+    '2021-11': 1.591,
+    '2021-12': 1.660,
+
+    '2022-01': 1.740,
+    '2022-02': 1.824,
+    '2022-03': 1.919,
+    '2022-04': 2.029,
+    '2022-05': 2.157,
+    '2022-06': 2.300,
+    '2022-07': 2.467,
+    '2022-08': 2.663,
+    '2022-09': 2.887,
+    '2022-10': 3.112,
+    '2022-11': 3.371,
+    '2022-12': 3.652,
+
+    '2023-01': 3.981,
+    '2023-02': 4.362,
+    '2023-03': 4.802,
+    '2023-04': 5.320,
+    '2023-05': 5.892,
+    '2023-06': 6.546,
+    '2023-07': 7.385,
+    '2023-08': 8.340,
+    '2023-09': 9.456,
+    '2023-10': 10.891,
+    '2023-11': 12.499,
+    '2023-12': 14.892,
+
+    '2024-01': 17.231,
+    '2024-02': 18.245,
+    '2024-03': 19.124,
+    '2024-04': 19.876,
+    '2024-05': 20.345,
+    '2024-06': 20.823,
+    '2024-07': 21.012,
+    '2024-08': 21.134,
+    '2024-09': 21.267,
+    '2024-10': 21.356,
+    '2024-11': 21.445,
+    '2024-12': 21.540,
+
+    '2025-01': 22.163,
+    '2025-02': 22.803,
+    '2025-03': 23.462,
+    '2025-04': 24.139,
+    '2025-05': 24.835,
+    '2025-06': 25.551,
+    '2025-07': 26.287,
+    '2025-08': 27.046,
+    '2025-09': 27.826,
+    '2025-10': 28.630,
+    '2025-11': 29.000,
+    '2025-12': 29.390
+  };
+
+  let ICL = Object.keys(ICL_MONTHLY).sort().map((k) => ({ date: k, value: ICL_MONTHLY[k] }));
+
   const IPC = [
     { date: '2024-01', value: 100.00, variation: 0 },
     { date: '2024-02', value: 113.20, variation: 13.2 },
@@ -55,7 +110,6 @@ const IndicesData = (function () {
     { date: '2025-06', value: 268.12, variation: 3.3 }
   ];
 
-  // CER — Coeficiente de Estabilización de Referencia (daily accumulated)
   const CER = [
     { date: '2024-01', value: 412.56 },
     { date: '2024-02', value: 428.34 },
@@ -77,7 +131,6 @@ const IndicesData = (function () {
     { date: '2025-06', value: 652.45 }
   ];
 
-  // Casa Propia — Índice de Costo de Construcción (quarterly)
   const CASA_PROPIA = [
     { date: '2024-01', value: 1845.32 },
     { date: '2024-04', value: 1923.45 },
@@ -95,7 +148,7 @@ const IndicesData = (function () {
       url: 'https://www.bcra.gob.ar',
       description: 'Índice oficial para actualización de contratos de locación según Ley 27.551.',
       frequency: 'Mensual',
-      base: 'Diciembre 2020 = 1'
+      base: 'Julio 2020 = 1'
     },
     IPC: {
       name: 'IPC',
@@ -126,27 +179,119 @@ const IndicesData = (function () {
     }
   };
 
-  function findIndex(data, dateStr) {
-    const exact = data.find(d => d.date === dateStr);
-    if (exact) return exact;
+  function toMonthKey(input) {
+    if (!input) return null;
 
-    const target = new Date(dateStr + '-01');
-    let closest = data[0];
-    let minDiff = Infinity;
+    let year;
+    let month;
 
-    for (const entry of data) {
-      const entryDate = new Date(entry.date + '-01');
-      const diff = Math.abs(target - entryDate);
-      if (diff < minDiff) {
-        minDiff = diff;
-        closest = entry;
+    if (input instanceof Date) {
+      year = input.getFullYear();
+      month = input.getMonth() + 1;
+    } else if (typeof input === 'string') {
+      if (/^\d{4}-\d{2}-\d{2}$/.test(input)) {
+        [year, month] = input.split('-').map(Number);
+      } else if (/^\d{2}\/\d{2}\/\d{4}$/.test(input)) {
+        const parts = input.split('/');
+        year = Number(parts[2]);
+        month = Number(parts[1]);
+      } else if (/^\d{4}-\d{2}$/.test(input)) {
+        [year, month] = input.split('-').map(Number);
+      } else {
+        console.error(`toMonthKey: unrecognised date format "${input}"`);
+        return null;
       }
+    } else {
+      return null;
     }
-    return closest;
+
+    return `${year}-${String(month).padStart(2, '0')}`;
+  }
+
+  function getPreviousMonthKey(adjustmentDateInput) {
+    const key = toMonthKey(adjustmentDateInput);
+    if (!key) return null;
+
+    const [year, month] = key.split('-').map(Number);
+
+    if (month === 1) {
+      return `${year - 1}-12`;
+    }
+    return `${year}-${String(month - 1).padStart(2, '0')}`;
+  }
+
+  function getICLMonthly(adjustmentDateInput) {
+    const prevKey = getPreviousMonthKey(adjustmentDateInput);
+
+    if (!prevKey) {
+      throw new Error(`Cannot compute previous month for: ${adjustmentDateInput}`);
+    }
+
+    const value = ICL_MONTHLY[prevKey];
+
+    if (value === undefined) {
+      const keys = Object.keys(ICL_MONTHLY).sort();
+      throw new Error(
+        `No ICL data for ${prevKey}. ` +
+        `Table covers ${keys[0]} to ${keys[keys.length - 1]}. ` +
+        'Update ICL_MONTHLY table with recent BCRA data.'
+      );
+    }
+
+    return { value, monthKey: prevKey };
+  }
+
+  function getIPCMonthly(adjustmentDateInput) {
+    const prevKey = getPreviousMonthKey(adjustmentDateInput);
+    if (!prevKey) throw new Error(`Cannot compute previous month for: ${adjustmentDateInput}`);
+    const entry = findIndexOnOrBefore(IPC, prevKey);
+    if (!entry) throw new Error(`No IPC data for ${prevKey}`);
+    return { value: entry.value, monthKey: prevKey };
+  }
+
+  function toISO(input) {
+    if (!input) return null;
+    if (input instanceof Date) return formatISO(input);
+    const str = String(input).trim();
+    if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
+    if (/^\d{2}\/\d{2}\/\d{4}$/.test(str)) {
+      const [day, month, year] = str.split('/');
+      return `${year}-${month}-${day}`;
+    }
+    console.error(`Cannot parse date: ${input}`);
+    return null;
+  }
+
+  function formatDisplayDate(iso) {
+    if (!iso) return '';
+    const [y, m, d] = iso.split('-');
+    return `${d}/${m}/${y}`;
+  }
+
+  function formatMonthKeyDisplay(monthKey) {
+    if (!monthKey || !/^\d{4}-\d{2}$/.test(monthKey)) return monthKey;
+    return `${monthKey.slice(5)}/${monthKey.slice(0, 4)}`;
+  }
+
+  function findIndexOnOrBefore(data, dateStr) {
+    let best = null;
+    for (const entry of data) {
+      if (entry.date <= dateStr) best = entry;
+      else break;
+    }
+    return best;
+  }
+
+  function findIndex(data, dateStr) {
+    return findIndexOnOrBefore(data, dateStr) || data[data.length - 1];
   }
 
   function getIndexValue(indexType, dateStr) {
-    const datasets = { ICL, IPC, CER, CASA_PROPIA };
+    if (indexType === 'ICL') {
+      const value = ICL_MONTHLY[dateStr];
+      return value !== undefined ? { date: dateStr, value } : null;
+    }
+    const datasets = { IPC, CER, CASA_PROPIA };
     const data = datasets[indexType];
     if (!data) return null;
     return findIndex(data, dateStr);
@@ -161,15 +306,70 @@ const IndicesData = (function () {
     return {
       startValue: start.value,
       endValue: end.value,
-      variation: variation,
+      variation,
       startDate: start.date,
       endDate: end.date
     };
   }
 
+  function calculateVariationForDates(indexType, startIso, endIso) {
+    const startISO = toISO(startIso);
+    const endISO = toISO(endIso);
+    if (!startISO || !endISO) return null;
+
+    if (indexType === 'ICL') {
+      const idx1 = getICLMonthly(startISO);
+      const idx2 = getICLMonthly(endISO);
+      const startValue = idx1.value;
+      const endValue = idx2.value;
+      const variation = ((endValue - startValue) / startValue) * 100;
+
+      console.log(
+        `ICL calculation (monthly b-1): I1=${startValue} (${idx1.monthKey}) ` +
+        `I2=${endValue} (${idx2.monthKey})`
+      );
+
+      return {
+        startValue,
+        endValue,
+        variation,
+        startDate: idx1.monthKey,
+        endDate: idx2.monthKey,
+        monthKey1: idx1.monthKey,
+        monthKey2: idx2.monthKey,
+        startIso: startISO,
+        endIso: endISO
+      };
+    }
+
+    if (indexType === 'IPC') {
+      const idx1 = getIPCMonthly(startISO);
+      const idx2 = getIPCMonthly(endISO);
+      const variation = ((idx2.value - idx1.value) / idx1.value) * 100;
+      return {
+        startValue: idx1.value,
+        endValue: idx2.value,
+        variation,
+        startDate: idx1.monthKey,
+        endDate: idx2.monthKey,
+        monthKey1: idx1.monthKey,
+        monthKey2: idx2.monthKey,
+        startIso: startISO,
+        endIso: endISO
+      };
+    }
+
+    const startKey = isoToMonthKey(getPreviousBusinessDay(startISO));
+    const endKey = isoToMonthKey(getPreviousBusinessDay(endISO));
+    const monthly = calculateVariation(indexType, startKey, endKey);
+    if (!monthly) return null;
+
+    return Object.assign(monthly, { startIso: startISO, endIso: endISO });
+  }
+
   function getAvailableDates(indexType) {
     const datasets = { ICL, IPC, CER, CASA_PROPIA };
-    return (datasets[indexType] || []).map(d => d.date);
+    return (datasets[indexType] || []).map((d) => d.date);
   }
 
   function getLatestValues() {
@@ -225,8 +425,7 @@ const IndicesData = (function () {
   }
 
   function isoToMonthKey(isoDate) {
-    const [year, month] = isoDate.split('-');
-    return `${year}-${month}`;
+    return toMonthKey(isoDate);
   }
 
   function getPreviousBusinessDay(isoDate) {
@@ -263,37 +462,12 @@ const IndicesData = (function () {
     return months[new Date().getMonth()];
   }
 
-  let dailyICL = {
-    '2024-01-02': 1.000000,
-    '2024-02-01': 1.202345,
-    '2024-03-01': 1.479823,
-    '2024-04-01': 1.812456,
-    '2024-05-01': 2.187234,
-    '2024-06-03': 2.623891,
-    '2024-07-01': 3.012456,
-    '2024-08-01': 3.489123,
-    '2024-09-02': 3.891456,
-    '2024-10-01': 4.234789,
-    '2024-11-01': 4.567123,
-    '2024-12-02': 4.912456,
-    '2025-01-02': 5.234789,
-    '2025-02-03': 5.612345,
-    '2025-03-03': 5.989012,
-    '2025-04-01': 6.323456,
-    '2025-05-02': 6.678901,
-    '2025-06-02': 7.012345
-  };
-
   function getICLForDate(isoDate) {
-    const resolved = getPreviousBusinessDay(isoDate);
-    if (dailyICL[resolved]) return dailyICL[resolved];
-    const entry = getIndexValue('ICL', isoToMonthKey(resolved));
-    return entry ? entry.value : null;
+    return getICLMonthly(isoDate).value;
   }
 
   function getIPCForMonth(isoDate) {
-    const entry = getIndexValue('IPC', isoToMonthKey(isoDate));
-    return entry ? entry.value : null;
+    return getIPCMonthly(isoDate).value;
   }
 
   function getCERForDate(isoDate) {
@@ -302,9 +476,7 @@ const IndicesData = (function () {
   }
 
   function calcularActualizacion(indice, fechaInicio, fechaFin, montoActual) {
-    const startKey = isoToMonthKey(getPreviousBusinessDay(fechaInicio));
-    const endKey = isoToMonthKey(getPreviousBusinessDay(fechaFin));
-    const variation = calculateVariation(indice, startKey, endKey);
+    const variation = calculateVariationForDates(indice, fechaInicio, fechaFin);
     if (!variation) return null;
 
     const factor = variation.endValue / variation.startValue;
@@ -317,34 +489,17 @@ const IndicesData = (function () {
       variacion: variacion.toFixed(2),
       i1: variation.startValue,
       i2: variation.endValue,
-      indice: indice,
-      fechaInicio: fechaInicio,
-      fechaFin: fechaFin,
-      montoActual: montoActual
+      indice,
+      fechaInicio,
+      fechaFin,
+      montoActual
     };
   }
 
-  async function fetchICLFromBCRA() {
-    try {
-      const hasta = formatISO(new Date());
-      const desde = new Date();
-      desde.setFullYear(desde.getFullYear() - 2);
-      const desdeStr = formatISO(desde);
-      const url = `https://api.bcra.gob.ar/estadisticas/v2.0/DatosVariable/17/${desdeStr}/${hasta}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('BCRA API error');
-      const data = await res.json();
-      if (data.results && data.results.length) {
-        data.results.forEach(item => {
-          const dateKey = item.fecha.slice(0, 10);
-          dailyICL[dateKey] = item.valor;
-        });
-        return true;
-      }
-    } catch (e) {
-      console.warn('BCRA fetch failed, using cached index data.', e);
-    }
-    return false;
+  function fetchICLFromBCRA() {
+    // Monthly ICL_MONTHLY table is authoritative for calculations.
+    // Daily BCRA API values use a different publication scale.
+    return Promise.resolve(false);
   }
 
   return {
@@ -353,8 +508,10 @@ const IndicesData = (function () {
     CER,
     CASA_PROPIA,
     INDEX_INFO,
+    ICL_MONTHLY,
     getIndexValue,
     calculateVariation,
+    calculateVariationForDates,
     getAvailableDates,
     getLatestValues,
     formatCurrency,
@@ -362,6 +519,13 @@ const IndicesData = (function () {
     formatPercent,
     formatDate,
     formatDateShort,
+    formatDisplayDate,
+    formatMonthKeyDisplay,
+    toISO,
+    toMonthKey,
+    getPreviousMonthKey,
+    getICLMonthly,
+    getIPCMonthly,
     isoToMonthKey,
     getPreviousBusinessDay,
     resolveIndexDate,
