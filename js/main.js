@@ -78,6 +78,8 @@
   }
 
   function initAccordion() {
+    if (document.body.classList.contains('page-premium')) return;
+
     document.querySelectorAll('.faq-item__question').forEach(btn => {
       btn.addEventListener('click', () => {
         const item = btn.closest('.faq-item');

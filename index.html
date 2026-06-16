@@ -227,8 +227,42 @@
         </div>
         <div class="formula-split__right">
           <div class="formula-card">
-            <span class="formula-card__badge">FÓRMULA</span>
-            <div class="formula-card__formula">Alquiler actualizado = Importe × (Índice actual / Índice inicial)</div>
+            <div class="formula-card__header">
+              <span class="formula-card__badge">Fórmula</span>
+              <span class="formula-card__icon" aria-hidden="true">
+                <i data-lucide="calculator"></i>
+              </span>
+            </div>
+            <p class="formula-card__lead">Así se calcula el nuevo monto según el índice de tu contrato</p>
+            <div class="formula-card__equation" aria-label="Alquiler actualizado igual a Importe por Índice actual dividido Índice inicial">
+              <div class="formula-card__lhs">
+                <span class="formula-card__var-name">Alquiler actualizado</span>
+              </div>
+              <span class="formula-card__equals" aria-hidden="true">=</span>
+              <div class="formula-card__rhs">
+                <span class="formula-card__var-chip">Importe</span>
+                <span class="formula-card__operator" aria-hidden="true">×</span>
+                <div class="formula-card__fraction">
+                  <span class="formula-card__frac-num">Índice actual</span>
+                  <span class="formula-card__frac-bar" aria-hidden="true"></span>
+                  <span class="formula-card__frac-den">Índice inicial</span>
+                </div>
+              </div>
+            </div>
+            <div class="formula-card__example">
+              <span class="formula-card__example-label">Ejemplo</span>
+              <p class="formula-card__example-calc">
+                <span>$500.000</span>
+                <span class="formula-card__operator" aria-hidden="true">×</span>
+                <span class="formula-card__example-frac">
+                  <span>150</span>
+                  <span class="formula-card__frac-bar" aria-hidden="true"></span>
+                  <span>100</span>
+                </span>
+                <span class="formula-card__equals" aria-hidden="true">=</span>
+                <strong>$750.000</strong>
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -289,25 +323,49 @@
       <div class="section__header">
         <h2>¿Qué ley e índice se aplican a mi contrato de alquiler?</h2>
       </div>
-      <p>El aplicable índice de aumento de alquileres Depende de la fecha del contrato y del método de ajuste especificado en el acuerdo. Antes de realizar el cálculo, revise su contrato para identificar el índice aplicable.</p>
-      <h3>Contratos firmados entre julio de 2020 y octubre de 2023</h3>
-      <p>Estos contratos suelen utilizar el indice de Contratos de Locación y actualizarlos una vez al año. Estos contratos generalmente se basaban en:</p>
-      <ul>
-        <li>50% IPC (Índice de Precios al Consumidor), que mide la inflación.</li>
-        <li>50% RIPTE, que mide el crecimiento salarial entre los trabajadores registrados.</li>
-      </ul>
-      <p>Esta Calculadora de alquileres BCRA sigue la ley 27.551 y el indice alquileres mencionado en el contrato.</p>
-      <h3>Contratos firmados después del DNU 70/2023</h3>
-      <p>Estos contratos generalmente siguen las condiciones acordadas por inquilinos y propietarios. El más común reajuste de alquileres preferido es el IPC (Índice de Precios al Consumidor), publicado mensualmente por INDEC, porque refleja la inflación directamente y es fácil de verificar. Otras opciones válidas incluyen:</p>
-      <ul>
-        <li>IPC (Índice de Precios al Consumidor)</li>
-        <li>ICL (Índice de Contratos de Arrendamiento)</li>
-        <li>CER (Coeficiente de Estabilización de Referencia)</li>
-        <li>UVA (Unidad de Poder Adquisitivo)</li>
-        <li>CAC (Índice de Costos de Construcción)</li>
-        <li>IS (Índice Salarial)</li>
-        <li>IPIM (Índice de Precios al por Mayor)</li>
-      </ul>
+
+      <div class="law-contract">
+        <div class="law-contract__intro">
+          <div class="law-contract__intro-icon" aria-hidden="true">
+            <i data-lucide="scale"></i>
+          </div>
+          <p>El aplicable índice de aumento de alquileres Depende de la fecha del contrato y del método de ajuste especificado en el acuerdo. Antes de realizar el cálculo, revise su contrato para identificar el índice aplicable.</p>
+        </div>
+
+        <div class="law-contract__grid">
+          <article class="law-contract__card law-contract__card--legacy">
+            <div class="law-contract__card-head">
+              <span class="law-contract__badge">Jul 2020 – Oct 2023</span>
+              <span class="law-contract__card-icon" aria-hidden="true"><i data-lucide="landmark"></i></span>
+            </div>
+            <h3>Contratos firmados entre julio de 2020 y octubre de 2023</h3>
+            <p>Estos contratos suelen utilizar el indice de Contratos de Locación y actualizarlos una vez al año. Estos contratos generalmente se basaban en:</p>
+            <ul class="law-contract__list">
+              <li>50% IPC (Índice de Precios al Consumidor), que mide la inflación.</li>
+              <li>50% RIPTE, que mide el crecimiento salarial entre los trabajadores registrados.</li>
+            </ul>
+            <p class="law-contract__note">Esta Calculadora de alquileres BCRA sigue la ley 27.551 y el indice alquileres mencionado en el contrato.</p>
+          </article>
+
+          <article class="law-contract__card law-contract__card--dnu">
+            <div class="law-contract__card-head">
+              <span class="law-contract__badge">Post DNU 70/2023</span>
+              <span class="law-contract__card-icon" aria-hidden="true"><i data-lucide="file-text"></i></span>
+            </div>
+            <h3>Contratos firmados después del DNU 70/2023</h3>
+            <p>Estos contratos generalmente siguen las condiciones acordadas por inquilinos y propietarios. El más común reajuste de alquileres preferido es el IPC (Índice de Precios al Consumidor), publicado mensualmente por INDEC, porque refleja la inflación directamente y es fácil de verificar. Otras opciones válidas incluyen:</p>
+            <ul class="law-contract__chips">
+              <li>IPC (Índice de Precios al Consumidor)</li>
+              <li>ICL (Índice de Contratos de Arrendamiento)</li>
+              <li>CER (Coeficiente de Estabilización de Referencia)</li>
+              <li>UVA (Unidad de Poder Adquisitivo)</li>
+              <li>CAC (Índice de Costos de Construcción)</li>
+              <li>IS (Índice Salarial)</li>
+              <li>IPIM (Índice de Precios al por Mayor)</li>
+            </ul>
+          </article>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -319,33 +377,51 @@
       </div>
       <p class="indices-intro">Los contratos de alquiler en Argentina pueden utilizar diferentes índice de ajuste de alquileres. Algunos índices reflejan la inflación, mientras que otros siguen los salarios, los costos de construcción o los precios al por mayor. El índice correcto es siempre el que se especifica en su contrato de alquiler.</p>
       <div class="index-explainer-grid">
-        <article class="index-explainer-card">
-          <div class="index-explainer-card__icon"><i data-lucide="bar-chart-3" aria-hidden="true"></i></div>
+        <article class="index-explainer-card index-explainer-card--cer">
+          <div class="index-explainer-card__top">
+            <span class="index-explainer-card__badge">CER</span>
+            <div class="index-explainer-card__icon"><i data-lucide="bar-chart-3" aria-hidden="true"></i></div>
+          </div>
           <h3>CER (Coeficiente de Estabilización de Referencia):</h3>
           <p>CER BCRA Es un índice vinculado a la inflación publicado por el Banco Central de Argentina y se utiliza en contratos que se ajustan según la inflación.</p>
         </article>
-        <article class="index-explainer-card">
-          <div class="index-explainer-card__icon"><i data-lucide="coins" aria-hidden="true"></i></div>
+        <article class="index-explainer-card index-explainer-card--uva">
+          <div class="index-explainer-card__top">
+            <span class="index-explainer-card__badge">UVA</span>
+            <div class="index-explainer-card__icon"><i data-lucide="coins" aria-hidden="true"></i></div>
+          </div>
           <h3>UVA (Unidad de Poder Adquisitivo):</h3>
           <p>El diario cotización uva es publicado por el BCRA y refleja los cambios de valor ajustados a la inflación. Muchos usuarios consultan el UVA hoy BCRA, índice UVA hoy, y valor UVA hoy bcra al revisar contratos indexados.</p>
         </article>
-        <article class="index-explainer-card">
-          <div class="index-explainer-card__icon"><i data-lucide="hard-hat" aria-hidden="true"></i></div>
+        <article class="index-explainer-card index-explainer-card--cac">
+          <div class="index-explainer-card__top">
+            <span class="index-explainer-card__badge">CAC</span>
+            <div class="index-explainer-card__icon"><i data-lucide="hard-hat" aria-hidden="true"></i></div>
+          </div>
           <h3>CAC (Índice de Costos de Construcción):</h3>
           <p>Publicado por la Cámara Argentina de la Construcción, este índice realiza un seguimiento de los costos de construcción. Los contratos que utilizan CAC pueden requerir que los usuarios calcular CAC o utilicen una calculadora índice CAC.</p>
         </article>
-        <article class="index-explainer-card">
-          <div class="index-explainer-card__icon"><i data-lucide="users" aria-hidden="true"></i></div>
+        <article class="index-explainer-card index-explainer-card--is">
+          <div class="index-explainer-card__top">
+            <span class="index-explainer-card__badge">IS</span>
+            <div class="index-explainer-card__icon"><i data-lucide="users" aria-hidden="true"></i></div>
+          </div>
           <h3>IS (Índice Salarial):</h3>
           <p>Mide el crecimiento salarial y la evolución de los sueldos.</p>
         </article>
-        <article class="index-explainer-card">
-          <div class="index-explainer-card__icon"><i data-lucide="package" aria-hidden="true"></i></div>
+        <article class="index-explainer-card index-explainer-card--ipim">
+          <div class="index-explainer-card__top">
+            <span class="index-explainer-card__badge">IPIM</span>
+            <div class="index-explainer-card__icon"><i data-lucide="package" aria-hidden="true"></i></div>
+          </div>
           <h3>IPIM (Índice de Precios al por Mayor):</h3>
           <p>Realiza un seguimiento de las variaciones de precios al por mayor.</p>
         </article>
-        <article class="index-explainer-card">
-          <div class="index-explainer-card__icon"><i data-lucide="home" aria-hidden="true"></i></div>
+        <article class="index-explainer-card index-explainer-card--casa">
+          <div class="index-explainer-card__top">
+            <span class="index-explainer-card__badge">Casa Propia</span>
+            <div class="index-explainer-card__icon"><i data-lucide="home" aria-hidden="true"></i></div>
+          </div>
           <h3>Casa Propia:</h3>
           <p>El indice Casa Propia es un coeficiente relacionado con la vivienda que se utiliza en ciertos alquiler de casa y programas de vivienda social que apoyan iniciativas de vivienda asequible en Argentina.</p>
         </article>
@@ -381,13 +457,57 @@
     </div>
   </section>
 
-  <!-- SECTION 8 -->
-  <section class="guide-section guide-section--compare">
-    <div class="container content">
+  <!-- HOW IT WORKS -->
+  <section class="timeline" id="como-funciona">
+    <div class="container">
+      <div class="section__header">
+        <h2>¿Cómo <span class="kw-highlight">funciona</span>?</h2>
+        <p>Calculá tu actualización en 4 simples pasos</p>
+      </div>
+      <div class="timeline__track timeline-flip-stagger">
+        <article class="timeline__step timeline__step--1">
+          <span class="timeline__step-num" aria-hidden="true">1</span>
+          <div class="timeline__step-visual" aria-hidden="true">
+            <i data-lucide="layers"></i>
+          </div>
+          <h3>Elegí el índice</h3>
+          <p>Seleccioná el índice pactado en tu contrato de locación</p>
+        </article>
+        <article class="timeline__step timeline__step--2">
+          <span class="timeline__step-num" aria-hidden="true">2</span>
+          <div class="timeline__step-visual" aria-hidden="true">
+            <i data-lucide="calendar"></i>
+          </div>
+          <h3>Ingresá las fechas</h3>
+          <p>Indicá el inicio y la nueva fecha de actualización</p>
+        </article>
+        <article class="timeline__step timeline__step--3">
+          <span class="timeline__step-num" aria-hidden="true">3</span>
+          <div class="timeline__step-visual" aria-hidden="true">
+            <i data-lucide="banknote"></i>
+          </div>
+          <h3>Ingresá el valor actual</h3>
+          <p>Escribí el monto mensual que pagás o cobrás hoy</p>
+        </article>
+        <article class="timeline__step timeline__step--4">
+          <span class="timeline__step-num" aria-hidden="true">4</span>
+          <div class="timeline__step-visual" aria-hidden="true">
+            <i data-lucide="circle-check"></i>
+          </div>
+          <h3>Obtené el nuevo valor</h3>
+          <p>Recibí el resultado con el detalle completo del cálculo</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ICL vs IPC -->
+  <section class="index-info-section">
+    <div class="container">
       <div class="section__header">
         <h2>ICL vs IPC: ¿Cuál debo elegir?</h2>
       </div>
-      <p>El ICL y el IPC son los dos índices de ajuste de alquileres más utilizados en Argentina. Si bien ambos se utilizan para actualizar los montos de los alquileres, miden diferentes indicadores económicos y pueden generar resultados de ajuste distintos.</p>
+      <p class="index-info-section__lead">El ICL y el IPC son los dos índices de ajuste de alquileres más utilizados en Argentina. Si bien ambos se utilizan para actualizar los montos de los alquileres, miden diferentes indicadores económicos y pueden generar resultados de ajuste distintos.</p>
       <div class="compare-cards">
         <div class="compare-card compare-card--icl">
           <span class="compare-card__label">ICL</span>
@@ -406,7 +526,7 @@
           <div class="compare-card__row"><span>Frecuencia de actualización</span><span>Datos mensuales</span></div>
         </div>
       </div>
-      <div class="guide-table-wrap">
+      <div class="guide-table-wrap index-info-section__table">
         <table class="guide-table" aria-label="Comparación ICL vs IPC">
           <thead>
             <tr>
@@ -444,114 +564,9 @@
           </tbody>
         </table>
       </div>
-      <p>¿Qué índice debería utilizar?</p>
-      <p>Utilice siempre el índice especificado en su contrato de alquiler. Los contratos regidos por la Ley 27.551 suelen utilizar el ICL, mientras que muchos contratos firmados después del DNU 70/2023 utilizan el IPC u otro índice definido en el contrato.</p>
-    </div>
-  </section>
-
-  <!-- HOW IT WORKS -->
-  <section class="timeline" id="como-funciona">
-    <div class="container">
-      <div class="section__header">
-        <h2>¿Cómo <span class="kw-highlight">funciona</span>?</h2>
-        <p>Calculá tu actualización en 4 simples pasos</p>
-      </div>
-      <div class="timeline__track reveal-stagger">
-        <div class="timeline__step">
-          <div class="timeline__graphic">
-            <div class="tl-graphic--pills">
-              <span style="background:#E8673C"></span>
-              <span style="background:#C4B5FD"></span>
-              <span style="background:#1D9E75"></span>
-              <span style="background:#F5A623"></span>
-            </div>
-          </div>
-          <div class="timeline__circle">1</div>
-          <h3>Elegí el índice</h3>
-          <p>Seleccioná el índice pactado en tu contrato de locación</p>
-        </div>
-        <div class="timeline__step">
-          <div class="timeline__graphic">
-            <div class="tl-graphic--calendar">
-              <span></span><span></span><span class="is-active"></span><span></span>
-              <span></span><span class="is-active"></span><span></span><span></span>
-            </div>
-          </div>
-          <div class="timeline__circle">2</div>
-          <h3>Ingresá las fechas</h3>
-          <p>Indicá el inicio y la nueva fecha de actualización</p>
-        </div>
-        <div class="timeline__step">
-          <div class="timeline__graphic">
-            <div class="tl-graphic--chart">
-              <span></span><span></span><span></span>
-            </div>
-          </div>
-          <div class="timeline__circle">3</div>
-          <h3>Ingresá el valor actual</h3>
-          <p>Escribí el monto mensual que pagás o cobrás hoy</p>
-        </div>
-        <div class="timeline__step">
-          <div class="timeline__graphic">
-            <div class="tl-graphic--check">✓</div>
-          </div>
-          <div class="timeline__circle">4</div>
-          <h3>Obtené el nuevo valor</h3>
-          <p>Recibí el resultado con el detalle completo del cálculo</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INDEX CARDS -->
-  <section class="index-info-section">
-    <div class="container">
-      <div class="section__header">
-        <h2>¿Qué <span class="kw-highlight">índice</span> debo usar?</h2>
-        <p>Elegí el índice según lo pactado en tu contrato de locación</p>
-      </div>
-      <div class="index-info-layout">
-        <div class="index-info-cards">
-          <article class="index-info-card index-info-card--icl">
-            <div class="index-info-card__icon"><i data-lucide="landmark" aria-hidden="true"></i></div>
-            <span class="index-info-card__publisher">BCRA</span>
-            <h3>Índice de Contratos de Locación</h3>
-            <p>Emitido por el BCRA (Banco Central de la República Argentina). Se publica cada día hábil. Combina inflación (IPC) y salarios (RIPTE).</p>
-            <p class="index-info-card__when">Usar cuando: Contratos firmados entre julio 2020 y octubre 2023.</p>
-            <a href="indices-icl-ipc-cer.html" class="index-info-card__link">Ver histórico →</a>
-          </article>
-          <article class="index-info-card index-info-card--ipc">
-            <div class="index-info-card__icon"><i data-lucide="trending-up" aria-hidden="true"></i></div>
-            <span class="index-info-card__publisher">INDEC</span>
-            <h3>Índice de Precios al Consumidor</h3>
-            <p>Emitido por INDEC. Mide la variación de precios de bienes y servicios del mercado interno.</p>
-            <p class="index-info-card__when">Usar cuando: Contratos con cláusula IPC o Ley 27.737 (post 2024).</p>
-            <a href="indices-icl-ipc-cer.html" class="index-info-card__link">Ver histórico →</a>
-          </article>
-          <article class="index-info-card index-info-card--cer">
-            <div class="index-info-card__icon"><i data-lucide="bar-chart-3" aria-hidden="true"></i></div>
-            <span class="index-info-card__publisher">BCRA</span>
-            <h3>Coeficiente de Estabilización Residual</h3>
-            <p>Emitido por el BCRA. Basado en inflación diaria. Muy utilizado en contratos hipotecarios y algunos alquileres comerciales.</p>
-            <p class="index-info-card__when">Usar cuando: Contratos comerciales o hipotecarios.</p>
-            <a href="indices-icl-ipc-cer.html" class="index-info-card__link">Ver histórico →</a>
-          </article>
-          <article class="index-info-card index-info-card--casa">
-            <div class="index-info-card__icon"><i data-lucide="home" aria-hidden="true"></i></div>
-            <span class="index-info-card__publisher">Ministerio Economía</span>
-            <h3>Índice Casa Propia</h3>
-            <p>Programa del Ministerio de Desarrollo Territorial. Para créditos y contratos del programa Casa Propia del Gobierno Nacional.</p>
-            <p class="index-info-card__when">Usar cuando: Créditos y contratos del programa Casa Propia.</p>
-            <a href="indices-icl-ipc-cer.html" class="index-info-card__link">Ver histórico →</a>
-          </article>
-        </div>
-        <div class="index-info-deco" aria-hidden="true">
-          <span class="index-info-deco__pill">4 Índices disponibles</span>
-          <div class="index-info-deco__block index-info-deco__block--1"></div>
-          <div class="index-info-deco__block index-info-deco__block--2"></div>
-          <div class="index-info-deco__block index-info-deco__block--3"></div>
-          <div class="index-info-deco__status">Actualizado hoy ✓</div>
-        </div>
+      <div class="index-info-section__note">
+        <p class="index-info-section__note-title">¿Qué índice debería utilizar?</p>
+        <p>Utilice siempre el índice especificado en su contrato de alquiler. Los contratos regidos por la Ley 27.551 suelen utilizar el ICL, mientras que muchos contratos firmados después del DNU 70/2023 utilizan el IPC u otro índice definido en el contrato.</p>
       </div>
     </div>
   </section>
@@ -559,14 +574,6 @@
   <!-- LEGAL NOTICE -->
   <section class="legal-notice">
     <div class="container">
-      <div class="legal-notice__box">
-        <div class="legal-notice__icon"><i data-lucide="alert-triangle" aria-hidden="true"></i></div>
-        <div class="legal-notice__content">
-          <h3>⚠️ Aviso importante</h3>
-          <p>Esta calculadora utiliza datos públicos del BCRA e INDEC con fines informativos. Los resultados son orientativos y no reemplazan la asesoría de un profesional matriculado (martillero, corredor público o abogado). Verificá siempre los índices en las fuentes oficiales.</p>
-          <a href="aviso-legal.html">Ver aviso legal completo →</a>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -575,22 +582,22 @@
     <div class="container">
       <div class="faq-layout">
         <div class="faq-graphic" aria-hidden="true">
-          <div class="faq-graphic__mark">?</div>
-          <div class="faq-graphic__card faq-graphic__card--1">
-            <div class="faq-graphic__line"></div>
-            <div class="faq-graphic__line faq-graphic__line--short"></div>
-          </div>
-          <div class="faq-graphic__card faq-graphic__card--2">
-            <div class="faq-graphic__line"></div>
-            <div class="faq-graphic__line"></div>
-            <div class="faq-graphic__line faq-graphic__line--short"></div>
-          </div>
+          <img
+            src="assets/faq-illustration.png?v=2"
+            alt=""
+            width="571"
+            height="1024"
+            loading="lazy"
+            class="faq-graphic__img"
+          >
         </div>
         <div class="faq-layout__content">
-          <div class="section__header">
-            <h2>Preguntas <span class="kw-highlight">frecuentes</span></h2>
-          </div>
-          <div class="faq-list" id="faq-list">
+          <div class="faq-panel">
+            <div class="section__header faq-panel__header">
+              <span class="faq-panel__eyebrow">FAQ</span>
+              <h2>Preguntas <span class="kw-highlight">frecuentes</span></h2>
+            </div>
+            <div class="faq-list" id="faq-list">
         <div class="faq-item">
           <button class="faq-item__question" aria-expanded="false">
             ¿Cómo calculo el aumento de mi alquiler?
@@ -661,6 +668,7 @@
             <p>Esta calculadora se proporciona únicamente con fines informativos. Si bien utiliza datos de índices oficiales, la interpretación final de un ajuste de alquiler depende de las cláusulas específicas contenidas en el contrato de arrendamiento.</p>
           </div>
         </div>
+            </div>
           </div>
         </div>
       </div>
@@ -741,8 +749,8 @@
   <script src="js/currency.js" defer></script>
   <script src="js/indices.js" defer></script>
   <script src="js/calculator.js" defer></script>
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js?v=8" defer></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
-  <script src="js/home-premium.js" defer></script>
+  <script src="js/home-premium.js?v=8" defer></script>
 </body>
 </html>
