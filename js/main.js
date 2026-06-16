@@ -98,6 +98,8 @@
   }
 
   function initScrollReveal() {
+    if (document.body.classList.contains('page-premium')) return;
+
     const sections = document.querySelectorAll(
       'section:not(.hero):not(.hero--split):not(.hero--page):not(.hero--dark), .section, .content'
     );
