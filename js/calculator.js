@@ -553,8 +553,46 @@ const RentalCalculator = (function () {
     setTimeout(() => win.print(), 300);
   }
 
+  function displayIpcResults(result, container, guard) {
+    const { date1, date2, result: calcResult } = calculationState;
+    const periodStart = IndicesData.formatDisplayDate(date1);
+    const periodEnd = IndicesData.formatDisplayDate(date2);
+    const newRentFormatted = CurrencyARS.formatARS(calcResult.m2);
+    const variationFormatted = CurrencyARS.formatPercentAR(calcResult.variationPct);
+
+    container.innerHTML = `
+      <div class="ipc-result-stats">
+        <div class="ipc-result-stat">
+          <span class="ipc-result-stat__label">Monto actualizado</span>
+          <span class="ipc-result-stat__value ipc-result-stat__value--orange">${newRentFormatted}</span>
+        </div>
+        <div class="ipc-result-stat">
+          <span class="ipc-result-stat__label">Variación IPC acumulada</span>
+          <span class="ipc-result-stat__value ipc-result-stat__value--teal">${variationFormatted}</span>
+        </div>
+        <div class="ipc-result-stat">
+          <span class="ipc-result-stat__label">Período calculado</span>
+          <span class="ipc-result-stat__value ipc-result-stat__value--dark">${periodStart} → ${periodEnd}</span>
+        </div>
+      </div>
+    `;
+
+    if (guard) {
+      guard.errors.forEach((msg) => showResultWarning(container, msg, true));
+      guard.warnings.forEach((msg) => showResultWarning(container, msg, false));
+    }
+
+    container.classList.add('visible');
+    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
   function displayHomeResults(result, container, guard) {
     if (!container) return;
+
+    if (document.body.classList.contains('page-calculadora-ipc')) {
+      displayIpcResults(result, container, guard);
+      return;
+    }
 
     const { m1, i1, i2, date1, date2, monthKey1, monthKey2, indice, result: calcResult } = calculationState;
     const periodStart = IndicesData.formatDisplayDate(date1);
