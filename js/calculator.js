@@ -91,7 +91,7 @@ const RentalCalculator = (function () {
     return result;
   }
 
-  async function calculateAsync(params) {
+  async function calculateAsync(params, iclRetry = false) {
     const {
       indexType = 'ICL',
       currentRent,
@@ -121,8 +121,46 @@ const RentalCalculator = (function () {
       return { error: 'La fecha de actualización debe ser posterior a la de inicio.' };
     }
 
-    const variation = IndicesData.calculateVariationForDates(indexType, fecha1Str, fecha2Str);
+    if (indexType === 'ICL' && typeof ICLCache !== 'undefined') {
+      try {
+        await ICLCache.ensureReady();
+      } catch (readyErr) {
+        return { error: readyErr.message || 'No se pudieron cargar los datos del ICL.' };
+      }
+    }
+
+    let variation;
+    try {
+      variation = IndicesData.calculateVariationForDates(indexType, fecha1Str, fecha2Str);
+    } catch (err) {
+      if (
+        indexType === 'ICL' &&
+        !iclRetry &&
+        typeof ICLCache !== 'undefined'
+      ) {
+        try {
+          await ICLCache.syncICLData();
+          return calculateAsync(params, true);
+        } catch (syncErr) {
+          console.warn('ICL sync retry failed:', syncErr);
+        }
+      }
+      throw err;
+    }
+
     if (!variation) {
+      if (
+        indexType === 'ICL' &&
+        !iclRetry &&
+        typeof ICLCache !== 'undefined'
+      ) {
+        try {
+          await ICLCache.syncICLData();
+          return calculateAsync(params, true);
+        } catch (syncErr) {
+          console.warn('ICL sync retry failed:', syncErr);
+        }
+      }
       return { error: 'No se encontraron datos de índice para las fechas seleccionadas.' };
     }
 
@@ -1047,14 +1085,16 @@ const RentalCalculator = (function () {
     if (!statsEl) return;
 
     const latest = IndicesData.getLatestValues();
-    const iclVariation = IndicesData.calculateVariation('ICL',
-      IndicesData.ICL[IndicesData.ICL.length - 13].date,
-      IndicesData.ICL[IndicesData.ICL.length - 1].date
-    );
+    const iclSeries = IndicesData.ICL;
+    const iclVariation = iclSeries.length >= 13
+      ? IndicesData.calculateVariation('ICL',
+        iclSeries[iclSeries.length - 13].date,
+        iclSeries[iclSeries.length - 1].date)
+      : null;
 
     statsEl.innerHTML = `
       <div class="hero__stat">
-        <div class="hero__stat-value">${latest.ICL.value.toFixed(3)}</div>
+        <div class="hero__stat-value">${latest.ICL ? latest.ICL.value.toFixed(3) : '—'}</div>
         <div class="hero__stat-label">ICL actual</div>
       </div>
       <div class="hero__stat">

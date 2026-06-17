@@ -6,88 +6,42 @@
 const IndicesData = (function () {
   'use strict';
 
-  const ICL_MONTHLY = {
-    // BCRA ICL monthly published values.
-    // KEY FORMAT: "YYYY-MM"  (year-month, no day)
-    // ANCHOR POINTS verified from competitor screenshot:
-    //   "2024-12": 21.540  ← confirmed (Year 1 ICL = 21.54)
-    //   "2025-12": 29.390  ← confirmed (Year 2 ICL = 29.39)
-    // Update monthly from: https://api.bcra.gob.ar/estadisticas/v2.0/DatosVariable/17/{desde}/{hasta}
+  function getICLMonthly(adjustmentDateInput) {
+    const prevKey = getPreviousMonthKey(adjustmentDateInput);
 
-    '2020-07': 1.000,
-    '2020-08': 1.021,
-    '2020-09': 1.039,
-    '2020-10': 1.058,
-    '2020-11': 1.082,
-    '2020-12': 1.107,
+    if (!prevKey) {
+      throw new Error(`Cannot compute previous month for: ${adjustmentDateInput}`);
+    }
 
-    '2021-01': 1.136,
-    '2021-02': 1.165,
-    '2021-03': 1.197,
-    '2021-04': 1.234,
-    '2021-05': 1.272,
-    '2021-06': 1.315,
-    '2021-07': 1.362,
-    '2021-08': 1.414,
-    '2021-09': 1.469,
-    '2021-10': 1.527,
-    '2021-11': 1.591,
-    '2021-12': 1.660,
+    if (typeof ICLCache === 'undefined') {
+      throw new Error('ICL cache is not available.');
+    }
 
-    '2022-01': 1.740,
-    '2022-02': 1.824,
-    '2022-03': 1.919,
-    '2022-04': 2.029,
-    '2022-05': 2.157,
-    '2022-06': 2.300,
-    '2022-07': 2.467,
-    '2022-08': 2.663,
-    '2022-09': 2.887,
-    '2022-10': 3.112,
-    '2022-11': 3.371,
-    '2022-12': 3.652,
+    const result = ICLCache.getICLValueForMonthKey(prevKey);
 
-    '2023-01': 3.981,
-    '2023-02': 4.362,
-    '2023-03': 4.802,
-    '2023-04': 5.320,
-    '2023-05': 5.892,
-    '2023-06': 6.546,
-    '2023-07': 7.385,
-    '2023-08': 8.340,
-    '2023-09': 9.456,
-    '2023-10': 10.891,
-    '2023-11': 12.499,
-    '2023-12': 14.892,
+    if (!result) {
+      const cache = ICLCache.loadCache();
+      const keys = cache?.values ? Object.keys(cache.values).sort() : [];
+      const range = keys.length ? `${keys[0]} to ${keys[keys.length - 1]}` : 'empty cache';
+      throw new Error(
+        `No ICL data for ${prevKey}. ` +
+        `Cache covers ${range}. ` +
+        'Syncing ICL data from BCRA.'
+      );
+    }
 
-    '2024-01': 17.231,
-    '2024-02': 18.245,
-    '2024-03': 19.124,
-    '2024-04': 19.876,
-    '2024-05': 20.345,
-    '2024-06': 20.823,
-    '2024-07': 21.012,
-    '2024-08': 21.134,
-    '2024-09': 21.267,
-    '2024-10': 21.356,
-    '2024-11': 21.445,
-    '2024-12': 21.540,
+    return result;
+  }
 
-    '2025-01': 22.163,
-    '2025-02': 22.803,
-    '2025-03': 23.462,
-    '2025-04': 24.139,
-    '2025-05': 24.835,
-    '2025-06': 25.551,
-    '2025-07': 26.287,
-    '2025-08': 27.046,
-    '2025-09': 27.826,
-    '2025-10': 28.630,
-    '2025-11': 29.000,
-    '2025-12': 29.390
-  };
+  function getICLDataArray() {
+    if (typeof ICLCache === 'undefined') return [];
+    return ICLCache.getICLArray();
+  }
 
-  let ICL = Object.keys(ICL_MONTHLY).sort().map((k) => ({ date: k, value: ICL_MONTHLY[k] }));
+  function getICLMonthlyTable() {
+    if (typeof ICLCache === 'undefined') return {};
+    return ICLCache.getMonthlyValues();
+  }
 
   const IPC = [
     { date: '2024-01', value: 100.00, variation: 0 },
@@ -220,27 +174,6 @@ const IndicesData = (function () {
     return `${year}-${String(month - 1).padStart(2, '0')}`;
   }
 
-  function getICLMonthly(adjustmentDateInput) {
-    const prevKey = getPreviousMonthKey(adjustmentDateInput);
-
-    if (!prevKey) {
-      throw new Error(`Cannot compute previous month for: ${adjustmentDateInput}`);
-    }
-
-    const value = ICL_MONTHLY[prevKey];
-
-    if (value === undefined) {
-      const keys = Object.keys(ICL_MONTHLY).sort();
-      throw new Error(
-        `No ICL data for ${prevKey}. ` +
-        `Table covers ${keys[0]} to ${keys[keys.length - 1]}. ` +
-        'Update ICL_MONTHLY table with recent BCRA data.'
-      );
-    }
-
-    return { value, monthKey: prevKey };
-  }
-
   function getIPCMonthly(adjustmentDateInput) {
     const prevKey = getPreviousMonthKey(adjustmentDateInput);
     if (!prevKey) throw new Error(`Cannot compute previous month for: ${adjustmentDateInput}`);
@@ -288,7 +221,8 @@ const IndicesData = (function () {
 
   function getIndexValue(indexType, dateStr) {
     if (indexType === 'ICL') {
-      const value = ICL_MONTHLY[dateStr];
+      const monthly = getICLMonthlyTable();
+      const value = monthly[dateStr];
       return value !== undefined ? { date: dateStr, value } : null;
     }
     const datasets = { IPC, CER, CASA_PROPIA };
@@ -368,13 +302,17 @@ const IndicesData = (function () {
   }
 
   function getAvailableDates(indexType) {
-    const datasets = { ICL, IPC, CER, CASA_PROPIA };
+    if (indexType === 'ICL') {
+      return getICLDataArray().map((d) => d.date);
+    }
+    const datasets = { IPC, CER, CASA_PROPIA };
     return (datasets[indexType] || []).map((d) => d.date);
   }
 
   function getLatestValues() {
+    const iclData = getICLDataArray();
     return {
-      ICL: ICL[ICL.length - 1],
+      ICL: iclData[iclData.length - 1] || null,
       IPC: IPC[IPC.length - 1],
       CER: CER[CER.length - 1],
       CASA_PROPIA: CASA_PROPIA[CASA_PROPIA.length - 1]
@@ -497,18 +435,23 @@ const IndicesData = (function () {
   }
 
   function fetchICLFromBCRA() {
-    // Monthly ICL_MONTHLY table is authoritative for calculations.
-    // Daily BCRA API values use a different publication scale.
-    return Promise.resolve(false);
+    if (typeof ICLCache === 'undefined') {
+      return Promise.resolve(false);
+    }
+    return ICLCache.syncICLData().then(() => true).catch(() => false);
   }
 
   return {
-    ICL,
+    get ICL() {
+      return getICLDataArray();
+    },
+    get ICL_MONTHLY() {
+      return getICLMonthlyTable();
+    },
     IPC,
     CER,
     CASA_PROPIA,
     INDEX_INFO,
-    ICL_MONTHLY,
     getIndexValue,
     calculateVariation,
     calculateVariationForDates,

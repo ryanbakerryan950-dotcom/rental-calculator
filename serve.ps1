@@ -7,4 +7,5 @@ Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinu
 Set-Location $root
 Write-Host "Serving $root at http://localhost:$port/"
 Write-Host "IPC page: http://localhost:$port/calculadora-ipc/"
-py -m http.server $port
+Write-Host "ICL API proxy: http://localhost:$port/api/icl?desde=2020-07-01&hasta=$(Get-Date -Format 'yyyy-MM-dd')"
+py server.py $port
