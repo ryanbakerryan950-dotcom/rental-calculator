@@ -14,17 +14,19 @@
   <meta property="og:locale" content="es_AR">
   <title>Términos y Condiciones de Uso | AlquilerCalc</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/home-premium.css">
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"WebApplication","name":"Calculadora de Alquileres Argentina","description":"Calculá la actualización de tu alquiler con índices oficiales del BCRA e INDEC","url":"https://calculadoraalquileres.com.ar","applicationCategory":"FinanceApplication","inLanguage":"es-AR","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"ARS"}}
+  {"@context":"https://schema.org","@type":"WebPage","name":"Términos y Condiciones de Uso","description":"Términos y condiciones de uso de AlquilerCalc","url":"https://calculadoraalquileres.com.ar/terminos-condiciones.html","inLanguage":"es-AR"}
   </script>
 </head>
-<body>
+<body class="page-premium">
 
   <nav class="navbar" role="navigation" aria-label="Navegación principal">
     <div class="navbar__inner">
-      <a href="index.html" class="navbar__logo">
-        <svg viewBox="0 0 40 40" fill="none" width="30" height="30"><rect width="40" height="40" rx="8" fill="#1B4F8A"/><path d="M20 10L10 18v12h6v-6h8v6h6V18L20 10z" fill="white"/></svg>
+      <a href="index.html" class="navbar__logo" aria-label="AlquilerCalc - Inicio">
+        <span class="navbar__logo-dot" aria-hidden="true"></span>
         AlquilerCalc
       </a>
       <ul class="navbar__links">
@@ -33,7 +35,9 @@
         <li><a href="contrato-de-alquiler.html">Contrato De Alquiler</a></li>
       </ul>
       <a href="index.html#calculadora" class="navbar__cta">Calcular Ahora</a>
-      <button class="navbar__hamburger" aria-label="Abrir menú"><span></span><span></span><span></span></button>
+      <button class="navbar__hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
     </div>
     <div class="navbar__mobile">
       <ul>
@@ -45,15 +49,14 @@
     </div>
   </nav>
 
-  <section class="page-hero">
-    <div class="container">
-      <h1>Términos y Condiciones de Uso</h1>
-      <p>Última actualización: junio de 2025</p>
-    </div>
-  </section>
+  <header class="legal-hero">
+    <span class="section-pill">LEGAL</span>
+    <h1>Términos y <span class="kw-highlight">Condiciones</span> de Uso</h1>
+    <p class="legal-hero__meta">Última actualización: junio de 2025</p>
+  </header>
 
-  <section class="content">
-    <div class="container content__inner">
+  <section class="legal-page-section">
+    <div class="legal-doc">
       <p>Al utilizar <strong>AlquilerCalc</strong> (calculadoraalquileres.com.ar), aceptás estos términos y condiciones de uso.</p>
 
       <h2>Objeto del sitio</h2>
@@ -63,7 +66,7 @@
       <p>Podés utilizar el sitio para fines <strong>personales</strong>: calcular actualizaciones, consultar índices y leer contenido educativo. El uso <strong>comercial</strong> (republicación masiva, integración en productos de terceros, white-label, etc.) requiere autorización previa por escrito.</p>
 
       <h2>Limitación de responsabilidad</h2>
-      <div class="content__callout">
+      <div class="legal-doc__callout">
         <strong>Los resultados de las calculadoras son orientativos.</strong> AlquilerCalc no garantiza la exactitud de los índices ni asume responsabilidad por decisiones contractuales, disputas entre partes ni daños derivados del uso del sitio.
       </div>
 
@@ -85,20 +88,51 @@
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
-          <a href="index.html" class="footer__logo"><svg viewBox="0 0 40 40" fill="none" width="30" height="30"><rect width="40" height="40" rx="8" fill="#2980B9"/><path d="M20 10L10 18v12h6v-6h8v6h6V18L20 10z" fill="white"/></svg> AlquilerCalc</a>
-          <p>Actualización de alquileres con precisión oficial.</p>
+          <a href="index.html" class="footer__logo">
+            <span class="footer__logo-dot" aria-hidden="true"></span>
+            AlquilerCalc
+          </a>
+          <p>Actualización de alquileres con precisión oficial. La calculadora de referencia para propietarios, inquilinos y profesionales inmobiliarios en Argentina.</p>
+          <div class="footer__social">
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+          </div>
         </div>
-        <div><h4>Legal</h4><ul><li><a href="politica-privacidad.html">Política de privacidad</a></li><li><a href="terminos-condiciones.html">Términos y condiciones</a></li><li><a href="aviso-legal.html">Aviso legal</a></li></ul></div>
-        <div><h4>Herramientas</h4><ul><li><a href="index.html">Calculadora principal</a></li></ul></div>
-        <div><h4>Índices oficiales</h4><ul><li><a href="https://www.bcra.gob.ar" target="_blank" rel="noopener">BCRA</a></li></ul></div>
+        <div>
+          <h4>Herramientas</h4>
+          <ul>
+            <li><a href="index.html">Calculadora principal</a></li>
+            <li><a href="calculadora-icl.html">Calculadora ICL</a></li>
+            <li><a href="contrato-de-alquiler.html">Contrato De Alquiler</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Legal</h4>
+          <ul>
+            <li><a href="politica-privacidad.html">Política de privacidad</a></li>
+            <li><a href="terminos-condiciones.html">Términos y condiciones</a></li>
+            <li><a href="sobre-nosotros.html">Sobre nosotros</a></li>
+            <li><a href="autor.html">Autor</a></li>
+          </ul>
+        </div>
       </div>
       <div class="footer__bottom">
-        <p>&copy; 2025 AlquilerCalc. Todos los derechos reservados.</p>
-        <p>Esta calculadora es orientativa. Consulte siempre con un profesional matriculado.</p>
+        <div class="footer__bottom-left">
+          <p>&copy; 2025 AlquilerCalc — Calculadora de Alquileres Argentina. Todos los derechos reservados.</p>
+          <p>Esta calculadora es orientativa. Consulte siempre con un profesional matriculado.</p>
+        </div>
+        <div class="footer__official" aria-label="Fuentes oficiales de datos">
+          <span>BCRA</span>
+          <span>INDEC</span>
+          <span>Ministerio Economía</span>
+          <span>AFIP</span>
+        </div>
       </div>
     </div>
   </footer>
 
   <script src="js/main.js" defer></script>
+  <script src="js/home-premium.js?v=12" defer></script>
 </body>
 </html>

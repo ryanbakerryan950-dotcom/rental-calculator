@@ -6,3 +6,5 @@ Redirect 301 /actualizacion-alquileres.html /index.html
 Redirect 301 /actualizacion-alquileres /index.html
 Redirect 301 /calculadora-contratos.html /index.html
 Redirect 301 /calculadora-contratos /index.html
+Redirect 301 /aviso-legal.html /terminos-condiciones.html
+Redirect 301 /aviso-legal /terminos-condiciones.html
