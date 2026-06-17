@@ -90,19 +90,6 @@
     });
   }
 
-  function initIpcDates() {
-    const fechaInicio = document.getElementById('fecha-inicio');
-    const fechaFin = document.getElementById('fecha-fin');
-    if (!fechaInicio || !fechaFin || typeof IndicesData === 'undefined') return;
-
-    const dates = IndicesData.getAvailableDates('IPC');
-    if (dates.length >= 13) {
-      fechaInicio.value = `${dates[dates.length - 13]}-01`;
-      fechaFin.value = `${dates[dates.length - 1]}-01`;
-    }
-    fechaFin.min = fechaInicio.value;
-  }
-
   document.addEventListener('DOMContentLoaded', () => {
     if (!document.body.classList.contains('page-calculadora-ipc')) return;
 
@@ -112,6 +99,5 @@
 
     initIpcFaq();
     initIpcAnimations();
-    initIpcDates();
   });
 })();

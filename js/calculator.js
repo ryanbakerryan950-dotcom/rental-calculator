@@ -400,24 +400,21 @@ const RentalCalculator = (function () {
     let lastResult = null;
 
     const today = new Date().toISOString().slice(0, 10);
-    fechaInicio.max = today;
-    fechaFin.max = today;
+    if (fechaInicio) fechaInicio.max = today;
+    if (fechaFin) fechaFin.max = today;
 
-    const dates = IndicesData.getAvailableDates('ICL');
-    if (dates.length >= 13) {
-      const startMonth = dates[dates.length - 13];
-      const endMonth = dates[dates.length - 1];
-      fechaInicio.value = startMonth + '-01';
-      fechaFin.value = endMonth + '-01';
+    if (fechaInicio && fechaFin) {
+      fechaInicio.addEventListener('change', () => {
+        if (fechaInicio.value) {
+          fechaFin.min = fechaInicio.value;
+          if (fechaFin.value && fechaFin.value < fechaInicio.value) {
+            fechaFin.value = fechaInicio.value;
+          }
+        } else {
+          fechaFin.removeAttribute('min');
+        }
+      });
     }
-    fechaFin.min = fechaInicio.value;
-
-    fechaInicio.addEventListener('change', () => {
-      fechaFin.min = fechaInicio.value;
-      if (fechaFin.value < fechaInicio.value) {
-        fechaFin.value = fechaInicio.value;
-      }
-    });
 
     indexCards.forEach(card => {
       card.addEventListener('click', () => {
@@ -515,15 +512,6 @@ const RentalCalculator = (function () {
       c.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
     });
     hideResultsPanel(resultsEl);
-
-    const fechaInicio = document.getElementById('fecha-inicio');
-    const fechaFin = document.getElementById('fecha-fin');
-    const dates = IndicesData.getAvailableDates('ICL');
-    if (dates.length >= 13 && fechaInicio && fechaFin) {
-      fechaInicio.value = dates[dates.length - 13] + '-01';
-      fechaFin.value = dates[dates.length - 1] + '-01';
-      fechaFin.min = fechaInicio.value;
-    }
   }
 
   function copyResult(result) {
@@ -888,11 +876,6 @@ const RentalCalculator = (function () {
     const dates = IndicesData.getAvailableDates('ICL');
     populateSelect(startSelect, dates);
     populateSelect(endSelect, dates);
-
-    if (dates.length >= 13) {
-      startSelect.value = dates[dates.length - 13];
-      endSelect.value = dates[dates.length - 1];
-    }
   }
 
   function populateContractDateSelects() {
@@ -907,17 +890,17 @@ const RentalCalculator = (function () {
       const el = document.getElementById(id);
       if (el) populateSelect(el, dates);
     });
-
-    const startEl = document.getElementById('contract-adjust-start');
-    const endEl = document.getElementById('contract-adjust-end');
-    if (startEl && endEl && dates.length >= 13) {
-      startEl.value = dates[dates.length - 13];
-      endEl.value = dates[dates.length - 1];
-    }
   }
 
   function populateSelect(select, dates) {
     select.innerHTML = '';
+    const placeholder = document.createElement('option');
+    placeholder.value = '';
+    placeholder.textContent = 'Seleccionar fecha';
+    placeholder.disabled = true;
+    placeholder.selected = true;
+    select.appendChild(placeholder);
+
     dates.forEach(date => {
       const option = document.createElement('option');
       option.value = date;
@@ -1183,9 +1166,6 @@ const RentalCalculator = (function () {
     let duration = 36;
 
     if (startInput) {
-      const d = new Date();
-      d.setFullYear(d.getFullYear() - 1);
-      startInput.value = IndicesData.formatISO(d);
       startInput.max = IndicesData.formatISO(new Date());
     }
 
