@@ -16,7 +16,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/home-premium.css">
-  <link rel="stylesheet" href="../css/calculadora-ipc.css?v=1">
+  <link rel="stylesheet" href="../css/calculadora-ipc.css?v=11">
 </head>
 <body class="page-premium page-calculadora-ipc">
 
@@ -27,12 +27,9 @@
         AlquilerCalc
       </a>
       <ul class="navbar__links">
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="../actualizacion-alquileres.html">Actualización</a></li>
         <li><a href="../calculadora-ipc/" class="active">Calculadora IPC</a></li>
-        <li><a href="../indices-icl-ipc-cer.html">Índices</a></li>
-        <li><a href="../ley-de-alquileres.html">Ley de Alquileres</a></li>
-        <li><a href="../calculadora-contratos.html">Contratos</a></li>
+        <li><a href="../calculadora-icl.html">Calculadora ICL</a></li>
+        <li><a href="../contrato-de-alquiler.html">Contrato De Alquiler</a></li>
       </ul>
       <a href="#calculadora" class="navbar__cta">Calcular Ahora</a>
       <button class="navbar__hamburger" aria-label="Abrir menú" aria-expanded="false">
@@ -41,12 +38,9 @@
     </div>
     <div class="navbar__mobile">
       <ul>
-        <li><a href="../index.html">Inicio</a></li>
-        <li><a href="../actualizacion-alquileres.html">Actualización</a></li>
         <li><a href="../calculadora-ipc/">Calculadora IPC</a></li>
-        <li><a href="../indices-icl-ipc-cer.html">Índices</a></li>
-        <li><a href="../ley-de-alquileres.html">Ley de Alquileres</a></li>
-        <li><a href="../calculadora-contratos.html">Contratos</a></li>
+        <li><a href="../calculadora-icl.html">Calculadora ICL</a></li>
+        <li><a href="../contrato-de-alquiler.html">Contrato De Alquiler</a></li>
         <li><a href="#calculadora" class="navbar__cta">Calcular Ahora</a></li>
       </ul>
     </div>
@@ -74,25 +68,14 @@
         </div>
         <div class="ipc-hero__visual" aria-hidden="true">
           <div class="ipc-hero-illust">
-            <div class="ipc-hero-card ipc-hero-card--back2"></div>
-            <div class="ipc-hero-card ipc-hero-card--back1"></div>
-            <div class="ipc-hero-card ipc-hero-card--main">
-              <div class="ipc-hero-card__label">IPC</div>
-              <div class="ipc-bars ipc-bars--six">
-                <span></span><span></span><span></span><span></span><span></span><span></span>
-              </div>
-              <div class="ipc-hero-card__lines">
-                <span></span><span></span>
-              </div>
-            </div>
-            <div class="ipc-hero-float ipc-hero-float--badge">📊 INDEC · Día 14 de cada mes</div>
-            <div class="ipc-hero-float ipc-hero-float--stat ipc-float-anim">
-              <i data-lucide="trending-up" aria-hidden="true"></i>
-              <div>
-                <strong>IPC enero 2026: 32.41%</strong>
-                <small>Último dato INDEC</small>
-              </div>
-            </div>
+            <img
+              src="../assets/ipc-hero-calculator.png?v=1"
+              alt=""
+              width="764"
+              height="1024"
+              loading="eager"
+              class="ipc-hero-illust__img"
+            >
           </div>
         </div>
       </div>
@@ -110,15 +93,33 @@
       </div>
       <div class="ipc-def-split__visual" aria-hidden="true">
         <div class="ipc-def-diagram">
-          <div class="ipc-def-diagram__line ipc-def-diagram__line--top"></div>
-          <div class="ipc-def-diagram__line ipc-def-diagram__line--right"></div>
-          <div class="ipc-def-diagram__line ipc-def-diagram__line--bottom"></div>
-          <div class="ipc-def-diagram__line ipc-def-diagram__line--left"></div>
-          <div class="ipc-def-pill ipc-def-pill--top"><i data-lucide="trending-up" aria-hidden="true"></i> Inflación</div>
-          <div class="ipc-def-pill ipc-def-pill--right"><i data-lucide="database" aria-hidden="true"></i> INDEC</div>
-          <div class="ipc-def-pill ipc-def-pill--bottom"><i data-lucide="calendar" aria-hidden="true"></i> Mensual</div>
-          <div class="ipc-def-pill ipc-def-pill--left"><i data-lucide="shield" aria-hidden="true"></i> DNU 70/2023</div>
-          <div class="ipc-def-diagram__core">IPC</div>
+          <svg class="ipc-def-diagram__svg" viewBox="0 0 320 320" aria-hidden="true">
+            <line class="ipc-def-diagram__connector" x1="160" y1="58" x2="160" y2="98"/>
+            <line class="ipc-def-diagram__connector" x1="262" y1="160" x2="222" y2="160"/>
+            <line class="ipc-def-diagram__connector" x1="160" y1="262" x2="160" y2="222"/>
+            <line class="ipc-def-diagram__connector" x1="58" y1="160" x2="98" y2="160"/>
+            <circle class="ipc-def-diagram__ring" cx="160" cy="160" r="56"/>
+          </svg>
+          <div class="ipc-def-diagram__node ipc-def-diagram__node--top">
+            <span class="ipc-def-diagram__icon ipc-def-diagram__icon--green"><i data-lucide="trending-up" aria-hidden="true"></i></span>
+            <span class="ipc-def-diagram__label">Inflación</span>
+          </div>
+          <div class="ipc-def-diagram__node ipc-def-diagram__node--right">
+            <span class="ipc-def-diagram__icon ipc-def-diagram__icon--orange"><i data-lucide="database" aria-hidden="true"></i></span>
+            <span class="ipc-def-diagram__label">INDEC</span>
+          </div>
+          <div class="ipc-def-diagram__node ipc-def-diagram__node--bottom">
+            <span class="ipc-def-diagram__icon ipc-def-diagram__icon--amber"><i data-lucide="calendar" aria-hidden="true"></i></span>
+            <span class="ipc-def-diagram__label">Mensual</span>
+          </div>
+          <div class="ipc-def-diagram__node ipc-def-diagram__node--left">
+            <span class="ipc-def-diagram__icon ipc-def-diagram__icon--purple"><i data-lucide="shield" aria-hidden="true"></i></span>
+            <span class="ipc-def-diagram__label">DNU 70/2023</span>
+          </div>
+          <div class="ipc-def-diagram__hub">
+            <span class="ipc-def-diagram__hub-kw">IPC</span>
+            <span class="ipc-def-diagram__hub-sub">Índice de Precios</span>
+          </div>
         </div>
       </div>
     </div>
@@ -194,39 +195,67 @@
   </section>
 
   <!-- SECTION 4 — Como calcular IPC alquiler Ajustes -->
-  <section class="guide-section guide-section--cream animate-section">
-    <div class="container content">
-      <span class="section-pill">CÓMO FUNCIONA</span>
-      <h2>Como calcular <span class="ipc-kw">IPC</span> alquiler Ajustes?</h2>
-      <p>Nuestra calculadora de alquileres IPC proporciona una forma más sencilla de proporcionar el ajuste de alquiler por ipc. El Índice IPC alquileres ayuda a determinar el aumento del alquiler y mide variación de precios canasta básica de bienes. Si estás buscando ¿Cómo se calcula el IPC de un alquiler? Simplemente siga estos pasos:</p>
-      <p>Solo sigue estos sencillos pasos para descubrirlo valor ipc</p>
-      <div class="step-cards-grid ipc-step-cards">
-        <article class="step-card">
-          <div class="step-card__num" aria-hidden="true">1</div>
-          <i data-lucide="dollar-sign" class="ipc-step-icon" aria-hidden="true"></i>
-          <h3>Ingrese el monto inicial de su contrato</h3>
-        </article>
-        <article class="step-card">
-          <div class="step-card__num" aria-hidden="true">2</div>
-          <i data-lucide="calendar" class="ipc-step-icon" aria-hidden="true"></i>
-          <h3>Seleccione la fecha de inicio de su contrato y la fecha de finalización/ajuste.</h3>
-        </article>
-        <article class="step-card">
-          <div class="step-card__num" aria-hidden="true">3</div>
-          <i data-lucide="sliders" class="ipc-step-icon" aria-hidden="true"></i>
-          <h3>Elegir periodicidad libre: mensual, trimestral, cuatrimestral, semestral</h3>
-          <ul class="ipc-step-bullets">
-            <li>ajuste mensual: variación 1 mes</li>
-            <li>Ajuste trimestral: 3 meses acumulados</li>
-            <li>Ajuste semestral: 6 meses acumulados</li>
-            <li>Ajuste anual: 12 meses acumulados</li>
-          </ul>
-        </article>
-        <article class="step-card">
-          <div class="step-card__num" aria-hidden="true">4</div>
-          <i data-lucide="check-circle" class="ipc-step-icon" aria-hidden="true"></i>
-          <h3>Finalmente, obtenga el monto actualizado del alquiler y valor IPC.</h3>
-        </article>
+  <section class="guide-section guide-section--cream animate-section ipc-how-section">
+    <div class="container ipc-how">
+      <div class="ipc-how__layout">
+        <header class="ipc-how__header">
+          <span class="section-pill">CÓMO FUNCIONA</span>
+          <h2>Como calcular <span class="ipc-kw">IPC</span> alquiler Ajustes?</h2>
+          <p>Nuestra calculadora de alquileres IPC proporciona una forma más sencilla de proporcionar el ajuste de alquiler por ipc. El Índice IPC alquileres ayuda a determinar el aumento del alquiler y mide variación de precios canasta básica de bienes. Si estás buscando ¿Cómo se calcula el IPC de un alquiler? Simplemente siga estos pasos:</p>
+          <p>Solo sigue estos sencillos pasos para descubrirlo valor ipc</p>
+        </header>
+        <div class="ipc-how__steps">
+          <article class="ipc-how__step step-card">
+            <div class="ipc-how__step-rail" aria-hidden="true">
+              <div class="step-card__num">1</div>
+            </div>
+            <div class="ipc-how__step-card">
+              <div class="ipc-how__step-icon"><i data-lucide="dollar-sign" aria-hidden="true"></i></div>
+              <div class="ipc-how__step-content">
+                <h3>Ingrese el monto inicial de su contrato</h3>
+              </div>
+            </div>
+          </article>
+          <article class="ipc-how__step step-card">
+            <div class="ipc-how__step-rail" aria-hidden="true">
+              <div class="step-card__num">2</div>
+            </div>
+            <div class="ipc-how__step-card">
+              <div class="ipc-how__step-icon"><i data-lucide="calendar" aria-hidden="true"></i></div>
+              <div class="ipc-how__step-content">
+                <h3>Seleccione la fecha de inicio de su contrato y la fecha de finalización/ajuste.</h3>
+              </div>
+            </div>
+          </article>
+          <article class="ipc-how__step step-card">
+            <div class="ipc-how__step-rail" aria-hidden="true">
+              <div class="step-card__num">3</div>
+            </div>
+            <div class="ipc-how__step-card">
+              <div class="ipc-how__step-icon"><i data-lucide="sliders" aria-hidden="true"></i></div>
+              <div class="ipc-how__step-content">
+                <h3>Elegir periodicidad libre: mensual, trimestral, cuatrimestral, semestral</h3>
+                <ul class="ipc-step-bullets">
+                  <li>ajuste mensual: variación 1 mes</li>
+                  <li>Ajuste trimestral: 3 meses acumulados</li>
+                  <li>Ajuste semestral: 6 meses acumulados</li>
+                  <li>Ajuste anual: 12 meses acumulados</li>
+                </ul>
+              </div>
+            </div>
+          </article>
+          <article class="ipc-how__step ipc-how__step--final step-card">
+            <div class="ipc-how__step-rail" aria-hidden="true">
+              <div class="step-card__num">4</div>
+            </div>
+            <div class="ipc-how__step-card">
+              <div class="ipc-how__step-icon"><i data-lucide="check-circle" aria-hidden="true"></i></div>
+              <div class="ipc-how__step-content">
+                <h3>Finalmente, obtenga el monto actualizado del alquiler y valor IPC.</h3>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
     </div>
   </section>
@@ -336,81 +365,84 @@
   </section>
 
   <!-- SECTION 9 — Preguntas frecuentes -->
-  <section class="guide-section guide-section--white animate-section ipc-faq-section">
-    <div class="container ipc-faq-layout">
-      <div class="ipc-faq-graphic" aria-hidden="true">
-        <div class="ipc-faq-mark">?</div>
-        <div class="ipc-faq-mini ipc-faq-mini--1"><span></span><span></span></div>
-        <div class="ipc-faq-mini ipc-faq-mini--2"><span></span><span></span></div>
-        <div class="ipc-faq-mini ipc-faq-mini--3"><span></span><span></span></div>
-      </div>
-      <div class="ipc-faq-content">
-        <span class="section-pill">FAQ · IPC</span>
-        <h2>Preguntas frecuentes</h2>
-        <div class="ipc-faq-list">
-          <div class="faq-item">
-            <button type="button" class="faq-question" aria-expanded="false">
-              ¿Qué ocurre si la inflación cambia cada mes?
-              <i data-lucide="chevron-down" class="faq-chevron" aria-hidden="true"></i>
-            </button>
-            <div class="faq-answer">
-              <p>El cálculo utiliza los valores mensuales acumulados del IPC, por lo que la variación de cada mes se incluye en el resultado final.</p>
-            </div>
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-layout ipc-faq-layout">
+        <aside class="ipc-faq-aside" aria-hidden="true">
+          <div class="faq-graphic">
+            <img
+              src="../assets/faq-ipc-illustration.png?v=1"
+              alt=""
+              width="764"
+              height="1024"
+              loading="lazy"
+              class="faq-graphic__img"
+            >
           </div>
-          <div class="faq-item">
-            <button type="button" class="faq-question" aria-expanded="false">
-              ¿Pueden inquilinos y propietarios utilizar el mismo cálculo del IPC?
-              <i data-lucide="chevron-down" class="faq-chevron" aria-hidden="true"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Sí, los cálculos se basan en Datos oficiales sin ajustes y garantizar la exactitud de la información tanto para inquilinos como para propietarios.</p>
+        </aside>
+        <div class="faq-layout__content">
+          <div class="faq-panel">
+            <div class="section__header faq-panel__header">
+              <span class="faq-panel__eyebrow">FAQ · IPC</span>
+              <h2>Preguntas <span class="kw-highlight">frecuentes</span></h2>
             </div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-question" aria-expanded="false">
-              ¿Por qué el importe actualizado del alquiler es diferente de un simple aumento porcentual?
-              <i data-lucide="chevron-down" class="faq-chevron" aria-hidden="true"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Los cálculos del IPC se acumulan con el tiempo. Esto significa que cada variación se aplica al monto actualizado, en lugar de solo al alquiler original.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-question" aria-expanded="false">
-              ¿Por qué el cálculo IPC es acumulado y no como ICL?
-              <i data-lucide="chevron-down" class="faq-chevron" aria-hidden="true"></i>
-            </button>
-            <div class="faq-answer">
-              <p>El cálculo del IPC es acumulativo porque la variación de la inflación de cada mes se aplica al importe actualizado del período anterior, en lugar de al alquiler original. Refleja el impacto real de la inflación a lo largo del tiempo.</p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <button type="button" class="faq-question" aria-expanded="false">
-              ¿Puedo combinar IPC con otro índice?
-              <i data-lucide="chevron-down" class="faq-chevron" aria-hidden="true"></i>
-            </button>
-            <div class="faq-answer">
-              <p>Sí, IPC puede combinarse con UVA, CER, CAC, IS dependiendo de los términos acordados por las partes involucradas.</p>
+            <div class="faq-list" id="faq-list">
+              <div class="faq-item">
+                <button class="faq-item__question" type="button" aria-expanded="false">
+                  ¿Qué ocurre si la inflación cambia cada mes?
+                  <svg class="faq-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  <i data-lucide="chevron-down" class="faq-item__chevron-lucide" aria-hidden="true"></i>
+                </button>
+                <div class="faq-item__answer">
+                  <p>El cálculo utiliza los valores mensuales acumulados del IPC, por lo que la variación de cada mes se incluye en el resultado final.</p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-item__question" type="button" aria-expanded="false">
+                  ¿Pueden inquilinos y propietarios utilizar el mismo cálculo del IPC?
+                  <svg class="faq-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  <i data-lucide="chevron-down" class="faq-item__chevron-lucide" aria-hidden="true"></i>
+                </button>
+                <div class="faq-item__answer">
+                  <p>Sí, los cálculos se basan en Datos oficiales sin ajustes y garantizar la exactitud de la información tanto para inquilinos como para propietarios.</p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-item__question" type="button" aria-expanded="false">
+                  ¿Por qué el importe actualizado del alquiler es diferente de un simple aumento porcentual?
+                  <svg class="faq-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  <i data-lucide="chevron-down" class="faq-item__chevron-lucide" aria-hidden="true"></i>
+                </button>
+                <div class="faq-item__answer">
+                  <p>Los cálculos del IPC se acumulan con el tiempo. Esto significa que cada variación se aplica al monto actualizado, en lugar de solo al alquiler original.</p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-item__question" type="button" aria-expanded="false">
+                  ¿Por qué el cálculo IPC es acumulado y no como ICL?
+                  <svg class="faq-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  <i data-lucide="chevron-down" class="faq-item__chevron-lucide" aria-hidden="true"></i>
+                </button>
+                <div class="faq-item__answer">
+                  <p>El cálculo del IPC es acumulativo porque la variación de la inflación de cada mes se aplica al importe actualizado del período anterior, en lugar de al alquiler original. Refleja el impacto real de la inflación a lo largo del tiempo.</p>
+                </div>
+              </div>
+              <div class="faq-item">
+                <button class="faq-item__question" type="button" aria-expanded="false">
+                  ¿Puedo combinar IPC con otro índice?
+                  <svg class="faq-item__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+                  <i data-lucide="chevron-down" class="faq-item__chevron-lucide" aria-hidden="true"></i>
+                </button>
+                <div class="faq-item__answer">
+                  <p>Sí, IPC puede combinarse con UVA, CER, CAC, IS dependiendo de los términos acordados por las partes involucradas.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-  <!-- SECTION 10 — BOTTOM CTA BANNER -->
-  <section class="cta-banner ipc-cta-banner animate-section">
-    <div class="ipc-cta-banner__blob ipc-cta-banner__blob--orange" aria-hidden="true"></div>
-    <div class="ipc-cta-banner__blob ipc-cta-banner__blob--purple" aria-hidden="true"></div>
-    <div class="container">
-      <span class="cta-banner__badge ipc-cta-badge">✓ 100% Gratuito</span>
-      <h2>Calculá tu actualización en menos de 30 segundos</h2>
-      <p class="ipc-cta-sub">Usar la calculadora gratis →</p>
-      <a href="#calculadora" class="btn--hero-primary ipc-cta-btn">Usar la calculadora gratis →</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
@@ -430,10 +462,8 @@
           <h4>Herramientas</h4>
           <ul>
             <li><a href="../index.html">Calculadora principal</a></li>
-            <li><a href="../actualizacion-alquileres.html">Actualización de alquileres</a></li>
-            <li><a href="../indices-icl-ipc-cer.html">Índices ICL, IPC, CER</a></li>
-            <li><a href="../ley-de-alquileres.html">Ley de Alquileres</a></li>
-            <li><a href="../calculadora-contratos.html">Calculadora de contratos</a></li>
+            <li><a href="../calculadora-icl.html">Calculadora ICL</a></li>
+            <li><a href="../contrato-de-alquiler.html">Contrato De Alquiler</a></li>
           </ul>
         </div>
         <div>
@@ -473,7 +503,7 @@
   <script src="../js/calculator.js?v=ipc1" defer></script>
   <script src="../js/main.js" defer></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
-  <script src="../js/home-premium.js" defer></script>
-  <script src="../js/calculadora-ipc.js?v=1" defer></script>
+  <script src="../js/home-premium.js?v=10" defer></script>
+  <script src="../js/calculadora-ipc.js?v=8" defer></script>
 </body>
 </html>

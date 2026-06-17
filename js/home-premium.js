@@ -157,12 +157,14 @@
   }
 
   function initScrollReveal() {
+    if (document.body.classList.contains('page-calculadora-ipc')) return;
+
     document.querySelectorAll('.content.reveal, .container.reveal').forEach((el) => {
       el.classList.remove('reveal', 'visible');
     });
 
     const targets = document.querySelectorAll(
-      '.reveal-stagger, section:not(.hero):not(.hero--split):not(.calc-section):not(.cta-banner):not(.timeline):not(.faq-section)'
+      '.reveal-stagger, section:not(.hero):not(.hero--split):not(.calc-section):not(.cta-banner):not(.timeline):not(.faq-section):not(#faq)'
     );
 
     targets.forEach((el) => {
@@ -200,11 +202,16 @@
 
 
   function initPremiumFaq() {
+    if (document.body.classList.contains('page-calculadora-ipc')) return;
+
     const img = document.querySelector('.faq-graphic__img');
+    const faqSection = document.getElementById('faq');
+    const isContratoFaq = Boolean(faqSection && img && faqSection.contains(img));
+
     const desktopMq = window.matchMedia('(min-width: 769px)');
 
     const freezeImage = () => {
-      if (!img || !desktopMq.matches) return;
+      if (isContratoFaq || !img || !desktopMq.matches) return;
       const rect = img.getBoundingClientRect();
       img.classList.add('is-frozen');
       img.style.top = `${rect.top}px`;
@@ -226,10 +233,39 @@
       }
     };
 
+    const lockScrollPosition = (y, duration = 450) => {
+      restoreScroll(y);
+
+      const start = performance.now();
+      const onScroll = () => {
+        if (window.scrollY !== y) {
+          window.scrollTo(0, y);
+        }
+      };
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+
+      const tick = () => {
+        restoreScroll(y);
+        if (performance.now() - start < duration) {
+          requestAnimationFrame(tick);
+        } else {
+          window.removeEventListener('scroll', onScroll);
+        }
+      };
+
+      tick();
+    };
+
     document.querySelectorAll('.faq-item__question').forEach((btn) => {
       btn.addEventListener('click', () => {
         const scrollY = window.scrollY;
-        freezeImage();
+
+        if (isContratoFaq) {
+          lockScrollPosition(scrollY);
+        } else {
+          freezeImage();
+        }
 
         const item = btn.closest('.faq-item');
         const isOpen = item.classList.contains('open');
@@ -245,15 +281,21 @@
           btn.setAttribute('aria-expanded', 'true');
         }
 
+        if (isContratoFaq) {
+          restoreScroll(scrollY);
+        }
+
         btn.focus({ preventScroll: true });
 
-        requestAnimationFrame(() => {
-          restoreScroll(scrollY);
+        if (!isContratoFaq) {
           requestAnimationFrame(() => {
             restoreScroll(scrollY);
-            unfreezeImage();
+            requestAnimationFrame(() => {
+              restoreScroll(scrollY);
+              unfreezeImage();
+            });
           });
-        });
+        }
       });
     });
 

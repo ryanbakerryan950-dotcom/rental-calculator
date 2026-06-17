@@ -12,6 +12,11 @@ html {
   scroll-behavior: smooth;
 }
 
+.page-premium section[id],
+.page-premium .hero[id] {
+  scroll-margin-top: var(--nav-height);
+}
+
 .page-premium {
   --orange: #E8673C;
   --orange-dark: #C9552A;
@@ -1001,12 +1006,12 @@ html {
 }
 
 /* Steps timeline */
-.page-premium .guide-section--steps {
-  background: #fff;
-}
-
 .page-premium .steps-timeline {
   margin-top: 32px;
+}
+
+.page-premium .guide-section--steps {
+  background: #fff;
 }
 
 .page-premium .step-item {
@@ -2128,6 +2133,39 @@ html {
   filter: drop-shadow(0 12px 32px rgba(232, 103, 60, 0.12));
 }
 
+.page-premium #faq {
+  overflow: visible;
+  overflow-anchor: none;
+}
+
+.page-premium #faq .faq-layout {
+  overflow-anchor: none;
+}
+
+.page-premium #faq .faq-layout__content {
+  overflow-anchor: none;
+  contain: layout style;
+}
+
+.page-premium #faq .faq-graphic {
+  overflow-anchor: none;
+  contain: layout style;
+}
+
+.page-premium #faq .faq-graphic::before {
+  aspect-ratio: 764 / 1024;
+}
+
+.page-premium #faq .faq-graphic__img {
+  top: 140px;
+  left: unset;
+}
+
+.page-premium.page-calculadora-icl .faq-graphic__img {
+  top: 123px;
+  left: unset;
+}
+
 .page-premium .faq-graphic__img.is-frozen {
   position: fixed;
   z-index: 2;
@@ -2880,6 +2918,24 @@ html {
 
 .page-premium .ipc-hero-float--top { top: 20px; right: 0; color: var(--text-muted); }
 .page-premium .ipc-hero-float--stat { bottom: 24px; left: 0; color: var(--orange); }
+
+.page-premium .ipc-hero-illust {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 425px;
+  margin: 0 auto;
+}
+
+.page-premium .ipc-hero-illust__img {
+  display: block;
+  width: 433px;
+  max-width: 425px;
+  height: auto;
+  border-radius: 20px;
+  filter: drop-shadow(0 12px 32px rgba(232, 103, 60, 0.12));
+}
 
 /* Hero illustrations — Ley */
 .page-premium .law-hero-illust {
