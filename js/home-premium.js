@@ -164,7 +164,7 @@
     });
 
     const targets = document.querySelectorAll(
-      '.reveal-stagger, section:not(.hero):not(.hero--split):not(.calc-section):not(.cta-banner):not(.timeline):not(.faq-section):not(#faq)'
+      '.reveal-stagger, section:not(.hero):not(.hero--split):not(.calc-section):not(.calc-results-section):not(.cta-banner):not(.timeline):not(.faq-section):not(#faq):not(#calc-results-section)'
     );
 
     targets.forEach((el) => {

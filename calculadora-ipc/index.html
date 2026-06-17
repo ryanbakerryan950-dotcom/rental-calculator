@@ -2,29 +2,123 @@
 <html lang="es-AR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="robots" content="index, follow">
   <title>Calculadora IPC alquileres ajustes basados en el IPC</title>
   <meta name="description" content="Calculadora de alquileres DNU 70/2023 basada en el IPC oficial del INDEC para calcular aumentos y actualizaciones de alquileres">
   <link rel="canonical" href="https://calculadoradealquileres.ar/calculadora-ipc/">
   <meta property="og:title" content="Calculadora IPC alquileres ajustes basados en el IPC">
   <meta property="og:description" content="Calculadora de alquileres DNU 70/2023 basada en el IPC oficial del INDEC para calcular aumentos y actualizaciones de alquileres">
+  <meta property="og:image" content="https://calculadoradealquileres.ar/images/hero-preview.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Calculadora de Alquileres Argentina">
+  <meta property="og:site_name" content="Calculadora de Alquileres">
   <meta property="og:url" content="https://calculadoradealquileres.ar/calculadora-ipc/">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_AR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculadora IPC alquileres ajustes basados en el IPC">
+  <meta name="twitter:description" content="Calculadora de alquileres DNU 70/2023 basada en el IPC oficial del INDEC para calcular aumentos y actualizaciones de alquileres">
+  <meta name="twitter:image" content="https://calculadoradealquileres.ar/images/hero-preview.webp">
   <link rel="icon" type="image/svg+xml" href="../favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/home-premium.css">
-  <link rel="stylesheet" href="../css/calculadora-ipc.css?v=11">
+  <link rel="stylesheet" href="../css/calculadora-ipc.css?v=13">
+  <link rel="stylesheet" href="../css/mobile.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calculadora de alquileres basada en el IPC según la inflación en Argentina",
+    "url": "https://calculadoradealquileres.ar/calculadora-ipc/",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "All",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "ARS"
+    },
+    "description": "Calculadora de alquileres DNU 70/2023 basada en el IPC oficial del INDEC para calcular aumentos y actualizaciones de alquileres"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Inicio",
+        "item": "https://calculadoradealquileres.ar"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Calculadora IPC alquileres ajustes basados en el IPC",
+        "item": "https://calculadoradealquileres.ar/calculadora-ipc/"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Qué ocurre si la inflación cambia cada mes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El cálculo utiliza los valores mensuales acumulados del IPC, por lo que la variación de cada mes se incluye en el resultado final."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Pueden inquilinos y propietarios utilizar el mismo cálculo del IPC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, los cálculos se basan en Datos oficiales sin ajustes y garantizar la exactitud de la información tanto para inquilinos como para propietarios."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Por qué el importe actualizado del alquiler es diferente de un simple aumento porcentual?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Los cálculos del IPC se acumulan con el tiempo. Esto significa que cada variación se aplica al monto actualizado, en lugar de solo al alquiler original."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Por qué el cálculo IPC es acumulado y no como ICL?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El cálculo del IPC es acumulativo porque la variación de la inflación de cada mes se aplica al importe actualizado del período anterior, en lugar de al alquiler original. Refleja el impacto real de la inflación a lo largo del tiempo."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Puedo combinar IPC con otro índice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, IPC puede combinarse con UVA, CER, CAC, IS dependiendo de los términos acordados por las partes involucradas."
+        }
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="page-premium page-calculadora-ipc">
 
   <nav class="navbar" role="navigation" aria-label="Navegación principal">
     <div class="navbar__inner">
-      <a href="../index.html" class="navbar__logo" aria-label="AlquilerCalc - Inicio">
-        <span class="navbar__logo-dot" aria-hidden="true"></span>
-        AlquilerCalc
+      <a href="../index.html" class="navbar__logo" aria-label="Calculadora De Alquileres - Inicio">
+        <img src="../assets/logo-mark.svg" alt="" class="navbar__logo-mark" width="30" height="30" aria-hidden="true">
+        Calculadora De Alquileres
       </a>
       <ul class="navbar__links">
         <li><a href="../calculadora-ipc/" class="active">Calculadora IPC</a></li>
@@ -66,18 +160,73 @@
             <span><span class="ipc-trust-check" aria-hidden="true">✓</span> 100% Gratuito</span>
           </div>
         </div>
-        <div class="ipc-hero__visual" aria-hidden="true">
-          <div class="ipc-hero-illust">
-            <img
-              src="../assets/ipc-hero-calculator.png?v=1"
-              alt=""
-              width="764"
-              height="1024"
-              loading="eager"
-              class="ipc-hero-illust__img"
-            >
+        <div class="ipc-hero__visual" id="calculadora">
+          <div class="ipc-hero-calc">
+            <div class="calc-main ipc-calc-card ipc-calc-card--hero">
+              <form id="calculator-form" novalidate>
+                <input type="hidden" id="index-type" value="IPC">
+
+                <div class="ipc-calc-fields">
+                  <div class="ipc-calc-field ipc-calc-field--full">
+                    <div class="ipc-calc-field__label">
+                      <span class="ipc-calc-step">1</span>
+                      <span>Monto inicial del contrato</span>
+                    </div>
+                    <div class="input-currency-wrapper input-wrapper ipc-currency-wrap">
+                      <span class="currency-prefix ipc-currency-prefix">$</span>
+                      <input type="text" id="monto-actual" inputmode="numeric" placeholder="Ej: 150.000" autocomplete="off" aria-label="Monto inicial del contrato en pesos" class="input-currency" required>
+                    </div>
+                    <input type="hidden" id="monto-raw" name="monto_raw">
+                  </div>
+
+                  <div class="ipc-calc-field">
+                    <div class="ipc-calc-field__label">
+                      <span class="ipc-calc-step">2</span>
+                      <span>Fecha de inicio del contrato</span>
+                    </div>
+                    <input type="date" id="fecha-inicio" class="ipc-date-input" required>
+                  </div>
+
+                  <div class="ipc-calc-field">
+                    <div class="ipc-calc-field__label">
+                      <span class="ipc-calc-step">3</span>
+                      <span>Fecha de finalización/ajuste</span>
+                    </div>
+                    <input type="date" id="fecha-fin" class="ipc-date-input" required>
+                  </div>
+
+                  <div class="ipc-calc-field ipc-calc-field--full">
+                    <div class="ipc-calc-field__label">
+                      <span class="ipc-calc-step">4</span>
+                      <span>Elegir periodicidad libre</span>
+                    </div>
+                    <select id="periodicidad" class="ipc-select" aria-label="Periodicidad de ajuste">
+                      <option value="mensual">Ajuste mensual: variación 1 mes</option>
+                      <option value="trimestral">Ajuste trimestral: 3 meses acumulados</option>
+                      <option value="cuatrimestral">Ajuste cuatrimestral: 4 meses acumulados</option>
+                      <option value="semestral">Ajuste semestral: 6 meses acumulados</option>
+                      <option value="anual">Ajuste anual: 12 meses acumulados</option>
+                    </select>
+                  </div>
+                </div>
+
+                <button type="submit" class="btn-calc btn-calcular ipc-calc-submit" id="btn-calcular">
+                  <span class="btn-calc__spinner" aria-hidden="true"></span>
+                  <span class="btn-calc__text">Calcular ajuste IPC →</span>
+                  <i data-lucide="arrow-right" class="btn-calc__arrow" aria-hidden="true"></i>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="calc-results-section" id="calc-results-section" aria-hidden="true">
+    <div class="container">
+      <div class="calc-results-section__card">
+        <div class="result-panel resultado-panel" id="calculator-results" role="region" aria-live="polite" aria-label="Resultados del cálculo IPC"></div>
       </div>
     </div>
   </section>
@@ -89,7 +238,7 @@
         <span class="section-pill">DEFINICIÓN</span>
         <h2>¿Qué es la calculadora <span class="ipc-kw">IPC</span> argentina?</h2>
         <p>La Calculadora IPC es un índice de precios al consumidor basado en la inflación que mide las variaciones en los precios de bienes y servicios a lo largo del tiempo.</p>
-        <p>Es el indice más común post-DNU 70/2023 y utilizado como referencia para IPC Alquileres y actualización alquiler IPC cálculos.</p>
+        <p>Es el indice más común <a href="../contrato-de-alquiler.html" title="Ley de alquileres y DNU 70/2023 Argentino">post-DNU 70/2023</a> y utilizado como referencia para IPC Alquileres y actualización alquiler IPC cálculos.</p>
       </div>
       <div class="ipc-def-split__visual" aria-hidden="true">
         <div class="ipc-def-diagram">
@@ -121,75 +270,6 @@
             <span class="ipc-def-diagram__hub-sub">Índice de Precios</span>
           </div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SECTION 3 — CALCULATOR -->
-  <section class="calc-section calc-section--single calc-section--ipc animate-section" id="calculadora">
-    <div class="container">
-      <div class="calc-section__header">
-        <span class="calc-section__eyebrow">HERRAMIENTA IPC</span>
-        <h2>Calculadora <span class="ipc-kw">IPC</span> Alquileres</h2>
-        <p>Calcula tu alquiler con datos oficiales del INDEC</p>
-      </div>
-
-      <div class="calc-main ipc-calc-card">
-        <form id="calculator-form" novalidate>
-          <input type="hidden" id="index-type" value="IPC">
-
-          <div class="ipc-calc-fields">
-            <div class="ipc-calc-field ipc-calc-field--full">
-              <div class="ipc-calc-field__label">
-                <span class="ipc-calc-step">1</span>
-                <span>Monto inicial del contrato</span>
-              </div>
-              <div class="input-currency-wrapper input-wrapper ipc-currency-wrap">
-                <span class="currency-prefix ipc-currency-prefix">$</span>
-                <input type="text" id="monto-actual" inputmode="numeric" placeholder="Ej: 150.000" autocomplete="off" aria-label="Monto inicial del contrato en pesos" class="input-currency" required>
-              </div>
-              <input type="hidden" id="monto-raw" name="monto_raw">
-            </div>
-
-            <div class="ipc-calc-field">
-              <div class="ipc-calc-field__label">
-                <span class="ipc-calc-step">2</span>
-                <span>Fecha de inicio del contrato</span>
-              </div>
-              <input type="date" id="fecha-inicio" class="ipc-date-input" required>
-            </div>
-
-            <div class="ipc-calc-field">
-              <div class="ipc-calc-field__label">
-                <span class="ipc-calc-step">3</span>
-                <span>Fecha de finalización/ajuste</span>
-              </div>
-              <input type="date" id="fecha-fin" class="ipc-date-input" required>
-            </div>
-
-            <div class="ipc-calc-field ipc-calc-field--full">
-              <div class="ipc-calc-field__label">
-                <span class="ipc-calc-step">4</span>
-                <span>Elegir periodicidad libre</span>
-              </div>
-              <select id="periodicidad" class="ipc-select" aria-label="Periodicidad de ajuste">
-                <option value="mensual">Ajuste mensual: variación 1 mes</option>
-                <option value="trimestral">Ajuste trimestral: 3 meses acumulados</option>
-                <option value="cuatrimestral">Ajuste cuatrimestral: 4 meses acumulados</option>
-                <option value="semestral">Ajuste semestral: 6 meses acumulados</option>
-                <option value="anual">Ajuste anual: 12 meses acumulados</option>
-              </select>
-            </div>
-          </div>
-
-          <button type="submit" class="btn-calc btn-calcular ipc-calc-submit" id="btn-calcular">
-            <span class="btn-calc__spinner" aria-hidden="true"></span>
-            <span class="btn-calc__text">Calcular ajuste IPC →</span>
-            <i data-lucide="arrow-right" class="btn-calc__arrow" aria-hidden="true"></i>
-          </button>
-        </form>
-
-        <div class="result-panel resultado-panel" id="calculator-results" role="region" aria-live="polite" aria-label="Resultados del cálculo IPC"></div>
       </div>
     </div>
   </section>
@@ -339,7 +419,7 @@
       <span class="section-pill">DATOS OFICIALES</span>
       <h2>Datos oficiales del <span class="ipc-kw">IPC</span> e información del <span class="ipc-kw">INDEC</span></h2>
       <p>Los valores para los cálculos de IPC son Publicado mensualmente por el INDEC. El fecha publicación: día 14 de cada mes permite el acceso a los datos de inflación más recientes disponibles y publicados oficialmente.</p>
-      <p>Según la información más reciente, IPC enero 2026: 32.41% (último dato) Ahora hay mayor libertad contractual para elegir índice para contratos de alquiler.</p>
+      <p>Según la información más reciente, IPC enero 2026: 32.41% (último dato) Ahora hay mayor libertad contractual para elegir índice para <a href="../contrato-de-alquiler.html" title="Ley de alquileres y DNU 70/2023 Argentino">contratos de alquiler</a>.</p>
       <p>Puedes revisar la Tabla IPC, realizar un seguimiento de las tendencias de inflación a lo largo del tiempo y acceder a la Serie histórica IPC desde 2016 para calcular los valores de IPC para diferentes períodos de ajuste.</p>
       <div class="stat-cards-row ipc-stat-cards">
         <div class="stat-card ipc-stat-card">
@@ -370,14 +450,17 @@
       <div class="faq-layout ipc-faq-layout">
         <aside class="ipc-faq-aside" aria-hidden="true">
           <div class="faq-graphic">
-            <img
-              src="../assets/faq-ipc-illustration.png?v=1"
-              alt=""
-              width="764"
-              height="1024"
-              loading="lazy"
-              class="faq-graphic__img"
-            >
+            <picture>
+              <source srcset="../assets/faq-ipc-illustration.webp" type="image/webp">
+              <img
+                src="../assets/faq-ipc-illustration.png?v=1"
+                alt=""
+                width="764"
+                height="1024"
+                loading="lazy"
+                class="faq-graphic__img"
+              >
+            </picture>
           </div>
         </aside>
         <div class="faq-layout__content">
@@ -434,7 +517,7 @@
                   <i data-lucide="chevron-down" class="faq-item__chevron-lucide" aria-hidden="true"></i>
                 </button>
                 <div class="faq-item__answer">
-                  <p>Sí, IPC puede combinarse con UVA, CER, CAC, IS dependiendo de los términos acordados por las partes involucradas.</p>
+                  <p>Sí, IPC puede combinarse con <a href="../index.html#calculadora" title="Calculadora de Alquileres Argentina | AlquilerCalc">UVA</a>, <a href="../index.html#calculadora" title="Calculadora de Alquileres Argentina | AlquilerCalc">CER</a>, CAC, IS dependiendo de los términos acordados por las partes involucradas.</p>
                 </div>
               </div>
             </div>
@@ -448,20 +531,27 @@
       <div class="footer__grid">
         <div class="footer__brand">
           <a href="../index.html" class="footer__logo">
-            <span class="footer__logo-dot" aria-hidden="true"></span>
+            <img src="../assets/logo-mark.svg" alt="" class="footer__logo-mark" width="28" height="28" aria-hidden="true">
             AlquilerCalc
           </a>
           <p>Actualización de alquileres con precisión oficial. La calculadora de referencia para propietarios, inquilinos y profesionales inmobiliarios en Argentina.</p>
           <div class="footer__social">
-            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-            <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.719-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.207 0 1.031.383 2.135.862 2.738.095.116.109.217.081.333-.088.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.695-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.378l-.749 2.848c-.27 1.07-1.004 2.03-1.497 2.727 1.124.347 2.317.535 3.554.535 6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/></svg></a>
+            <a href="#" aria-label="Reddit"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></a>
+            <a href="#" aria-label="Quora"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12.738 0C5.62 0 0 5.62 0 12.738c0 7.118 5.62 12.738 12.738 12.738 7.118 0 12.738-5.62 12.738-12.738C25.476 5.62 19.856 0 12.738 0zm1.476 18.755c-2.532 0-4.584-2.052-4.584-4.584 0-2.532 2.052-4.584 4.584-4.584 2.532 0 4.584 2.052 4.584 4.584 0 2.532-2.052 4.584-4.584 4.584zm4.705-10.148c-.74 0-1.34.6-1.34 1.34s.6 1.34 1.34 1.34 1.34-.6 1.34-1.34-.6-1.34-1.34-1.34z"/></svg></a>
           </div>
+
         </div>
         <div>
           <h4>Herramientas</h4>
           <ul>
             <li><a href="../index.html">Calculadora principal</a></li>
+            <li><a href="../calculadora-ipc/">Calculadora IPC</a></li>
             <li><a href="../calculadora-icl.html">Calculadora ICL</a></li>
             <li><a href="../contrato-de-alquiler.html">Contrato De Alquiler</a></li>
           </ul>
@@ -493,7 +583,7 @@
 
   <script src="../js/currency.js" defer></script>
   <script src="../js/indices.js" defer></script>
-  <script src="../js/calculator.js?v=ipc1" defer></script>
+  <script src="../js/calculator.js?v=9" defer></script>
   <script src="../js/main.js" defer></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   <script src="../js/home-premium.js?v=10" defer></script>

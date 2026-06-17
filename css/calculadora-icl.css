@@ -168,12 +168,21 @@
   font-size: 17px !important;
 }
 
-.page-calculadora-icl #calculator-results {
-  margin-top: 24px;
+/* ========== CALC RESULTS (below hero) ========== */
+.page-calculadora-icl .calc-results-section {
+  background: linear-gradient(180deg, #FFF8F5 0%, #fff 100%);
+}
+
+.page-calculadora-icl .calc-results-section__card {
+  max-width: 900px;
+  border-color: var(--orange-border);
+  box-shadow: var(--shadow-lg);
+}
+
+.page-calculadora-icl .calc-results-section .result-panel.visible,
+.page-calculadora-icl .calc-results-section .resultado-panel.visible {
   background: var(--cream);
-  border-radius: 14px;
-  border: 1px solid var(--orange-border);
-  padding: 24px 28px;
+  padding: 32px 40px;
 }
 
 .page-calculadora-icl #como-funciona .step-item__body {

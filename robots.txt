@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /legal/
+Disallow: /author/
+Disallow: /autor/
+Disallow: /privacy-policy/
+Disallow: /politica-de-privacidad/
+Disallow: /terminos-y-condiciones/
+Disallow: /aviso-legal/
+Disallow: /cookie-policy/

@@ -143,10 +143,12 @@ h4 { font-size: var(--text-xl); }
   color: var(--primary);
 }
 
-.navbar__logo svg {
+.navbar__logo svg,
+.navbar__logo-mark {
   width: 30px;
   height: 30px;
   flex-shrink: 0;
+  display: block;
 }
 
 .navbar__links {
@@ -876,6 +878,7 @@ h4 { font-size: var(--text-xl); }
 
 .footer__social {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
 }
 

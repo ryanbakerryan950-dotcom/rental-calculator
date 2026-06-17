@@ -108,12 +108,12 @@ html {
   gap: 10px;
 }
 
-.page-premium .navbar__logo-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 4px;
-  background: var(--orange);
+.page-premium .navbar__logo-mark,
+.navbar__logo-mark {
+  width: 30px;
+  height: 30px;
   flex-shrink: 0;
+  display: block;
 }
 
 .page-premium .container {
@@ -262,7 +262,7 @@ html {
   display: grid;
   grid-template-columns: 55fr 45fr;
   gap: 48px;
-  align-items: center;
+  align-items: start;
 }
 
 .page-premium .hero__badge {
@@ -494,6 +494,70 @@ html {
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
   padding: 44px 52px;
+}
+
+.page-premium .hero__visual--calc {
+  min-height: 0;
+  width: 100%;
+}
+
+.page-premium .hero__visual--calc .calc-main {
+  max-width: 100%;
+  margin: 0;
+}
+
+/* ========== CALC RESULTS (below hero) ========== */
+.page-premium .calc-results-section {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transform: none;
+  background: linear-gradient(180deg, #FFF8F5 0%, #fff 100%);
+  transition:
+    grid-template-rows 0.55s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.4s ease;
+}
+
+.page-premium .calc-results-section.reveal.visible:not(.is-visible) {
+  opacity: 0;
+  transform: none;
+}
+
+.page-premium .calc-results-section > .container {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.page-premium .calc-results-section.is-visible {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  padding: 40px 0 56px;
+}
+
+.page-premium .calc-results-section__card {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  border: 1px solid var(--orange-border);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.page-premium .calc-results-section .result-panel,
+.page-premium .calc-results-section .resultado-panel {
+  margin-top: 0;
+  border: none;
+  border-radius: 0;
+  background: var(--cream);
+  max-height: none;
+  padding: 0;
+}
+
+.page-premium .calc-results-section .result-panel.visible,
+.page-premium .calc-results-section .resultado-panel.visible {
+  padding: 40px 48px;
+  animation: slideIn 0.45s ease;
 }
 
 .page-premium .calc-step__label {
@@ -2478,11 +2542,12 @@ html {
   margin-bottom: 12px;
 }
 
-.page-premium .footer__logo-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 4px;
-  background: var(--orange);
+.page-premium .footer__logo-mark,
+.footer__logo-mark {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: block;
 }
 
 .page-premium .footer__brand p {
@@ -2493,6 +2558,7 @@ html {
 
 .page-premium .footer__social {
   display: flex;
+  flex-wrap: wrap;
   gap: 10px;
   margin-top: 16px;
 }

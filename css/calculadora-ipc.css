@@ -47,11 +47,17 @@
 
 .page-calculadora-ipc .ipc-hero__grid {
   display: grid;
-  grid-template-columns: 55fr 45fr;
+  grid-template-columns: minmax(0, 1fr) minmax(425px, 633px);
   gap: 48px;
-  align-items: center;
+  align-items: start;
   position: relative;
   z-index: 1;
+}
+
+.page-calculadora-ipc .ipc-hero__visual {
+  width: 100%;
+  max-width: 633px;
+  justify-self: end;
 }
 
 .page-calculadora-ipc .ipc-hero h1 {
@@ -94,22 +100,28 @@
   vertical-align: middle;
 }
 
-.page-calculadora-ipc .ipc-hero-illust {
+.page-calculadora-ipc .ipc-hero-calc {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   width: 100%;
-  max-width: 425px;
-  margin: 0 auto;
+  max-width: 633px;
+  margin: 0;
 }
 
-.page-calculadora-ipc .ipc-hero-illust__img {
-  display: block;
-  width: 433px;
-  max-width: 425px;
-  height: auto;
-  border-radius: 20px;
-  filter: drop-shadow(0 12px 32px rgba(232, 103, 60, 0.12));
+.page-calculadora-ipc .ipc-hero__visual .ipc-calc-card--hero {
+  position: absolute;
+  top: 80px;
+  width: 633px;
+  max-width: 100%;
+  min-height: 437px;
+  margin: 0;
+  padding: 40px 44px;
+  box-shadow: 0 12px 40px rgba(232, 103, 60, 0.14);
+}
+
+.page-calculadora-ipc .ipc-hero__visual .ipc-calc-card--hero .ipc-calc-fields {
+  gap: 18px 20px;
 }
 
 /* ========== DEFINITION SPLIT ========== */
@@ -394,12 +406,21 @@
   font-size: 17px !important;
 }
 
-.page-calculadora-ipc #calculator-results {
-  margin-top: 24px;
+/* ========== CALC RESULTS (below hero) ========== */
+.page-calculadora-ipc .calc-results-section {
+  background: linear-gradient(180deg, #FFF8F5 0%, #fff 100%);
+}
+
+.page-calculadora-ipc .calc-results-section__card {
+  max-width: 900px;
+  border-color: #FDDDD3;
+  box-shadow: 0 8px 40px rgba(232, 103, 60, 0.10);
+}
+
+.page-calculadora-ipc .calc-results-section .result-panel.visible,
+.page-calculadora-ipc .calc-results-section .resultado-panel.visible {
   background: #FFF8F5;
-  border-radius: 14px;
-  border: 1px solid #FDDDD3;
-  padding: 24px 28px;
+  padding: 32px 40px;
 }
 
 .page-calculadora-ipc .ipc-result-stats {
@@ -922,6 +943,19 @@
     grid-template-columns: 1fr;
   }
 
+  .page-calculadora-ipc .ipc-hero__visual {
+    max-width: 633px;
+    justify-self: center;
+  }
+
+  .page-calculadora-ipc .ipc-hero-calc {
+    margin: 0 auto;
+  }
+
+  .page-calculadora-ipc .ipc-hero__visual .ipc-calc-card--hero {
+    width: 100%;
+  }
+
   .page-calculadora-ipc .ipc-hero h1 {
     font-size: 40px;
   }
@@ -945,6 +979,10 @@
     width: min(360px, 100%);
     height: auto;
     aspect-ratio: 1;
+  }
+
+  .page-calculadora-ipc .ipc-hero__visual .ipc-calc-card--hero {
+    padding: 28px 20px;
   }
 
   .page-calculadora-ipc .ipc-calc-card {

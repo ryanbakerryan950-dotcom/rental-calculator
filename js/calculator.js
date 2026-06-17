@@ -209,6 +209,42 @@ const RentalCalculator = (function () {
     return { warnings, errors, blocked: errors.length > 0 };
   }
 
+  function getResultsSection() {
+    return document.getElementById('calc-results-section');
+  }
+
+  function revealResultsPanel(container) {
+    if (!container) return;
+
+    container.classList.add('visible');
+    const section = getResultsSection();
+
+    if (section) {
+      section.classList.remove('reveal', 'visible');
+      section.classList.add('is-visible');
+      section.setAttribute('aria-hidden', 'false');
+      requestAnimationFrame(() => {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      return;
+    }
+
+    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  }
+
+  function hideResultsPanel(container) {
+    if (!container) return;
+
+    container.classList.remove('visible');
+    container.innerHTML = '';
+
+    const section = getResultsSection();
+    if (section) {
+      section.classList.remove('is-visible');
+      section.setAttribute('aria-hidden', 'true');
+    }
+  }
+
   function showResultWarning(container, message, isError) {
     if (!container) return;
     const el = document.createElement('div');
@@ -478,8 +514,7 @@ const RentalCalculator = (function () {
       c.classList.toggle('selected', i === 0);
       c.setAttribute('aria-pressed', i === 0 ? 'true' : 'false');
     });
-    resultsEl.classList.remove('visible');
-    resultsEl.innerHTML = '';
+    hideResultsPanel(resultsEl);
 
     const fechaInicio = document.getElementById('fecha-inicio');
     const fechaFin = document.getElementById('fecha-fin');
@@ -515,42 +550,209 @@ const RentalCalculator = (function () {
     });
   }
 
+  const PDF_SITE_URL = 'https://calculadoradealquileres.ar';
+  const PDF_SITE_LABEL = 'calculadoradealquileres.ar';
+  const PDF_LOGO_SVG = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" width="48" height="48" fill="none" aria-hidden="true">
+    <defs>
+      <linearGradient id="pdf-logo-bg" x1="6" y1="4" x2="26" y2="28" gradientUnits="userSpaceOnUse">
+        <stop stop-color="#F07850"/>
+        <stop offset="1" stop-color="#C9552A"/>
+      </linearGradient>
+    </defs>
+    <rect width="32" height="32" rx="8" fill="url(#pdf-logo-bg)"/>
+    <rect x="7.5" y="6.5" width="17" height="19" rx="2.5" fill="#fff"/>
+    <rect x="9.5" y="8.5" width="13" height="5.5" rx="1.2" fill="#FFF0EB"/>
+    <rect x="10.5" y="10" width="8" height="1.4" rx=".7" fill="#E8673C"/>
+    <rect x="10.5" y="12" width="5.5" height="1" rx=".5" fill="#E8673C" opacity=".45"/>
+    <rect x="10.5" y="16.5" width="3.2" height="3.2" rx=".9" fill="#E8673C"/>
+    <rect x="14.4" y="16.5" width="3.2" height="3.2" rx=".9" fill="#E8673C"/>
+    <rect x="18.3" y="16.5" width="3.2" height="3.2" rx=".9" fill="#E8673C"/>
+    <rect x="10.5" y="20.8" width="3.2" height="3.2" rx=".9" fill="#E8673C"/>
+    <rect x="14.4" y="20.8" width="3.2" height="3.2" rx=".9" fill="#E8673C"/>
+    <rect x="18.3" y="20.8" width="3.2" height="3.2" rx=".9" fill="#C9552A"/>
+  </svg>`;
+
+  function getPdfCalculatorName() {
+    if (document.body.classList.contains('page-calculadora-ipc')) {
+      return 'Calculadora IPC Alquileres';
+    }
+    if (document.body.classList.contains('page-calculadora-icl')) {
+      return 'Calculadora ICL Alquileres';
+    }
+    return 'Calculadora De Alquileres';
+  }
+
   function downloadPDF(result) {
     const periodStart = IndicesData.formatDateShort(result.inputDates.start);
     const periodEnd = IndicesData.formatDateShort(result.inputDates.end);
-    const html = `<!DOCTYPE html><html lang="es-AR"><head><meta charset="UTF-8">
-      <title>Actualización de Alquiler — AlquilerCalc</title>
-      <style>
-        body{font-family:Arial,sans-serif;padding:40px;color:#1A1A2E;max-width:600px;margin:0 auto}
-        h1{color:#1B4F8A;font-size:20px;border-bottom:2px solid #F5A623;padding-bottom:12px}
-        .amount{font-size:32px;font-weight:bold;color:#27AE60;margin:24px 0}
-        .row{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee;font-size:14px}
-        .formula{background:#FFF3DC;padding:16px;border-radius:8px;margin-top:24px;font-family:monospace;font-size:13px}
-        .footer{margin-top:32px;font-size:11px;color:#888}
-      </style></head><body>
-      <h1>Comprobante de Actualización de Alquiler</h1>
-      <p><strong>AlquilerCalc</strong> — calculadoraalquileres.com.ar</p>
-      <p class="amount">${result.formatted.newRent}</p>
-      <p>Nuevo valor del alquiler mensual</p>
-      <div class="row"><span>Aumento aplicado</span><span>${result.formatted.variationPercent}</span></div>
-      <div class="row"><span>Índice utilizado</span><span>${result.indexInfo.fullName}</span></div>
-      <div class="row"><span>Período</span><span>${periodStart} → ${periodEnd}</span></div>
-      <div class="row"><span>Alquiler anterior</span><span>${result.formatted.currentRent}</span></div>
-      <div class="row"><span>Índice F1</span><span>${(calculationState.i1 ?? result.startValue).toFixed(2)}</span></div>
-      <div class="row"><span>Índice F2</span><span>${(calculationState.i2 ?? result.endValue).toFixed(2)}</span></div>
-      <div class="row"><span>Incremento en pesos</span><span>${result.formatted.increaseAmount}</span></div>
-      <div class="formula">
-        Fórmula: M2 = M1 × (I2 ÷ I1)<br>
-        ${result.formatted.newRent} = ${result.formatted.currentRent} × (${(calculationState.i2 ?? result.endValue).toFixed(2)} ÷ ${(calculationState.i1 ?? result.startValue).toFixed(2)})
-      </div>
-      <p class="footer">Documento orientativo. Consulte siempre con un profesional matriculado. Generado el ${new Date().toLocaleDateString('es-AR')}.</p>
-      </body></html>`;
+    const calculatorName = getPdfCalculatorName();
+    const i1 = (calculationState.i1 ?? result.startValue).toFixed(2);
+    const i2 = (calculationState.i2 ?? result.endValue).toFixed(2);
+    const generatedAt = new Date().toLocaleDateString('es-AR', {
+      day: 'numeric',
+      month: 'long',
+      year: 'numeric'
+    });
+
+    const html = `<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <title>Comprobante — ${calculatorName}</title>
+  <style>
+    @page { margin: 18mm; }
+    @media print {
+      body { padding: 0; }
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: Inter, 'Segoe UI', Arial, sans-serif;
+      padding: 40px 36px;
+      color: #1A1A2E;
+      max-width: 680px;
+      margin: 0 auto;
+      background: #fff;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+    .pdf-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid #FDDDD3;
+      margin-bottom: 28px;
+    }
+    .pdf-header__logo { flex-shrink: 0; line-height: 0; }
+    .pdf-header__name {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1A1A2E;
+      line-height: 1.25;
+    }
+    .pdf-header__site {
+      margin: 6px 0 0;
+      font-size: 14px;
+    }
+    .pdf-header__site a {
+      color: #E8673C;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .pdf-doc-title {
+      margin: 0 0 20px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #E8673C;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .pdf-amount-box {
+      background: #FFF8F5;
+      border: 1px solid #FDDDD3;
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-align: center;
+      margin-bottom: 28px;
+    }
+    .pdf-amount {
+      margin: 0;
+      font-size: 36px;
+      font-weight: 800;
+      color: #E8673C;
+      line-height: 1.1;
+    }
+    .pdf-amount-label {
+      margin: 10px 0 0;
+      font-size: 14px;
+      color: #6B7280;
+    }
+    .pdf-details {
+      border: 1px solid #E5E7EB;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+    .pdf-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 13px 18px;
+      font-size: 14px;
+      border-bottom: 1px solid #F3F4F6;
+    }
+    .pdf-row:last-child { border-bottom: none; }
+    .pdf-row__label { color: #6B7280; flex-shrink: 0; }
+    .pdf-row__value { font-weight: 600; text-align: right; }
+    .pdf-formula {
+      background: #FFF0EB;
+      border: 1px solid #FDDDD3;
+      padding: 18px 20px;
+      border-radius: 10px;
+      font-family: ui-monospace, 'Courier New', monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: #1A1A2E;
+    }
+    .pdf-formula strong { color: #E8673C; font-weight: 700; }
+    .pdf-footer {
+      margin-top: 32px;
+      padding-top: 18px;
+      border-top: 1px solid #E5E7EB;
+      font-size: 11px;
+      color: #9CA3AF;
+      line-height: 1.65;
+    }
+    .pdf-footer a { color: #E8673C; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header class="pdf-header">
+    <div class="pdf-header__logo">${PDF_LOGO_SVG}</div>
+    <div>
+      <h1 class="pdf-header__name">${calculatorName}</h1>
+      <p class="pdf-header__site"><a href="${PDF_SITE_URL}">${PDF_SITE_LABEL}</a></p>
+    </div>
+  </header>
+
+  <p class="pdf-doc-title">Comprobante de actualización de alquiler</p>
+
+  <div class="pdf-amount-box">
+    <p class="pdf-amount">${result.formatted.newRent}</p>
+    <p class="pdf-amount-label">Nuevo valor del alquiler mensual</p>
+  </div>
+
+  <div class="pdf-details">
+    <div class="pdf-row"><span class="pdf-row__label">Aumento aplicado</span><span class="pdf-row__value">${result.formatted.variationPercent}</span></div>
+    <div class="pdf-row"><span class="pdf-row__label">Índice utilizado</span><span class="pdf-row__value">${result.indexInfo.fullName}</span></div>
+    <div class="pdf-row"><span class="pdf-row__label">Período</span><span class="pdf-row__value">${periodStart} → ${periodEnd}</span></div>
+    <div class="pdf-row"><span class="pdf-row__label">Alquiler anterior</span><span class="pdf-row__value">${result.formatted.currentRent}</span></div>
+    <div class="pdf-row"><span class="pdf-row__label">Índice F1</span><span class="pdf-row__value">${i1}</span></div>
+    <div class="pdf-row"><span class="pdf-row__label">Índice F2</span><span class="pdf-row__value">${i2}</span></div>
+    <div class="pdf-row"><span class="pdf-row__label">Incremento en pesos</span><span class="pdf-row__value">${result.formatted.increaseAmount}</span></div>
+  </div>
+
+  <div class="pdf-formula">
+    <strong>Fórmula:</strong> M2 = M1 × (I2 ÷ I1)<br>
+    ${result.formatted.newRent} = ${result.formatted.currentRent} × (${i2} ÷ ${i1})
+  </div>
+
+  <p class="pdf-footer">
+    Documento orientativo generado el ${generatedAt} por <strong>${calculatorName}</strong> —
+    <a href="${PDF_SITE_URL}">${PDF_SITE_LABEL}</a>.<br>
+    Consulte siempre con un profesional matriculado antes de aplicar cualquier ajuste contractual.
+  </p>
+</body>
+</html>`;
 
     const win = window.open('', '_blank');
+    if (!win) return;
+
     win.document.write(html);
     win.document.close();
     win.focus();
-    setTimeout(() => win.print(), 300);
+    setTimeout(() => win.print(), 400);
   }
 
   function displayIpcResults(result, container, guard) {
@@ -582,8 +784,7 @@ const RentalCalculator = (function () {
       guard.warnings.forEach((msg) => showResultWarning(container, msg, false));
     }
 
-    container.classList.add('visible');
-    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    revealResultsPanel(container);
   }
 
   function displayHomeResults(result, container, guard) {
@@ -642,8 +843,7 @@ const RentalCalculator = (function () {
       guard.warnings.forEach((msg) => showResultWarning(container, msg, false));
     }
 
-    container.classList.add('visible');
-    container.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    revealResultsPanel(container);
   }
 
   function initContractCalculator() {

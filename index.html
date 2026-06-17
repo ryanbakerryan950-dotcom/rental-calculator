@@ -2,7 +2,7 @@
 <html lang="es-AR">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <meta name="robots" content="index, follow">
   <meta name="description" content="Utilice nuestra calculadora de alquileres gratuita para consultar ajustes y montos actualizados en Argentina. Compatible con datos de IPC, ICL, UVA, CER, CAC y datos oficiales de BCRA e INDEC.">
   <meta name="keywords" content="calculadora alquileres, actualización alquiler, ICL, IPC, CER, Casa Propia, Argentina, Ley de Alquileres">
@@ -10,26 +10,99 @@
   <link rel="canonical" href="https://calculadoraalquileres.com.ar/">
   <meta property="og:title" content="Calculadora de Alquileres Argentina | AlquilerCalc">
   <meta property="og:description" content="Actualización de alquileres con precisión oficial. Calculá con ICL, IPC, CER y Casa Propia.">
-  <meta property="og:image" content="https://calculadoraalquileres.com.ar/og-image.png">
+  <meta property="og:image" content="https://calculadoradealquileres.ar/images/hero-preview.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Calculadora de Alquileres Argentina">
+  <meta property="og:site_name" content="Calculadora de Alquileres">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://calculadoraalquileres.com.ar/">
   <meta property="og:locale" content="es_AR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Calculadora de Alquileres Argentina | AlquilerCalc">
+  <meta name="twitter:description" content="Actualización de alquileres con precisión oficial. Calculá con ICL, IPC, CER y Casa Propia.">
+  <meta name="twitter:image" content="https://calculadoradealquileres.ar/images/hero-preview.webp">
   <title>Calcula las actualizaciones de alquiler con la calculadora de alquileres en Argentina.</title>
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/home-premium.css">
+  <link rel="stylesheet" href="css/mobile.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "Calculadora de Alquileres Argentina",
-    "description": "Calculá la actualización de tu alquiler con índices oficiales del BCRA e INDEC",
-    "url": "https://calculadoraalquileres.com.ar",
-    "applicationCategory": "FinanceApplication",
-    "inLanguage": "es-AR",
-    "isAccessibleForFree": true,
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "ARS" }
+    "@type": "WebSite",
+    "name": "Calculadora de Alquileres",
+    "url": "https://calculadoradealquileres.ar",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://calculadoradealquileres.ar/?s={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "¿Cómo calculo el aumento de mi alquiler?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Para calcular el importe del alquiler, introduzca el importe actual, la fecha del contrato, la frecuencia de ajuste y el índice especificado en su contrato de alquiler. La calculadora aplicará el índice seleccionado para estimar el importe actualizado del alquiler para el período elegido."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Qué índice debo usar para mi contrato?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Siempre debe utilizar el índice de ajuste especificado en su contrato de alquiler. Los contratos regidos por la Ley 27.551 suelen utilizar el ICL en general. indice contratos de locacion, mientras que muchos acuerdos firmados después del DNU 70/2023 utilizan el IPC (Índice de Precios al Consumidor) u otro índice acordado por las partes."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Mi contrato es anterior a la normativa DNU 70/2023. ¿Qué índice debo utilizar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si su contrato se firmó antes del DNU 70/2023, revise la cláusula de ajuste del acuerdo. Muchos contratos de alquiler residencial regidos por la Ley 27.551 utilizaban el índice ICL para las actualizaciones anuales del alquiler. Sin embargo, siempre debe verificarse el índice aplicable en el contrato."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Cuál es la diferencia entre IPC, ICL y Casa Propia?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "El IPC (Índice de Precios al Consumidor) mide la inflación y es publicado por INDEC. El ICL (Índice de Contratos de Arrendamiento) combina la inflación (IPC) y el crecimiento salarial (RIPTE) y es publicado por BCRA. Casa Propia es un coeficiente relacionado con la vivienda que se utiliza en ciertos programas de vivienda y alquiler."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Con qué frecuencia se aplica el ajuste?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Si se puede aumentar el alquiler cada 6 meses depende totalmente del contrato de alquiler y de la normativa aplicable. Revise siempre su contrato para determinar el período de ajuste aplicable."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Los datos son oficiales de BCRA e INDEC?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sí, la calculadora de alquileres utiliza datos de índices oficiales publicados por el Banco Central de Argentina (BCRA), el Instituto Nacional de Estadística y Censos (INDEC) y otras organizaciones reconocidas responsables de publicar índices de ajuste de alquileres."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "¿Esta calculadora sustituye el asesoramiento legal?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Esta calculadora se proporciona únicamente con fines informativos. Si bien utiliza datos de índices oficiales, la interpretación final de un ajuste de alquiler depende de las cláusulas específicas contenidas en el contrato de arrendamiento."
+        }
+      }
+    ]
   }
   </script>
 </head>
@@ -37,9 +110,9 @@
 
   <nav class="navbar" role="navigation" aria-label="Navegación principal">
     <div class="navbar__inner">
-      <a href="index.html" class="navbar__logo" aria-label="AlquilerCalc - Inicio">
-        <span class="navbar__logo-dot" aria-hidden="true"></span>
-        AlquilerCalc
+      <a href="index.html" class="navbar__logo" aria-label="Calculadora De Alquileres - Inicio">
+        <img src="assets/logo-mark.svg" alt="" class="navbar__logo-mark" width="30" height="30" aria-hidden="true">
+        Calculadora De Alquileres
       </a>
       <ul class="navbar__links">
         <li><a href="calculadora-ipc/">Calculadora IPC</a></li>
@@ -62,7 +135,7 @@
   </nav>
 
   <!-- HERO -->
-  <section class="hero hero--split">
+  <section class="hero hero--split" id="calculadora">
     <div class="container">
       <div class="hero__grid">
         <div class="hero__content">
@@ -79,34 +152,8 @@
             <span>✅ 100% Gratuito</span>
           </div>
         </div>
-        <div class="hero__visual">
-          <div class="hero-illust">
-            <div class="hero-illust__main">
-              <img
-                src="assets/hero-building.png"
-                alt="Ilustración isométrica de un edificio con calculadora de alquileres, índices ICL, IPC y CER"
-                width="800"
-                height="640"
-                loading="eager"
-                class="hero-illust__img"
-              >
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CALCULATOR -->
-  <section class="calc-section" id="calculadora">
-    <div class="container">
-      <div class="calc-section__header">
-        <span class="calc-section__eyebrow">Herramienta principal</span>
-        <h2>Calculá la <span class="kw-highlight">actualización</span> de tu alquiler</h2>
-        <p>Ingresá los datos de tu contrato y obtené el nuevo valor en segundos</p>
-      </div>
-
-      <div class="calc-main">
+        <div class="hero__visual hero__visual--calc">
+          <div class="calc-main">
         <form id="calculator-form" novalidate>
           <input type="hidden" id="index-type" value="ICL">
 
@@ -172,7 +219,15 @@
             <i data-lucide="arrow-right" class="btn-calc__arrow" aria-hidden="true"></i>
           </button>
         </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <section class="calc-results-section" id="calc-results-section" aria-hidden="true">
+    <div class="container">
+      <div class="calc-results-section__card">
         <div class="result-panel resultado-panel" id="calculator-results" role="region" aria-live="polite" aria-label="Resultados del cálculo"></div>
       </div>
     </div>
@@ -183,20 +238,23 @@
     <div class="container content">
       <div class="about-split">
         <div class="about-illust">
-          <img
-            src="assets/about-calculator.png"
-            alt="Ilustración de calculadora de alquileres con alquiler actualizado, porcentaje de aumento, índices ICL e IPC e informe mensual"
-            width="800"
-            height="640"
-            loading="lazy"
-            class="about-illust__img"
-          >
+          <picture>
+            <source srcset="assets/about-calculator.webp" type="image/webp">
+            <img
+              src="assets/about-calculator.png"
+              alt="Ilustración de calculadora de alquileres con alquiler actualizado, porcentaje de aumento, índices ICL e IPC e informe mensual"
+              width="800"
+              height="640"
+              loading="lazy"
+              class="about-illust__img"
+            >
+          </picture>
         </div>
         <div class="about-split__content">
           <div class="section__header">
             <h2>¿Qué puedes calcular con la <span class="kw-highlight">calculadora</span> de alquileres</h2>
           </div>
-          <p>En Argentina, el cálculo de los montos del alquiler depende de múltiples índices según su contrato. calculadora de alquiler Utiliza diferentes índices como IPC, ICL, Casa Propia. Puedes obtener tu informe mensual. ajuste del alquiler e índice de actualizacion de alquileres.</p>
+          <p>En Argentina, el cálculo de los montos del alquiler depende de múltiples índices según su contrato. calculadora de alquiler Utiliza diferentes índices como <a href="calculadora-ipc/" title="Calculadora IPC alquileres ajustes basados en el IPC">IPC</a>, <a href="calculadora-icl.html" title="los aumentos de alquiler con la calculadora icl.">ICL</a>, <a href="index.html#calculadora" title="Calculadora de Alquileres Argentina | AlquilerCalc">Casa Propia</a>. Puedes obtener tu informe mensual. ajuste del alquiler e índice de actualizacion de alquileres.</p>
           <p>Esta calculadora de actualización utiliza datos oficiales y normas legales del Banco Central de Argentina (BCRA) y del Instituto Nacional de Estadística y Censos (INDEC).</p>
         </div>
       </div>
@@ -211,7 +269,7 @@
       </div>
       <div class="formula-split">
         <div class="formula-split__left">
-          <p>Muchos usuarios buscan como se calcula el aumento de alquileres al revisar los contratos de alquiler y las cláusulas de ajuste.</p>
+          <p>Muchos usuarios buscan como se calcula el aumento de alquileres al revisar los <a href="contrato-de-alquiler.html" title="Ley de alquileres y DNU 70/2023 Argentino">contratos de alquiler</a> y las cláusulas de ajuste.</p>
           <p>La calculadora compara el índice inicial con el índice actual para el período seleccionado. En la mayoría de los casos, el ajuste sigue esta fórmula:</p>
           <p>Con base en su contrato y Los términos de su acuerdo simplemente ingresen:</p>
           <ul>
@@ -291,7 +349,7 @@
           <div class="step-item__num" aria-hidden="true">3</div>
           <div class="step-item__body">
             <h3>Paso 3: Elige tu frecuencia de actualización</h3>
-            <p>Seleccione con qué frecuencia se actualiza su contrato mensualmente, trimestralmente, cada cuatro meses, semestralmente o anualmente. Según el DNU 70/2023, las partes son libres de acordar cualquier periodicidad para ajuste alquileres</p>
+            <p>Seleccione con qué frecuencia se actualiza su contrato mensualmente, trimestralmente, cada cuatro meses, semestralmente o anualmente. Según el <a href="contrato-de-alquiler.html" title="Ley de alquileres y DNU 70/2023 Argentino">DNU 70/2023</a>, las partes son libres de acordar cualquier periodicidad para ajuste alquileres</p>
           </div>
         </div>
         <div class="step-item">
@@ -371,7 +429,7 @@
       <div class="section__header">
         <h2>Explicación de los índices de alquiler</h2>
       </div>
-      <p class="indices-intro">Los contratos de alquiler en Argentina pueden utilizar diferentes índice de ajuste de alquileres. Algunos índices reflejan la inflación, mientras que otros siguen los salarios, los costos de construcción o los precios al por mayor. El índice correcto es siempre el que se especifica en su contrato de alquiler.</p>
+      <p class="indices-intro">Los contratos de alquiler en Argentina pueden utilizar diferentes índice de ajuste de alquileres. Algunos índices reflejan la inflación, mientras que otros siguen los salarios, los costos de construcción o los precios al por mayor. El índice correcto es siempre el que se especifica en su <a href="contrato-de-alquiler.html" title="Ley de alquileres y DNU 70/2023 Argentino">contrato de alquiler</a>.</p>
       <div class="index-explainer-grid">
         <article class="index-explainer-card index-explainer-card--cer">
           <div class="index-explainer-card__top">
@@ -379,7 +437,7 @@
             <div class="index-explainer-card__icon"><i data-lucide="bar-chart-3" aria-hidden="true"></i></div>
           </div>
           <h3>CER (Coeficiente de Estabilización de Referencia):</h3>
-          <p>CER BCRA Es un índice vinculado a la inflación publicado por el Banco Central de Argentina y se utiliza en contratos que se ajustan según la inflación.</p>
+          <p><a href="index.html#calculadora" title="Calculadora de Alquileres Argentina | AlquilerCalc">CER</a> BCRA Es un índice vinculado a la inflación publicado por el Banco Central de Argentina y se utiliza en contratos que se ajustan según la inflación.</p>
         </article>
         <article class="index-explainer-card index-explainer-card--uva">
           <div class="index-explainer-card__top">
@@ -387,7 +445,7 @@
             <div class="index-explainer-card__icon"><i data-lucide="coins" aria-hidden="true"></i></div>
           </div>
           <h3>UVA (Unidad de Poder Adquisitivo):</h3>
-          <p>El diario cotización uva es publicado por el BCRA y refleja los cambios de valor ajustados a la inflación. Muchos usuarios consultan el UVA hoy BCRA, índice UVA hoy, y valor UVA hoy bcra al revisar contratos indexados.</p>
+          <p>El diario cotización uva es publicado por el BCRA y refleja los cambios de valor ajustados a la inflación. Muchos usuarios consultan el <a href="index.html#calculadora" title="Calculadora de Alquileres Argentina | AlquilerCalc">UVA</a> hoy BCRA, índice UVA hoy, y valor UVA hoy bcra al revisar contratos indexados.</p>
         </article>
         <article class="index-explainer-card index-explainer-card--cac">
           <div class="index-explainer-card__top">
@@ -433,7 +491,7 @@
         <h2>¿Por qué los contratos de alquiler utilizan índices de ajuste?</h2>
       </div>
       <p>Indexacion alquileres Permite que los contratos de alquiler mantengan su valor a lo largo del tiempo. En lugar de negociar un nuevo monto de alquiler en cada período de ajuste, propietarios e inquilinos pueden basarse en un índice predefinido. Esto crea un método transparente y reduce las disputas relacionadas con los ajustes contractuales.</p>
-      <p>Diferentes índices ajuste por inflacion Puede utilizarse dependiendo del contrato.</p>
+      <p>Diferentes <a href="indices-icl-ipc-cer.html" title="Redirigiendo a Calculadora ICL…">índices de alquiler</a> ajuste por inflacion Puede utilizarse dependiendo del contrato.</p>
     </div>
   </section>
 
@@ -522,7 +580,7 @@
           <div class="compare-card__row"><span>Frecuencia de actualización</span><span>Datos mensuales</span></div>
         </div>
       </div>
-      <div class="guide-table-wrap index-info-section__table">
+      <div class="guide-table-wrap table-wrapper index-info-section__table">
         <table class="guide-table" aria-label="Comparación ICL vs IPC">
           <thead>
             <tr>
@@ -533,29 +591,29 @@
           </thead>
           <tbody>
             <tr>
-              <td>Medidas</td>
-              <td>Inflación</td>
-              <td>Inflación y crecimiento salarial</td>
+              <td data-label="Factor">Medidas</td>
+              <td data-label="IPC">Inflación</td>
+              <td data-label="ICL">Inflación y crecimiento salarial</td>
             </tr>
             <tr>
-              <td>Residencia en</td>
-              <td>precios al consumidor</td>
-              <td>IPC + RIPTE</td>
+              <td data-label="Factor">Residencia en</td>
+              <td data-label="IPC">precios al consumidor</td>
+              <td data-label="ICL">IPC + RIPTE</td>
             </tr>
             <tr>
-              <td>Uso común</td>
-              <td>Contratos más recientes</td>
-              <td>Contratos según la Ley 27.551</td>
+              <td data-label="Factor">Uso común</td>
+              <td data-label="IPC">Contratos más recientes</td>
+              <td data-label="ICL">Contratos según la Ley 27.551</td>
             </tr>
             <tr>
-              <td>Publicado por</td>
-              <td>INDEC</td>
-              <td>BCRA</td>
+              <td data-label="Factor">Publicado por</td>
+              <td data-label="IPC">INDEC</td>
+              <td data-label="ICL">BCRA</td>
             </tr>
             <tr>
-              <td>Frecuencia de actualización</td>
-              <td>Datos mensuales</td>
-              <td>Índice diario</td>
+              <td data-label="Factor">Frecuencia de actualización</td>
+              <td data-label="IPC">Datos mensuales</td>
+              <td data-label="ICL">Índice diario</td>
             </tr>
           </tbody>
         </table>
@@ -578,14 +636,17 @@
     <div class="container">
       <div class="faq-layout">
         <div class="faq-graphic" aria-hidden="true">
-          <img
-            src="assets/faq-illustration.png?v=2"
-            alt=""
-            width="571"
-            height="1024"
-            loading="lazy"
-            class="faq-graphic__img"
-          >
+          <picture>
+            <source srcset="assets/faq-illustration.webp" type="image/webp">
+            <img
+              src="assets/faq-illustration.png?v=2"
+              alt=""
+              width="571"
+              height="1024"
+              loading="lazy"
+              class="faq-graphic__img"
+            >
+          </picture>
         </div>
         <div class="faq-layout__content">
           <div class="faq-panel">
@@ -671,39 +732,33 @@
     </div>
   </section>
 
-  <!-- TRUSTED BY -->
-  <section class="trusted-section">
-    <div class="container">
-      <p>Cálculos basados en datos oficiales de:</p>
-      <div class="trusted-logos">
-        <span class="trusted-logo">BCRA</span>
-        <span class="trusted-logo">INDEC</span>
-        <span class="trusted-logo">Ministerio Economía</span>
-        <span class="trusted-logo">AFIP</span>
-      </div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer__grid">
         <div class="footer__brand">
           <a href="index.html" class="footer__logo">
-            <span class="footer__logo-dot" aria-hidden="true"></span>
+            <img src="assets/logo-mark.svg" alt="" class="footer__logo-mark" width="28" height="28" aria-hidden="true">
             AlquilerCalc
           </a>
           <p>Actualización de alquileres con precisión oficial. La calculadora de referencia para propietarios, inquilinos y profesionales inmobiliarios en Argentina.</p>
           <div class="footer__social">
-            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
-            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
-            <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg></a>
+            <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+            <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+            <a href="#" aria-label="X"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+            <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+            <a href="#" aria-label="Pinterest"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.719-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.207 0 1.031.383 2.135.862 2.738.095.116.109.217.081.333-.088.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.695-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.378l-.749 2.848c-.27 1.07-1.004 2.03-1.497 2.727 1.124.347 2.317.535 3.554.535 6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"/></svg></a>
+            <a href="#" aria-label="Reddit"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/></svg></a>
+            <a href="#" aria-label="Quora"><svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M12.738 0C5.62 0 0 5.62 0 12.738c0 7.118 5.62 12.738 12.738 12.738 7.118 0 12.738-5.62 12.738-12.738C25.476 5.62 19.856 0 12.738 0zm1.476 18.755c-2.532 0-4.584-2.052-4.584-4.584 0-2.532 2.052-4.584 4.584-4.584 2.532 0 4.584 2.052 4.584 4.584 0 2.532-2.052 4.584-4.584 4.584zm4.705-10.148c-.74 0-1.34.6-1.34 1.34s.6 1.34 1.34 1.34 1.34-.6 1.34-1.34-.6-1.34-1.34-1.34z"/></svg></a>
           </div>
+
         </div>
         <div>
           <h4>Herramientas</h4>
           <ul>
             <li><a href="index.html">Calculadora principal</a></li>
+            <li><a href="calculadora-ipc/">Calculadora IPC</a></li>
             <li><a href="calculadora-icl.html">Calculadora ICL</a></li>
             <li><a href="contrato-de-alquiler.html">Contrato De Alquiler</a></li>
           </ul>
@@ -735,7 +790,7 @@
 
   <script src="js/currency.js" defer></script>
   <script src="js/indices.js" defer></script>
-  <script src="js/calculator.js" defer></script>
+  <script src="js/calculator.js?v=9" defer></script>
   <script src="js/main.js?v=8" defer></script>
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
   <script src="js/home-premium.js?v=8" defer></script>
