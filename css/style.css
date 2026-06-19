@@ -107,7 +107,7 @@ h4 { font-size: var(--text-xl); }
   left: 0;
   right: 0;
   height: var(--nav-height);
-  background: rgba(255, 255, 255, 0.95);
+  background: #fff;
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   z-index: 1000;
@@ -1037,7 +1037,7 @@ h4 { font-size: var(--text-xl); }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 48px;
-  align-items: center;
+  align-items: start;
   position: relative;
   z-index: 1;
 }
@@ -1054,7 +1054,7 @@ h4 { font-size: var(--text-xl); }
   font-size: 4rem;
   line-height: 1.1;
   color: var(--white);
-  margin-bottom: 24px;
+  margin-bottom: 0;
 }
 
 .hero--split .hero__subtitle {
@@ -2989,8 +2989,8 @@ h4 { font-size: var(--text-xl); }
 }
 
 .cookie-banner__accept {
-  background: var(--accent);
-  color: var(--neutral-900);
+  background: var(--orange, #E8673C);
+  color: #fff;
 }
 
 .cookie-banner__essential {

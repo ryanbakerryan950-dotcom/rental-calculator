@@ -189,6 +189,247 @@
   border: 1px solid var(--orange-border);
 }
 
+/* ========== ICL CONTRACT SECTION ========== */
+.page-calculadora-icl .icl-contract-section__header {
+  text-align: center;
+  max-width: 760px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-calculadora-icl .icl-contract-section__lead {
+  margin: 14px 0 0;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.page-calculadora-icl .icl-contract-section .law-contract__card h3 {
+  margin: 0;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--text);
+}
+
+.page-calculadora-icl .icl-contract-section .law-contract__card p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--text-muted);
+}
+
+.page-calculadora-icl .icl-contract-section .law-contract__card a {
+  color: var(--orange);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.page-calculadora-icl .icl-contract-section .law-contract__card a:hover {
+  text-decoration: underline;
+}
+
+.page-calculadora-icl .icl-contract-section__stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.page-calculadora-icl .icl-contract-stat {
+  background: #fff;
+  border: 1px solid var(--orange-border);
+  border-radius: 16px;
+  padding: 20px 16px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(26, 26, 46, 0.04);
+}
+
+.page-calculadora-icl .icl-contract-stat__label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+.page-calculadora-icl .icl-contract-stat__value {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+}
+
+/* ========== ICL WHY SECTION ========== */
+.page-calculadora-icl .icl-why-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-calculadora-icl .icl-why-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(120px, 20%);
+  height: 4px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(90deg, var(--orange), #f5a623);
+}
+
+.page-calculadora-icl .icl-why {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-calculadora-icl .icl-why__header {
+  margin-bottom: 12px;
+}
+
+.page-calculadora-icl .icl-why__header h2 {
+  margin: 0;
+}
+
+.page-calculadora-icl .icl-why__intro {
+  margin: 0 0 28px;
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+.page-calculadora-icl .icl-why__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 40px;
+  text-align: left;
+}
+
+.page-calculadora-icl .icl-why__list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--orange-border);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+.page-calculadora-icl .icl-why__list li:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.page-calculadora-icl .icl-why__check {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--orange);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+  box-shadow: 0 2px 8px rgba(232, 103, 60, 0.3);
+}
+
+.page-calculadora-icl .icl-why__check svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ========== ICL AUDIENCE SECTION ========== */
+.page-calculadora-icl .icl-audience-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-calculadora-icl .icl-audience-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(120px, 20%);
+  height: 4px;
+  border-radius: 0 0 4px 4px;
+  background: linear-gradient(90deg, var(--purple), #a78bfa);
+}
+
+.page-calculadora-icl .icl-audience {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-calculadora-icl .icl-audience__header {
+  margin-bottom: 16px;
+}
+
+.page-calculadora-icl .icl-audience__header h2 {
+  margin: 0;
+}
+
+.page-calculadora-icl .icl-audience__intro {
+  margin: 0 0 32px;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-calculadora-icl .icl-audience__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0 40px;
+  text-align: left;
+}
+
+.page-calculadora-icl .icl-audience__list li {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--orange-border);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+}
+
+.page-calculadora-icl .icl-audience__list li:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.page-calculadora-icl .icl-audience__icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--lavender);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.page-calculadora-icl .icl-audience__icon svg {
+  width: 22px;
+  height: 22px;
+  color: var(--purple);
+}
+
 /* ========== RESPONSIVE ========== */
 @media (max-width: 1024px) {
   .page-calculadora-icl .icl-hero h1 {
@@ -221,5 +462,35 @@
 
   .page-calculadora-icl .icl-calc-fields {
     grid-template-columns: 1fr;
+  }
+
+  .page-calculadora-icl .icl-contract-section__stats {
+    grid-template-columns: 1fr;
+  }
+
+  .page-calculadora-icl .icl-why__list {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .page-calculadora-icl .icl-why__list li:nth-last-child(-n+2) {
+    border-bottom: 1px solid var(--orange-border);
+  }
+
+  .page-calculadora-icl .icl-why__list li:last-child {
+    border-bottom: none;
+  }
+
+  .page-calculadora-icl .icl-audience__list {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .page-calculadora-icl .icl-audience__list li:nth-last-child(-n+2) {
+    border-bottom: 1px solid var(--orange-border);
+  }
+
+  .page-calculadora-icl .icl-audience__list li:last-child {
+    border-bottom: none;
   }
 }
