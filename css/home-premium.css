@@ -41,8 +41,8 @@ html {
   --amber: #F5A623;
   --lavender: #FFF0EB;
   --cream: #FFF8F5;
-  --teal: #1D9E75;
-  --purple: #7C3AED;
+  --teal: #F5A623;
+  --purple: #1B4F8A;
   --text: #1A1A2E;
   --text-muted: #6B7280;
   --dark: #1A1A2E;
@@ -403,7 +403,7 @@ html {
 }
 
 .page-premium .hero-mock__tab--orange { background: var(--orange); opacity: 0.9; }
-.page-premium .hero-mock__tab--lavender { background: #C4B5FD; }
+.page-premium .hero-mock__tab--lavender { background: #93B8E0; }
 .page-premium .hero-mock__tab--green { background: var(--teal); opacity: 0.7; }
 .page-premium .hero-mock__tab--amber { background: var(--amber); opacity: 0.8; }
 
@@ -1138,7 +1138,7 @@ html {
 .page-premium .guide-section--steps::after {
   width: 220px;
   height: 220px;
-  background: rgba(124, 58, 237, 0.05);
+  background: rgba(27, 79, 138, 0.05);
   bottom: -40px;
   left: -40px;
 }
@@ -1233,12 +1233,12 @@ html {
 
 .page-premium .guide-steps__card--2 .guide-steps__badge {
   background: var(--purple);
-  box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25);
+  box-shadow: 0 4px 12px rgba(27, 79, 138, 0.25);
 }
 
 .page-premium .guide-steps__card--3 .guide-steps__badge {
   background: var(--teal);
-  box-shadow: 0 4px 12px rgba(29, 158, 117, 0.25);
+  box-shadow: 0 4px 12px rgba(245, 166, 35, 0.25);
 }
 
 .page-premium .guide-steps__card--4 .guide-steps__badge {
@@ -1448,9 +1448,9 @@ html {
 }
 
 .page-premium .law-contract__card--legacy .law-contract__badge {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(27, 79, 138, 0.1);
   color: var(--purple);
-  border: 1px solid rgba(124, 58, 237, 0.2);
+  border: 1px solid rgba(27, 79, 138, 0.2);
 }
 
 .page-premium .law-contract__card--dnu .law-contract__badge {
@@ -1470,7 +1470,7 @@ html {
 }
 
 .page-premium .law-contract__card--legacy .law-contract__card-icon {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(27, 79, 138, 0.1);
 }
 
 .page-premium .law-contract__card--legacy .law-contract__card-icon svg {
@@ -1536,8 +1536,8 @@ html {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: rgba(124, 58, 237, 0.12);
-  border: 1px solid rgba(124, 58, 237, 0.25);
+  background: rgba(27, 79, 138, 0.12);
+  border: 1px solid rgba(27, 79, 138, 0.25);
 }
 
 .page-premium .law-contract__list li::after {
@@ -1642,15 +1642,15 @@ html {
 }
 
 .page-premium .index-explainer-card--cer .index-explainer-card__badge {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(27, 79, 138, 0.1);
   color: var(--purple);
-  border: 1px solid rgba(124, 58, 237, 0.2);
+  border: 1px solid rgba(27, 79, 138, 0.2);
 }
 
 .page-premium .index-explainer-card--uva .index-explainer-card__badge {
-  background: rgba(29, 158, 117, 0.1);
+  background: rgba(245, 166, 35, 0.1);
   color: var(--teal);
-  border: 1px solid rgba(29, 158, 117, 0.2);
+  border: 1px solid rgba(245, 166, 35, 0.2);
 }
 
 .page-premium .index-explainer-card--cac .index-explainer-card__badge {
@@ -1688,13 +1688,13 @@ html {
 }
 
 .page-premium .index-explainer-card--cer .index-explainer-card__icon {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(27, 79, 138, 0.1);
 }
 
 .page-premium .index-explainer-card--cer .index-explainer-card__icon svg { color: var(--purple); }
 
 .page-premium .index-explainer-card--uva .index-explainer-card__icon {
-  background: rgba(29, 158, 117, 0.1);
+  background: rgba(245, 166, 35, 0.1);
 }
 
 .page-premium .index-explainer-card--uva .index-explainer-card__icon svg { color: var(--teal); }
@@ -1770,7 +1770,7 @@ html {
 .page-premium .guide-section--why::after {
   width: 220px;
   height: 220px;
-  background: rgba(124, 58, 237, 0.05);
+  background: rgba(27, 79, 138, 0.05);
   bottom: -50px;
   right: -30px;
 }
@@ -2166,8 +2166,8 @@ html {
   box-shadow: 0 4px 12px rgba(232, 103, 60, 0.3);
 }
 
-.page-premium .timeline__step--2 .timeline__step-num { background: var(--purple); box-shadow: 0 4px 12px rgba(124, 58, 237, 0.25); }
-.page-premium .timeline__step--3 .timeline__step-num { background: var(--teal); box-shadow: 0 4px 12px rgba(29, 158, 117, 0.25); }
+.page-premium .timeline__step--2 .timeline__step-num { background: var(--purple); box-shadow: 0 4px 12px rgba(27, 79, 138, 0.25); }
+.page-premium .timeline__step--3 .timeline__step-num { background: var(--teal); box-shadow: 0 4px 12px rgba(245, 166, 35, 0.25); }
 .page-premium .timeline__step--4 .timeline__step-num { background: var(--amber); box-shadow: 0 4px 12px rgba(245, 166, 35, 0.3); }
 
 .page-premium .timeline__step-visual {
@@ -2184,12 +2184,12 @@ html {
 
 .page-premium .timeline__step--2 .timeline__step-visual {
   background: linear-gradient(145deg, #FFF0EB, #fff);
-  border-color: rgba(124, 58, 237, 0.2);
+  border-color: rgba(27, 79, 138, 0.2);
 }
 
 .page-premium .timeline__step--3 .timeline__step-visual {
-  background: linear-gradient(145deg, rgba(29, 158, 117, 0.12), #fff);
-  border-color: rgba(29, 158, 117, 0.2);
+  background: linear-gradient(145deg, rgba(245, 166, 35, 0.12), #fff);
+  border-color: rgba(245, 166, 35, 0.2);
 }
 
 .page-premium .timeline__step--4 .timeline__step-visual {
@@ -2500,9 +2500,9 @@ html {
   margin-bottom: 8px;
 }
 
-.page-premium .index-info-card--ipc .index-info-card__icon { background: rgba(29, 158, 117, 0.1); }
+.page-premium .index-info-card--ipc .index-info-card__icon { background: rgba(245, 166, 35, 0.1); }
 .page-premium .index-info-card--ipc .index-info-card__icon svg { color: var(--teal); }
-.page-premium .index-info-card--cer .index-info-card__icon { background: rgba(124, 58, 237, 0.1); }
+.page-premium .index-info-card--cer .index-info-card__icon { background: rgba(27, 79, 138, 0.1); }
 .page-premium .index-info-card--cer .index-info-card__icon svg { color: var(--purple); }
 .page-premium .index-info-card--casa .index-info-card__icon { background: rgba(245, 166, 35, 0.15); }
 .page-premium .index-info-card--casa .index-info-card__icon svg { color: var(--amber); }
@@ -2863,7 +2863,7 @@ html {
 .page-premium .cta-banner::after {
   width: 250px;
   height: 250px;
-  background: rgba(124, 58, 237, 0.15);
+  background: rgba(27, 79, 138, 0.15);
   bottom: -60px;
   left: -40px;
 }
@@ -3289,7 +3289,7 @@ html {
     right: auto;
     width: 2px;
     height: auto;
-    background: linear-gradient(180deg, rgba(124, 58, 237, 0.35), rgba(232, 103, 60, 0.45), var(--orange));
+    background: linear-gradient(180deg, rgba(27, 79, 138, 0.35), rgba(232, 103, 60, 0.45), var(--orange));
   }
 
   .page-premium .dnu-context__step {
@@ -3572,7 +3572,7 @@ html {
 }
 
 .page-premium .icl-circle--ipc { background: var(--orange); }
-.page-premium .icl-circle--ripte { background: rgba(124, 58, 237, 0.8); }
+.page-premium .icl-circle--ripte { background: rgba(27, 79, 138, 0.8); }
 
 .page-premium .icl-circle__pct { font-size: 1.5rem; line-height: 1; }
 .page-premium .icl-circle__lbl { font-size: 12px; font-weight: 600; margin-top: 4px; }
@@ -3915,7 +3915,7 @@ html {
   left: calc(16.666% + 12px);
   right: calc(16.666% + 12px);
   height: 2px;
-  background: linear-gradient(90deg, rgba(124, 58, 237, 0.35), rgba(232, 103, 60, 0.45), var(--orange));
+  background: linear-gradient(90deg, rgba(27, 79, 138, 0.35), rgba(232, 103, 60, 0.45), var(--orange));
   z-index: 0;
 }
 
@@ -3952,8 +3952,8 @@ html {
 }
 
 .page-premium .dnu-context__step:first-child .dnu-context__marker {
-  border-color: rgba(124, 58, 237, 0.35);
-  background: rgba(124, 58, 237, 0.08);
+  border-color: rgba(27, 79, 138, 0.35);
+  background: rgba(27, 79, 138, 0.08);
 }
 
 .page-premium .dnu-context__step:first-child .dnu-context__marker svg {
@@ -3995,7 +3995,7 @@ html {
 }
 
 .page-premium .dnu-context__step:first-child .dnu-context__badge {
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(27, 79, 138, 0.1);
   color: var(--purple);
 }
 
@@ -4029,7 +4029,7 @@ html {
   max-width: 760px;
   padding: 18px 24px;
   background: var(--lavender);
-  border: 1px solid rgba(124, 58, 237, 0.15);
+  border: 1px solid rgba(27, 79, 138, 0.15);
   border-radius: 14px;
   text-align: center;
   font-size: 15px;
@@ -4052,7 +4052,7 @@ html {
   width: min(120px, 20%);
   height: 4px;
   border-radius: 0 0 4px 4px;
-  background: linear-gradient(90deg, var(--purple), #a78bfa);
+  background: linear-gradient(90deg, var(--purple), #2980B9);
 }
 
 .page-premium .pre-dnu__header {
@@ -4074,7 +4074,7 @@ html {
 
 .page-premium .pre-dnu__text {
   counter-reset: pre-dnu-step;
-  border-left: 2px solid rgba(124, 58, 237, 0.12);
+  border-left: 2px solid rgba(27, 79, 138, 0.12);
   padding-left: 28px;
 }
 
@@ -4100,8 +4100,8 @@ html {
   width: 26px;
   height: 26px;
   border-radius: 50%;
-  background: rgba(124, 58, 237, 0.1);
-  border: 1px solid rgba(124, 58, 237, 0.25);
+  background: rgba(27, 79, 138, 0.1);
+  border: 1px solid rgba(27, 79, 138, 0.25);
   color: var(--purple);
   font-size: 12px;
   font-weight: 700;
@@ -4117,7 +4117,7 @@ html {
   top: 34px;
   bottom: 0;
   width: 2px;
-  background: rgba(124, 58, 237, 0.1);
+  background: rgba(27, 79, 138, 0.1);
 }
 
 /* Index choice section */
@@ -4220,7 +4220,7 @@ html {
   font-size: 16px;
   line-height: 1.7;
   color: var(--text-muted);
-  border-bottom: 1px solid rgba(124, 58, 237, 0.15);
+  border-bottom: 1px solid rgba(27, 79, 138, 0.15);
 }
 
 .page-premium .contract-review__list li:last-child {
@@ -4236,8 +4236,8 @@ html {
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  background: rgba(124, 58, 237, 0.12);
-  border: 1px solid rgba(124, 58, 237, 0.25);
+  background: rgba(27, 79, 138, 0.12);
+  border: 1px solid rgba(27, 79, 138, 0.25);
 }
 
 .page-premium .contract-review__list li::after {
@@ -4276,7 +4276,7 @@ html {
 }
 
 .page-premium .law-2025-section::before {
-  background: linear-gradient(90deg, var(--purple), #a78bfa);
+  background: linear-gradient(90deg, var(--purple), #2980B9);
 }
 
 .page-premium .contract-centered {
@@ -4447,7 +4447,7 @@ html {
 }
 
 .page-premium .duration-card--home { background: #FFF0EB; }
-.page-premium .duration-card--commercial { background: var(--lavender); border-color: #E0E0FF; }
+.page-premium .duration-card--commercial { background: var(--lavender); border-color: #C5D9EF; }
 
 .page-premium .duration-card__badge {
   font-size: 12px;

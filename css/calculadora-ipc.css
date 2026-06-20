@@ -158,9 +158,9 @@
   margin: 0 auto;
   padding: 20px;
   background: #fff;
-  border: 1px solid #E8E4F8;
+  border: 1px solid #D6E4F0;
   border-radius: 24px;
-  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.08);
+  box-shadow: 0 8px 32px rgba(27, 79, 138, 0.08);
 }
 
 .page-calculadora-ipc .ipc-def-diagram__svg {
@@ -270,10 +270,10 @@
   height: 18px;
 }
 
-.page-calculadora-ipc .ipc-def-diagram__icon--green i { color: #1D9E75; }
+.page-calculadora-ipc .ipc-def-diagram__icon--green i { color: #F5A623; }
 .page-calculadora-ipc .ipc-def-diagram__icon--orange i { color: #E8673C; }
 .page-calculadora-ipc .ipc-def-diagram__icon--amber i { color: #F5A623; }
-.page-calculadora-ipc .ipc-def-diagram__icon--purple i { color: #7C3AED; }
+.page-calculadora-ipc .ipc-def-diagram__icon--purple i { color: #1B4F8A; }
 
 .page-calculadora-ipc .ipc-def-diagram__label {
   font-size: 11px;
@@ -458,7 +458,7 @@
 .page-calculadora-ipc .ipc-result-stat__value--teal {
   font-size: 20px;
   font-weight: 700;
-  color: #1D9E75;
+  color: #F5A623;
 }
 
 .page-calculadora-ipc .ipc-result-stat__value--dark {
@@ -633,16 +633,16 @@
 }
 
 .page-calculadora-ipc .ipc-how__step--final .ipc-how__step-card {
-  border-color: #C6F0D9;
-  background: linear-gradient(135deg, #fff 0%, #F4FDF8 100%);
+  border-color: #FDE4B3;
+  background: linear-gradient(135deg, #fff 0%, #FFF8F0 100%);
 }
 
 .page-calculadora-ipc .ipc-how__step--final .ipc-how__step-icon {
-  background: #E6F9F0;
+  background: #FFF3DC;
 }
 
 .page-calculadora-ipc .ipc-how__step--final .ipc-how__step-icon i {
-  color: #1D9E75;
+  color: #F5A623;
 }
 
 .page-calculadora-ipc .ipc-how__step .ipc-step-bullets {
@@ -834,7 +834,7 @@
 }
 
 .page-calculadora-ipc .ipc-example-var span:last-child {
-  color: #1D9E75;
+  color: #F5A623;
   display: inline-flex;
   align-items: center;
   gap: 6px;
@@ -843,7 +843,7 @@
 .page-calculadora-ipc .ipc-example-var i {
   width: 18px;
   height: 18px;
-  color: #1D9E75;
+  color: #F5A623;
 }
 
 .page-calculadora-ipc .ipc-example-dashed {
@@ -931,8 +931,8 @@
 }
 
 .page-calculadora-ipc .ipc-stat-icon--orange { color: #E8673C; }
-.page-calculadora-ipc .ipc-stat-icon--teal { color: #1D9E75; }
-.page-calculadora-ipc .ipc-stat-icon--purple { color: #7C3AED; }
+.page-calculadora-ipc .ipc-stat-icon--teal { color: #F5A623; }
+.page-calculadora-ipc .ipc-stat-icon--purple { color: #1B4F8A; }
 
 .page-calculadora-ipc .ipc-stat-cards .stat-card__label {
   font-size: 12px;
@@ -940,8 +940,8 @@
   letter-spacing: 0.06em;
 }
 
-.page-calculadora-ipc .ipc-stat-value--teal { color: #1D9E75 !important; }
-.page-calculadora-ipc .ipc-stat-value--purple { color: #7C3AED !important; }
+.page-calculadora-ipc .ipc-stat-value--teal { color: #F5A623 !important; }
+.page-calculadora-ipc .ipc-stat-value--purple { color: #1B4F8A !important; }
 
 /* ========== FAQ — isolated illustration column ========== */
 .page-calculadora-ipc .faq-section,

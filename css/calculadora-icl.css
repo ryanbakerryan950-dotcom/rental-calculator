@@ -360,7 +360,7 @@
   width: min(120px, 20%);
   height: 4px;
   border-radius: 0 0 4px 4px;
-  background: linear-gradient(90deg, var(--purple), #a78bfa);
+  background: linear-gradient(90deg, var(--purple), #2980B9);
 }
 
 .page-calculadora-icl .icl-audience {
