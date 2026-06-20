@@ -545,6 +545,8 @@
     max-width: 100%;
     margin-bottom: 24px;
     contain: none;
+    position: static;
+    top: auto;
   }
 
   .page-premium .faq-layout__content {
@@ -555,7 +557,6 @@
     width: 100%;
   }
 
-  .page-premium #faq .faq-graphic__img,
   .page-premium .faq-graphic__img {
     position: static !important;
     top: auto !important;
@@ -564,15 +565,6 @@
     max-width: min(280px, 100%);
     height: auto;
     margin: 0 auto;
-  }
-
-  .page-premium .faq-graphic__img.is-frozen {
-    position: static !important;
-    top: auto !important;
-    left: auto !important;
-    width: 100% !important;
-    max-width: min(280px, 100%);
-    z-index: auto;
   }
 
   .page-premium .faq-graphic picture {

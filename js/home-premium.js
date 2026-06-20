@@ -204,69 +204,8 @@
   function initPremiumFaq() {
     if (document.body.classList.contains('page-calculadora-ipc')) return;
 
-    const img = document.querySelector('.faq-graphic__img');
-    const faqSection = document.getElementById('faq');
-    const isContratoFaq = Boolean(faqSection && img && faqSection.contains(img));
-
-    const desktopMq = window.matchMedia('(min-width: 769px)');
-
-    const freezeImage = () => {
-      if (isContratoFaq || !img || !desktopMq.matches) return;
-      const rect = img.getBoundingClientRect();
-      img.classList.add('is-frozen');
-      img.style.top = `${rect.top}px`;
-      img.style.left = `${rect.left}px`;
-      img.style.width = `${rect.width}px`;
-    };
-
-    const unfreezeImage = () => {
-      if (!img) return;
-      img.classList.remove('is-frozen');
-      img.style.top = '';
-      img.style.left = '';
-      img.style.width = '';
-    };
-
-    const restoreScroll = (y) => {
-      if (window.scrollY !== y) {
-        window.scrollTo(0, y);
-      }
-    };
-
-    const lockScrollPosition = (y, duration = 450) => {
-      restoreScroll(y);
-
-      const start = performance.now();
-      const onScroll = () => {
-        if (window.scrollY !== y) {
-          window.scrollTo(0, y);
-        }
-      };
-
-      window.addEventListener('scroll', onScroll, { passive: true });
-
-      const tick = () => {
-        restoreScroll(y);
-        if (performance.now() - start < duration) {
-          requestAnimationFrame(tick);
-        } else {
-          window.removeEventListener('scroll', onScroll);
-        }
-      };
-
-      tick();
-    };
-
     document.querySelectorAll('.faq-item__question').forEach((btn) => {
       btn.addEventListener('click', () => {
-        const scrollY = window.scrollY;
-
-        if (isContratoFaq) {
-          lockScrollPosition(scrollY);
-        } else {
-          freezeImage();
-        }
-
         const item = btn.closest('.faq-item');
         const isOpen = item.classList.contains('open');
 
@@ -280,26 +219,8 @@
           item.classList.add('open');
           btn.setAttribute('aria-expanded', 'true');
         }
-
-        if (isContratoFaq) {
-          restoreScroll(scrollY);
-        }
-
-        btn.focus({ preventScroll: true });
-
-        if (!isContratoFaq) {
-          requestAnimationFrame(() => {
-            restoreScroll(scrollY);
-            requestAnimationFrame(() => {
-              restoreScroll(scrollY);
-              unfreezeImage();
-            });
-          });
-        }
       });
     });
-
-    desktopMq.addEventListener('change', unfreezeImage);
   }
 
   document.addEventListener('DOMContentLoaded', () => {

@@ -957,6 +957,26 @@
   overflow-anchor: none;
 }
 
+.page-calculadora-ipc .faq-item__answer {
+  display: grid;
+  grid-template-rows: 0fr;
+  max-height: none;
+  opacity: 0;
+  overflow: hidden;
+  transition: grid-template-rows 0.25s ease, opacity 0.25s ease;
+}
+
+.page-calculadora-ipc .faq-item.open .faq-item__answer {
+  grid-template-rows: 1fr;
+  max-height: none;
+  opacity: 1;
+}
+
+.page-calculadora-ipc .faq-item__answer p {
+  min-height: 0;
+  overflow: hidden;
+}
+
 .page-calculadora-ipc .faq-section {
   padding: var(--section-padding) var(--page-gutter);
 }

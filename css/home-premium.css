@@ -309,8 +309,6 @@ html {
 
 .page-premium .hero__content h1,
 .page-premium .hero h1 {
-  display: flex;
-  flex-wrap: wrap;
   width: 600px;
   max-width: 100%;
   font-size: 58px;
@@ -318,6 +316,11 @@ html {
   line-height: 1.1;
   color: var(--text);
   margin: 20px 0 0;
+}
+
+.page-premium .hero__content h1 .kw-highlight,
+.page-premium .hero h1 .kw-highlight {
+  margin-right: 0.12em;
 }
 
 .page-premium .hero__subtitle {
@@ -817,7 +820,6 @@ html {
   overflow: hidden;
 }
 
-.page-premium .guide-section--about + .guide-section--formula,
 .page-premium .guide-section--law + .guide-section--indices {
   padding-top: 0;
 }
@@ -2585,11 +2587,11 @@ html {
 .page-premium .faq-section {
   background: var(--cream);
   padding: var(--section-padding) var(--page-gutter);
-  overflow-anchor: none;
 }
 
 .page-premium .faq-section > .container {
-  overflow-anchor: none;
+  max-width: var(--layout-max);
+  margin: 0 auto;
 }
 
 .page-premium .faq-layout {
@@ -2599,77 +2601,54 @@ html {
   max-width: none;
   margin: 0 auto;
   align-items: start;
-  overflow-anchor: none;
+}
+
+.page-premium .faq-layout--single {
+  grid-template-columns: 1fr;
+  max-width: 820px;
+}
+
+.page-premium .faq-layout--single .faq-layout__content {
+  grid-column: 1;
+}
+
+.page-premium .faq-layout--single .faq-panel__header {
+  text-align: center;
 }
 
 .page-premium .faq-graphic {
   grid-column: 1;
   grid-row: 1;
-  position: relative;
   align-self: start;
   width: 100%;
   max-width: 415px;
-  overflow-anchor: none;
 }
 
-.page-premium .faq-graphic::before {
-  content: '';
+.page-premium .faq-graphic picture {
   display: block;
   width: 100%;
-  aspect-ratio: 571 / 1024;
+  max-width: 415px;
 }
 
 .page-premium .faq-graphic__img {
-  position: absolute;
-  top: 0;
-  left: 0;
+  display: block;
   width: 100%;
   max-width: 415px;
-  height: 529px;
-  margin-top: -37px;
-  margin-bottom: -37px;
-  display: block;
+  height: auto;
+  margin: 0;
   border-radius: var(--radius-lg);
   filter: drop-shadow(0 12px 32px rgba(232, 103, 60, 0.12));
 }
 
+@media (min-width: 769px) {
+  .page-premium .faq-graphic {
+    position: sticky;
+    top: 96px;
+  }
+}
+
 .page-premium #faq {
   overflow: visible;
-  overflow-anchor: none;
-}
-
-.page-premium #faq .faq-layout {
-  overflow-anchor: none;
-}
-
-.page-premium #faq .faq-layout__content {
-  overflow-anchor: none;
-  contain: layout style;
-}
-
-.page-premium #faq .faq-graphic {
-  overflow-anchor: none;
-  contain: layout style;
-}
-
-.page-premium #faq .faq-graphic::before {
-  aspect-ratio: 764 / 1024;
-}
-
-.page-premium #faq .faq-graphic__img {
-  top: 140px;
-  left: unset;
-}
-
-.page-premium.page-calculadora-icl .faq-graphic__img {
-  top: 123px;
-  left: unset;
-}
-
-.page-premium .faq-graphic__img.is-frozen {
-  position: fixed;
-  z-index: 2;
-  margin: 0;
 }
 
 .page-premium .faq-layout__content {
@@ -2677,7 +2656,6 @@ html {
   grid-row: 1;
   min-width: 0;
   align-self: start;
-  overflow-anchor: none;
 }
 
 .page-premium .faq-panel {
@@ -2687,7 +2665,6 @@ html {
   border-radius: 24px;
   padding: 32px 28px 28px;
   box-shadow: 0 10px 40px rgba(26, 26, 46, 0.06);
-  overflow-anchor: none;
 }
 
 .page-premium .faq-panel__header {
@@ -2723,7 +2700,6 @@ html {
   flex-direction: column;
   gap: 10px;
   counter-reset: faq-counter;
-  overflow-anchor: none;
 }
 
 .page-premium .faq-item {
@@ -2731,7 +2707,6 @@ html {
   border-radius: 14px;
   background: #fff;
   overflow: hidden;
-  overflow-anchor: none;
   transition: border-color 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 
@@ -2762,7 +2737,6 @@ html {
   text-align: left;
   cursor: pointer;
   transition: color 0.2s ease;
-  overflow-anchor: none;
 }
 
 .page-premium .faq-item__question::before {
@@ -2819,7 +2793,6 @@ html {
   grid-template-rows: 0fr;
   opacity: 0;
   overflow: hidden;
-  overflow-anchor: none;
   transition: grid-template-rows 0.25s ease, opacity 0.25s ease;
 }
 
@@ -3120,7 +3093,6 @@ html {
   .page-premium .about-split,
   .page-premium .formula-split,
   .page-premium .index-info-layout,
-  .page-premium .faq-layout,
   .page-premium .compare-cards {
     grid-template-columns: 1fr;
   }
@@ -4278,6 +4250,60 @@ html {
   border-left: 2px solid var(--purple);
   border-bottom: 2px solid var(--purple);
   transform: rotate(-45deg);
+}
+
+/* Centered contract guide sections */
+.page-premium .contract-how-section,
+.page-premium .law-2025-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-premium .contract-how-section::before,
+.page-premium .law-2025-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(120px, 20%);
+  height: 4px;
+  border-radius: 0 0 4px 4px;
+}
+
+.page-premium .contract-how-section::before {
+  background: linear-gradient(90deg, var(--orange), #f5a623);
+}
+
+.page-premium .law-2025-section::before {
+  background: linear-gradient(90deg, var(--purple), #a78bfa);
+}
+
+.page-premium .contract-centered {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.page-premium .contract-centered__header {
+  margin-bottom: 24px;
+}
+
+.page-premium .contract-centered__header h2 {
+  margin: 0;
+}
+
+.page-premium .contract-centered__body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.page-premium .contract-centered__body p {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.75;
+  color: var(--text-muted);
 }
 
 /* Change cards grid */

@@ -1,30 +1,14 @@
 (function () {
   'use strict';
 
-  function lockPageScroll(scrollY) {
-    const scrollbarGap = window.innerWidth - document.documentElement.clientWidth;
-
-    document.documentElement.style.scrollBehavior = 'auto';
-    document.body.style.position = 'fixed';
-    document.body.style.top = `-${scrollY}px`;
-    document.body.style.left = '0';
-    document.body.style.right = '0';
-    document.body.style.width = '100%';
-
-    if (scrollbarGap > 0) {
-      document.body.style.paddingRight = `${scrollbarGap}px`;
-    }
-
-    return () => {
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.left = '';
-      document.body.style.right = '';
-      document.body.style.width = '';
-      document.body.style.paddingRight = '';
-      window.scrollTo(0, scrollY);
-      document.documentElement.style.scrollBehavior = '';
-    };
+  function preserveScroll(fn) {
+    const x = window.scrollX;
+    const y = window.scrollY;
+    fn();
+    const restore = () => window.scrollTo(x, y);
+    restore();
+    requestAnimationFrame(restore);
+    requestAnimationFrame(() => requestAnimationFrame(restore));
   }
 
   function initIpcFaq() {
@@ -32,27 +16,26 @@
     if (!faqSection) return;
 
     document.querySelectorAll('.page-calculadora-ipc .faq-item__question').forEach((btn) => {
-      btn.addEventListener('click', (e) => {
+      btn.addEventListener('mousedown', (e) => {
         e.preventDefault();
+      });
 
-        const scrollY = window.scrollY;
-        const unlock = lockPageScroll(scrollY);
+      btn.addEventListener('click', () => {
+        preserveScroll(() => {
+          const item = btn.closest('.faq-item');
+          const isOpen = item.classList.contains('open');
 
-        const item = btn.closest('.faq-item');
-        const isOpen = item.classList.contains('open');
+          document.querySelectorAll('.page-calculadora-ipc .faq-item').forEach((entry) => {
+            entry.classList.remove('open');
+            const question = entry.querySelector('.faq-item__question');
+            if (question) question.setAttribute('aria-expanded', 'false');
+          });
 
-        document.querySelectorAll('.page-calculadora-ipc .faq-item').forEach((entry) => {
-          entry.classList.remove('open');
-          const question = entry.querySelector('.faq-item__question');
-          if (question) question.setAttribute('aria-expanded', 'false');
+          if (!isOpen) {
+            item.classList.add('open');
+            btn.setAttribute('aria-expanded', 'true');
+          }
         });
-
-        if (!isOpen) {
-          item.classList.add('open');
-          btn.setAttribute('aria-expanded', 'true');
-        }
-
-        setTimeout(unlock, 320);
       });
     });
   }
