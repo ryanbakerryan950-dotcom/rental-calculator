@@ -1940,7 +1940,7 @@ html {
 
 /* Features */
 .page-premium .guide-section--features {
-  background: linear-gradient(135deg, #FFF0EB, #FFF0EB);
+  background: linear-gradient(135deg, #E8F0F8 0%, #F5F9FD 50%, #fff 100%);
 }
 
 .page-premium .guide-section--features .container.content {
@@ -2590,7 +2590,7 @@ html {
 
 /* ========== FAQ ========== */
 .page-premium .faq-section {
-  background: var(--cream);
+  background: linear-gradient(180deg, var(--orange-light) 0%, var(--cream) 100%);
   padding: var(--section-padding) var(--page-gutter);
 }
 
