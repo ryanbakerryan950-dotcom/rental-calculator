@@ -34,6 +34,65 @@
     --page-gutter: 16px;
   }
 
+  .page-premium *,
+  .page-premium *::before,
+  .page-premium *::after {
+    box-sizing: border-box;
+  }
+
+  .page-premium .hero__grid > *,
+  .page-premium .about-split > *,
+  .page-premium .formula-split > *,
+  .page-premium .guide-section .container,
+  .page-premium .guide-section .container.content,
+  .page-premium .ipc-hero__grid > *,
+  .page-premium .icl-hero__grid > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .page-premium .guide-section .section__header h2,
+  .page-premium .guide-section h2,
+  .page-calculadora-ipc .ipc-hero h1,
+  .page-calculadora-icl .icl-hero h1 {
+    font-size: clamp(1.25rem, 5.5vw, 1.75rem) !important;
+    line-height: 1.25;
+    word-break: break-word;
+  }
+
+  .page-premium .guide-section h3 {
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+    line-height: 1.35;
+  }
+
+  .page-premium .timeline__step,
+  .page-premium .feature-card,
+  .page-premium .guide-steps__card,
+  .page-premium .index-explainer-card,
+  .page-premium .law-contract__card {
+    min-width: 0;
+  }
+
+  .page-premium .legal-doc {
+    padding: 24px 16px;
+  }
+
+  .page-premium .contract-centered,
+  .page-premium .contract-how-section,
+  .page-premium .law-2025-section {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .page-premium .cta-banner h2 {
+    font-size: clamp(1.5rem, 6vw, 2rem) !important;
+  }
+
+  .page-premium .compare-card h3,
+  .page-premium .index-info-card h3 {
+    font-size: clamp(1rem, 4.5vw, 1.25rem);
+  }
+
   h1 {
     font-size: clamp(1.5rem, 5vw, 2.5rem);
   }

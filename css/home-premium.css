@@ -314,8 +314,8 @@ html {
 
 .page-premium .hero__content h1,
 .page-premium .hero h1 {
-  width: 600px;
-  max-width: 100%;
+  max-width: 600px;
+  width: 100%;
   font-size: 58px;
   font-weight: 800;
   line-height: 1.1;
@@ -888,8 +888,8 @@ html {
 }
 
 .page-premium .about-illust__img {
-  width: 433px;
-  max-width: 100%;
+  width: 100%;
+  max-width: 433px;
   height: auto;
   display: block;
   border-radius: var(--radius-lg);
@@ -3125,6 +3125,13 @@ html {
     --section-padding: 48px;
   }
 
+  .page-premium .navbar__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+  }
+
   .page-premium .navbar__links,
   .page-premium .navbar__cta:not(.navbar__mobile .navbar__cta) {
     display: none;
@@ -3134,25 +3141,69 @@ html {
     display: flex;
   }
 
-  .page-premium .hero h1 {
-    font-size: 44px;
+  .page-premium .hero.hero--split {
+    min-height: auto;
+    padding: calc(var(--nav-height) + 24px) 0 40px;
+  }
+
+  .page-premium .hero h1,
+  .page-premium .hero__content h1 {
+    font-size: clamp(1.625rem, 7vw, 2.75rem);
+    line-height: 1.15;
+    max-width: 100%;
+    width: 100%;
   }
 
   .page-premium .hero__grid {
     grid-template-columns: 1fr;
+    gap: 28px;
+    min-width: 0;
+  }
+
+  .page-premium .hero__content,
+  .page-premium .hero__visual,
+  .page-premium .hero__visual--calc,
+  .page-premium .hero .container {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .page-premium .hero__content {
+    order: 2;
+    padding-top: 0;
+    padding-bottom: 0;
   }
 
   .page-premium .hero__visual {
-    order: 2;
-    margin-top: 32px;
+    order: 1;
+    margin-top: 0;
+  }
+
+  .page-premium .hero__subtitle {
+    font-size: clamp(0.9375rem, 3.8vw, 1.0625rem);
+    line-height: 1.65;
+  }
+
+  .page-premium .hero__trust {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
   }
 
   .page-premium .calc-main {
-    padding: 24px 16px;
+    padding: 20px 16px;
+    border-radius: 16px;
   }
 
   .page-premium .index-cards {
     grid-template-columns: 1fr;
+  }
+
+  .page-premium .index-card__name {
+    font-size: 14px;
+    line-height: 1.35;
+    word-break: break-word;
   }
 
   .page-premium .calc-fields {
