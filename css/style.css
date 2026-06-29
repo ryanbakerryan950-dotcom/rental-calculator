@@ -3057,9 +3057,9 @@ h4 { font-size: var(--text-xl); }
 }
 
 @media (max-width: 480px) {
-  .hero__visual,
-  .hero--split .hero__visual,
-  .hero--page .hero__visual {
+  .hero__visual:not(.hero__visual--calc),
+  .hero--split .hero__visual:not(.hero__visual--calc),
+  .hero--page .hero__visual:not(.hero__visual--calc) {
     display: none;
   }
 }

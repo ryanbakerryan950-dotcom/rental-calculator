@@ -40,11 +40,28 @@
     box-sizing: border-box;
   }
 
-  .page-premium .hero__grid > *,
+  .page-premium .hero__visual--calc,
+  .page-premium .hero--split .hero__visual--calc,
+  .page-calculadora-ipc .ipc-hero__visual,
+  .page-calculadora-icl .icl-hero__calc {
+    display: block !important;
+    visibility: visible !important;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .page-premium .hero__visual--calc .calc-main,
+  .page-premium .calc-main {
+    display: block !important;
+    visibility: visible !important;
+  }
+
   .page-premium .about-split > *,
   .page-premium .formula-split > *,
   .page-premium .guide-section .container,
   .page-premium .guide-section .container.content,
+  .page-premium .hero__grid > *,
   .page-premium .ipc-hero__grid > *,
   .page-premium .icl-hero__grid > * {
     min-width: 0;
